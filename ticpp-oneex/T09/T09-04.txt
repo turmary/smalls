@@ -1,0 +1,169 @@
+	.file	"T09-04.cpp"
+	.section	.ctors,"w"
+	.align 4
+	.long	__GLOBAL__I__Z2f2i
+	.section	.dtors,"w"
+	.align 4
+	.long	__GLOBAL__D__Z2f2i
+.globl _r
+	.bss
+	.align 4
+_r:
+	.space 4
+.lcomm __ZSt8__ioinit,16
+	.text
+	.align 2
+	.p2align 4,,15
+.globl __Z2f2i
+	.def	__Z2f2i;	.scl	2;	.type	32;	.endef
+__Z2f2i:
+	pushl	%ebp
+	movl	%esp, %ebp
+	movl	8(%ebp), %eax
+	popl	%ebp
+	addl	%eax, %eax
+	ret
+	.def	___main;	.scl	2;	.type	32;	.endef
+	.section .rdata,"dr"
+	.align 4
+LC0:
+	.ascii "inline function f1 used times = \0"
+	.align 4
+LC1:
+	.ascii "non-inline function f2 used times = \0"
+	.text
+	.align 2
+	.p2align 4,,15
+.globl _main
+	.def	_main;	.scl	2;	.type	32;	.endef
+_main:
+	pushl	%ebp
+	movl	$16, %eax
+	movl	%esp, %ebp
+	pushl	%edi
+	pushl	%esi
+	pushl	%ebx
+	subl	$12, %esp
+	andl	$-16, %esp
+	call	__alloca
+	call	___main
+	call	_clock
+	movl	%eax, %edi
+	xorl	%edx, %edx
+	.p2align 4,,15
+L7:
+	leal	(%edx,%edx), %eax
+	incl	%edx
+	cmpl	$49999999, %edx
+	movl	%eax, _r
+	jle	L7
+	call	_clock
+	movl	%eax, %esi
+	xorl	%ebx, %ebx
+	.p2align 4,,15
+L11:
+	movl	%ebx, (%esp)
+	incl	%ebx
+	call	__Z2f2i
+	movl	%eax, _r
+	cmpl	$49999999, %ebx
+	jle	L11
+	call	_clock
+	movl	$__ZSt4cout, (%esp)
+	movl	$LC0, %edx
+	movl	%eax, %ebx
+	movl	%edx, 4(%esp)
+	call	__ZStlsISt11char_traitsIcEERSt13basic_ostreamIcT_ES5_PKc
+	movl	%eax, (%esp)
+	movl	%esi, %edx
+	subl	%esi, %ebx
+	subl	%edi, %edx
+	movl	%edx, 4(%esp)
+	call	__ZNSolsEl
+	movl	%eax, (%esp)
+	call	__ZSt4endlIcSt11char_traitsIcEERSt13basic_ostreamIT_T0_ES6_
+	movl	$__ZSt4cout, (%esp)
+	movl	$LC1, %eax
+	movl	%eax, 4(%esp)
+	call	__ZStlsISt11char_traitsIcEERSt13basic_ostreamIcT_ES5_PKc
+	movl	%eax, (%esp)
+	movl	%ebx, 4(%esp)
+	call	__ZNSolsEl
+	movl	%eax, (%esp)
+	call	__ZSt4endlIcSt11char_traitsIcEERSt13basic_ostreamIT_T0_ES6_
+	leal	-12(%ebp), %esp
+	xorl	%eax, %eax
+	popl	%ebx
+	popl	%esi
+	popl	%edi
+	popl	%ebp
+	ret
+	.align 2
+	.p2align 4,,15
+	.def	__Z41__static_initialization_and_destruction_0ii;	.scl	3;	.type	32;	.endef
+__Z41__static_initialization_and_destruction_0ii:
+	pushl	%ebp
+	movl	%esp, %ebp
+	subl	$24, %esp
+	movl	%ebx, -8(%ebp)
+	cmpl	$65535, %edx
+	sete	%bl
+	movl	%esi, -4(%ebp)
+	cmpl	$1, %eax
+	movl	%eax, %esi
+	sete	%al
+	testb	%al, %bl
+	jne	L22
+	testl	%esi, %esi
+	sete	%al
+	testb	%al, %bl
+	jne	L23
+L19:
+	movl	-8(%ebp), %ebx
+	movl	-4(%ebp), %esi
+	movl	%ebp, %esp
+	popl	%ebp
+	ret
+	.p2align 4,,7
+L22:
+	movl	$__ZSt8__ioinit, (%esp)
+	call	__ZNSt8ios_base4InitC1Ev
+	testl	%esi, %esi
+	sete	%al
+	testb	%al, %bl
+	je	L19
+	.p2align 4,,15
+L23:
+	movl	$__ZSt8__ioinit, (%esp)
+	call	__ZNSt8ios_base4InitD1Ev
+	movl	-8(%ebp), %ebx
+	movl	-4(%ebp), %esi
+	movl	%ebp, %esp
+	popl	%ebp
+	ret
+	.align 2
+	.p2align 4,,15
+	.def	__GLOBAL__I__Z2f2i;	.scl	3;	.type	32;	.endef
+__GLOBAL__I__Z2f2i:
+	pushl	%ebp
+	movl	$65535, %edx
+	movl	%esp, %ebp
+	popl	%ebp
+	movl	$1, %eax
+	jmp	__Z41__static_initialization_and_destruction_0ii
+	.align 2
+	.p2align 4,,15
+	.def	__GLOBAL__D__Z2f2i;	.scl	3;	.type	32;	.endef
+__GLOBAL__D__Z2f2i:
+	pushl	%ebp
+	movl	$65535, %edx
+	movl	%esp, %ebp
+	popl	%ebp
+	xorl	%eax, %eax
+	jmp	__Z41__static_initialization_and_destruction_0ii
+	.def	__ZNSt8ios_base4InitD1Ev;	.scl	2;	.type	32;	.endef
+	.def	__ZSt4endlIcSt11char_traitsIcEERSt13basic_ostreamIT_T0_ES6_;	.scl	2;	.type	32;	.endef
+	.def	__ZNSolsEl;	.scl	2;	.type	32;	.endef
+	.def	__ZStlsISt11char_traitsIcEERSt13basic_ostreamIcT_ES5_PKc;	.scl	2;	.type	32;	.endef
+	.def	_clock;	.scl	2;	.type	32;	.endef
+	.def	__ZNSt8ios_base4InitC1Ev;	.scl	2;	.type	32;	.endef

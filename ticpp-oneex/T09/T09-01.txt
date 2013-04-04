@@ -1,0 +1,13 @@
+# 1 "T09-01.cpp"
+# 1 "<built-in>"
+# 1 "<command line>"
+# 1 "T09-01.cpp"
+# 9 "T09-01.cpp"
+int main() {
+ (1 + 1);
+ (1 + 1);
+
+ int i = 5;
+ ((i++)>=(i++)?0:1);
+ return 0;
+}

@@ -1,0 +1,386 @@
+	.file	"StaticDestructors.cpp"
+	.text
+	.align 2
+	.def	__ZSt17__verify_groupingPKcjRKSs;	.scl	3;	.type	32;	.endef
+__ZSt17__verify_groupingPKcjRKSs:
+	pushl	%ebp
+	movl	%esp, %ebp
+	subl	$40, %esp
+	movl	16(%ebp), %eax
+	movl	%eax, (%esp)
+	call	__ZNKSs4sizeEv
+	decl	%eax
+	movl	%eax, -4(%ebp)
+	movl	12(%ebp), %eax
+	decl	%eax
+	movl	%eax, -12(%ebp)
+	leal	-12(%ebp), %eax
+	movl	%eax, 4(%esp)
+	leal	-4(%ebp), %eax
+	movl	%eax, (%esp)
+	call	__ZSt3minIjERKT_S2_S2_
+	movl	(%eax), %eax
+	movl	%eax, -8(%ebp)
+	movl	-4(%ebp), %eax
+	movl	%eax, -16(%ebp)
+	movb	$1, -17(%ebp)
+	movl	$0, -24(%ebp)
+L2:
+	movl	-24(%ebp), %eax
+	cmpl	-8(%ebp), %eax
+	jae	L5
+	cmpb	$0, -17(%ebp)
+	je	L5
+	movl	-16(%ebp), %eax
+	movl	%eax, 4(%esp)
+	movl	16(%ebp), %eax
+	movl	%eax, (%esp)
+	call	__ZNKSsixEj
+	movsbl	(%eax),%edx
+	movl	8(%ebp), %eax
+	addl	-24(%ebp), %eax
+	movsbl	(%eax),%eax
+	cmpl	%eax, %edx
+	sete	%al
+	movb	%al, -17(%ebp)
+	leal	-16(%ebp), %eax
+	decl	(%eax)
+	leal	-24(%ebp), %eax
+	incl	(%eax)
+	jmp	L2
+L5:
+	cmpl	$0, -16(%ebp)
+	je	L6
+	cmpb	$0, -17(%ebp)
+	je	L6
+	movl	-16(%ebp), %eax
+	movl	%eax, 4(%esp)
+	movl	16(%ebp), %eax
+	movl	%eax, (%esp)
+	call	__ZNKSsixEj
+	movsbl	(%eax),%edx
+	movl	8(%ebp), %eax
+	addl	-8(%ebp), %eax
+	movsbl	(%eax),%eax
+	cmpl	%eax, %edx
+	sete	%al
+	movb	%al, -17(%ebp)
+	leal	-16(%ebp), %eax
+	decl	(%eax)
+	jmp	L5
+L6:
+	movl	$0, 4(%esp)
+	movl	16(%ebp), %eax
+	movl	%eax, (%esp)
+	call	__ZNKSsixEj
+	movsbl	(%eax),%edx
+	movl	8(%ebp), %eax
+	addl	-8(%ebp), %eax
+	movsbl	(%eax),%eax
+	cmpl	%eax, %edx
+	jg	L8
+	movzbl	-17(%ebp), %eax
+	andl	$1, %eax
+	movb	%al, -25(%ebp)
+	jmp	L9
+L8:
+	movb	$0, -25(%ebp)
+L9:
+	movzbl	-25(%ebp), %eax
+	movb	%al, -17(%ebp)
+	movzbl	-17(%ebp), %eax
+	leave
+	ret
+.globl _out
+	.bss
+	.align 32
+_out:
+	.space 248
+.globl _a
+_a:
+	.space 1
+.lcomm __ZGVZ1fvE1b,16
+.lcomm _ZZ1fvE1b,16
+	.text
+	.align 2
+.globl __Z1fv
+	.def	__Z1fv;	.scl	2;	.type	32;	.endef
+__Z1fv:
+	pushl	%ebp
+	movl	%esp, %ebp
+	subl	$8, %esp
+	cmpb	$0, __ZGVZ1fvE1b
+	jne	L10
+	movl	$98, 4(%esp)
+	movl	$_ZZ1fvE1b, (%esp)
+	call	__ZN3ObjC1Ec
+	movb	$1, __ZGVZ1fvE1b
+	movl	$___tcf_0, (%esp)
+	call	_atexit
+L10:
+	leave
+	ret
+	.align 2
+	.def	___tcf_0;	.scl	3;	.type	32;	.endef
+___tcf_0:
+	pushl	%ebp
+	movl	%esp, %ebp
+	subl	$8, %esp
+	movl	$_ZZ1fvE1b, (%esp)
+	call	__ZN3ObjD1Ev
+	leave
+	ret
+	.section .rdata,"dr"
+LC0:
+	.ascii "Obj::~Obj() for \0"
+	.section	.text$_ZN3ObjD1Ev,"x"
+	.linkonce discard
+	.align 2
+.globl __ZN3ObjD1Ev
+	.def	__ZN3ObjD1Ev;	.scl	2;	.type	32;	.endef
+__ZN3ObjD1Ev:
+	pushl	%ebp
+	movl	%esp, %ebp
+	subl	$8, %esp
+	movl	$LC0, 4(%esp)
+	movl	$_out, (%esp)
+	call	__ZStlsISt11char_traitsIcEERSt13basic_ostreamIcT_ES5_PKc
+	movl	%eax, %edx
+	movl	8(%ebp), %eax
+	movsbl	(%eax),%eax
+	movl	%eax, 4(%esp)
+	movl	%edx, (%esp)
+	call	__ZStlsISt11char_traitsIcEERSt13basic_ostreamIcT_ES5_c
+	movl	$__ZSt4endlIcSt11char_traitsIcEERSt13basic_ostreamIT_T0_ES6_, 4(%esp)
+	movl	%eax, (%esp)
+	call	__ZNSolsEPFRSoS_E
+	leave
+	ret
+	.section .rdata,"dr"
+LC1:
+	.ascii "Obj::Obj() for \0"
+	.section	.text$_ZN3ObjC1Ec,"x"
+	.linkonce discard
+	.align 2
+.globl __ZN3ObjC1Ec
+	.def	__ZN3ObjC1Ec;	.scl	2;	.type	32;	.endef
+__ZN3ObjC1Ec:
+	pushl	%ebp
+	movl	%esp, %ebp
+	subl	$24, %esp
+	movl	12(%ebp), %eax
+	movb	%al, -1(%ebp)
+	movl	8(%ebp), %edx
+	movzbl	-1(%ebp), %eax
+	movb	%al, (%edx)
+	movl	$LC1, 4(%esp)
+	movl	$_out, (%esp)
+	call	__ZStlsISt11char_traitsIcEERSt13basic_ostreamIcT_ES5_PKc
+	movl	%eax, %edx
+	movl	8(%ebp), %eax
+	movsbl	(%eax),%eax
+	movl	%eax, 4(%esp)
+	movl	%edx, (%esp)
+	call	__ZStlsISt11char_traitsIcEERSt13basic_ostreamIcT_ES5_c
+	movl	$__ZSt4endlIcSt11char_traitsIcEERSt13basic_ostreamIT_T0_ES6_, 4(%esp)
+	movl	%eax, (%esp)
+	call	__ZNSolsEPFRSoS_E
+	leave
+	ret
+.lcomm __ZGVZ1gvE1c,16
+.lcomm _ZZ1gvE1c,16
+	.text
+	.align 2
+.globl __Z1gv
+	.def	__Z1gv;	.scl	2;	.type	32;	.endef
+__Z1gv:
+	pushl	%ebp
+	movl	%esp, %ebp
+	subl	$8, %esp
+	cmpb	$0, __ZGVZ1gvE1c
+	jne	L17
+	movl	$99, 4(%esp)
+	movl	$_ZZ1gvE1c, (%esp)
+	call	__ZN3ObjC1Ec
+	movb	$1, __ZGVZ1gvE1c
+	movl	$___tcf_1, (%esp)
+	call	_atexit
+L17:
+	leave
+	ret
+	.align 2
+	.def	___tcf_1;	.scl	3;	.type	32;	.endef
+___tcf_1:
+	pushl	%ebp
+	movl	%esp, %ebp
+	subl	$8, %esp
+	movl	$_ZZ1gvE1c, (%esp)
+	call	__ZN3ObjD1Ev
+	leave
+	ret
+.globl _global_int
+	.data
+	.align 4
+_global_int:
+	.long	255
+	.def	___main;	.scl	2;	.type	32;	.endef
+	.section .rdata,"dr"
+LC2:
+	.ascii "inside main()\0"
+LC3:
+	.ascii "leaving main()\0"
+	.text
+	.align 2
+.globl _main
+	.def	_main;	.scl	2;	.type	32;	.endef
+_main:
+	pushl	%ebp
+	movl	%esp, %ebp
+	subl	$24, %esp
+	andl	$-16, %esp
+	movl	$0, %eax
+	addl	$15, %eax
+	addl	$15, %eax
+	shrl	$4, %eax
+	sall	$4, %eax
+	movl	%eax, -4(%ebp)
+	movl	-4(%ebp), %eax
+	call	__alloca
+	call	___main
+	movl	$LC2, 4(%esp)
+	movl	$_out, (%esp)
+	call	__ZStlsISt11char_traitsIcEERSt13basic_ostreamIcT_ES5_PKc
+	movl	$__ZSt4endlIcSt11char_traitsIcEERSt13basic_ostreamIT_T0_ES6_, 4(%esp)
+	movl	%eax, (%esp)
+	call	__ZNSolsEPFRSoS_E
+	call	__Z1fv
+	movl	$LC3, 4(%esp)
+	movl	$_out, (%esp)
+	call	__ZStlsISt11char_traitsIcEERSt13basic_ostreamIcT_ES5_PKc
+	movl	$__ZSt4endlIcSt11char_traitsIcEERSt13basic_ostreamIT_T0_ES6_, 4(%esp)
+	movl	%eax, (%esp)
+	call	__ZNSolsEPFRSoS_E
+	movl	$0, %eax
+	leave
+	ret
+	.section	.text$_ZSt3minIjERKT_S2_S2_,"x"
+	.linkonce discard
+	.align 2
+.globl __ZSt3minIjERKT_S2_S2_
+	.def	__ZSt3minIjERKT_S2_S2_;	.scl	2;	.type	32;	.endef
+__ZSt3minIjERKT_S2_S2_:
+	pushl	%ebp
+	movl	%esp, %ebp
+	subl	$4, %esp
+	movl	12(%ebp), %eax
+	movl	8(%ebp), %edx
+	movl	(%eax), %eax
+	cmpl	(%edx), %eax
+	jae	L22
+	movl	12(%ebp), %eax
+	movl	%eax, -4(%ebp)
+	jmp	L21
+L22:
+	movl	8(%ebp), %eax
+	movl	%eax, -4(%ebp)
+L21:
+	movl	-4(%ebp), %eax
+	leave
+	ret
+	.section .rdata,"dr"
+LC4:
+	.ascii "statdest.out\0"
+	.text
+	.align 2
+	.def	__Z41__static_initialization_and_destruction_0ii;	.scl	3;	.type	32;	.endef
+__Z41__static_initialization_and_destruction_0ii:
+	pushl	%ebp
+	movl	%esp, %ebp
+	subl	$24, %esp
+	cmpl	$65535, 12(%ebp)
+	jne	L24
+	cmpl	$1, 8(%ebp)
+	jne	L24
+	movl	$32, 4(%esp)
+	movl	$16, (%esp)
+	call	__ZStorSt13_Ios_OpenmodeS_
+	movl	%eax, 8(%esp)
+	movl	$LC4, 4(%esp)
+	movl	$_out, (%esp)
+	call	__ZNSt14basic_ofstreamIcSt11char_traitsIcEEC1EPKcSt13_Ios_Openmode
+L24:
+	cmpl	$65535, 12(%ebp)
+	jne	L25
+	cmpl	$1, 8(%ebp)
+	jne	L25
+	movl	$97, 4(%esp)
+	movl	$_a, (%esp)
+	call	__ZN3ObjC1Ec
+L25:
+	cmpl	$65535, 12(%ebp)
+	jne	L26
+	cmpl	$0, 8(%ebp)
+	jne	L26
+	movl	$_a, (%esp)
+	call	__ZN3ObjD1Ev
+L26:
+	cmpl	$65535, 12(%ebp)
+	jne	L23
+	cmpl	$0, 8(%ebp)
+	jne	L23
+	movl	$_out, (%esp)
+	call	__ZNSt14basic_ofstreamIcSt11char_traitsIcEED1Ev
+L23:
+	leave
+	ret
+	.section	.text$_ZStorSt13_Ios_OpenmodeS_,"x"
+	.linkonce discard
+	.align 2
+.globl __ZStorSt13_Ios_OpenmodeS_
+	.def	__ZStorSt13_Ios_OpenmodeS_;	.scl	2;	.type	32;	.endef
+__ZStorSt13_Ios_OpenmodeS_:
+	pushl	%ebp
+	movl	%esp, %ebp
+	movl	12(%ebp), %eax
+	orl	8(%ebp), %eax
+	popl	%ebp
+	ret
+	.text
+	.align 2
+	.def	__GLOBAL__I_out;	.scl	3;	.type	32;	.endef
+__GLOBAL__I_out:
+	pushl	%ebp
+	movl	%esp, %ebp
+	subl	$8, %esp
+	movl	$65535, 4(%esp)
+	movl	$1, (%esp)
+	call	__Z41__static_initialization_and_destruction_0ii
+	leave
+	ret
+	.section	.ctors,"w"
+	.align 4
+	.long	__GLOBAL__I_out
+	.text
+	.align 2
+	.def	__GLOBAL__D_out;	.scl	3;	.type	32;	.endef
+__GLOBAL__D_out:
+	pushl	%ebp
+	movl	%esp, %ebp
+	subl	$8, %esp
+	movl	$65535, 4(%esp)
+	movl	$0, (%esp)
+	call	__Z41__static_initialization_and_destruction_0ii
+	leave
+	ret
+	.section	.dtors,"w"
+	.align 4
+	.long	__GLOBAL__D_out
+	.def	__ZNSt14basic_ofstreamIcSt11char_traitsIcEED1Ev;	.scl	2;	.type	32;	.endef
+	.def	_atexit;	.scl	2;	.type	32;	.endef
+	.def	__ZNSolsEPFRSoS_E;	.scl	2;	.type	32;	.endef
+	.def	__ZSt4endlIcSt11char_traitsIcEERSt13basic_ostreamIT_T0_ES6_;	.scl	2;	.type	32;	.endef
+	.def	__ZStlsISt11char_traitsIcEERSt13basic_ostreamIcT_ES5_c;	.scl	2;	.type	32;	.endef
+	.def	__ZStlsISt11char_traitsIcEERSt13basic_ostreamIcT_ES5_PKc;	.scl	2;	.type	32;	.endef
+	.def	__ZNSt14basic_ofstreamIcSt11char_traitsIcEEC1EPKcSt13_Ios_Openmode;	.scl	2;	.type	32;	.endef
+	.def	__ZNKSsixEj;	.scl	2;	.type	32;	.endef
+	.def	__ZNKSs4sizeEv;	.scl	2;	.type	32;	.endef
