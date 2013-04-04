@@ -2,7 +2,7 @@
 all: wl.exe
 
 wl.exe: wldialog.cpp wlrc.rc
-	windres wlrc.rc wlrc.o
+	windres -O coff -o wlrc.o wlrc.rc
 	g++ -o wldialog.o -c wldialog.cpp
 	g++ -o wl wlrc.o wldialog.o -Wl,--subsystem,console
 #	g++ -o wl wlrc.o wldialog.o -Wl,--subsystem,windows
