@@ -1,0 +1,17 @@
+
+
+ALL: CEDIT.EXE
+
+CEDIT.EXE: CEDIT.OBJ 
+#CEDIT.RES
+	link /OUT:CEDIT.EXE /subsystem:windows CEDIT.OBJ kernel32.lib user32.lib gdi32.lib
+#CEDIT.RES
+
+CEDIT.OBJ: CEDIT.C
+	cl /FoCEDIT.OBJ /c CEDIT.C
+
+CEDIT.RES: CEDIT.RC
+	rc /c 936 CEDIT.RC
+
+clean:
+	del CEDIT.OBJ CEDIT.EXE

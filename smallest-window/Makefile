@@ -1,11 +1,16 @@
 # tary, 14:44 2013/4/4
 
-TARGET=httpa
+TARGET=smallest
 
-all: $(TARGET)
+TARGETX=smallwindow
 
-$(TARGET): $(TARGET).o $(TARGET).res httpui.o reqlist.o
+all: $(TARGET) $(TARGETX)
+
+$(TARGET): $(TARGET).o $(TARGET).res
 	gcc -o $@ $^ -lgdi32 -lcomctl32 -lws2_32 -Wl,--subsystem=windows
+
+$(TARGETX): $(TARGETX).o
+	gcc -o $@ $^ -lgdi32 -Wl,--subsystem=windows
 
 %.o: %.c
 	gcc -c -o $@ $<
@@ -16,5 +21,4 @@ $(TARGET): $(TARGET).o $(TARGET).res httpui.o reqlist.o
 clean:
 	rm -f *.o *.obj
 	rm -f *.res
-	# rm $(TARGET)
-	rm $(TARGET).exe
+	rm *.exe
