@@ -148,10 +148,10 @@ void OnCommand(HWND hwnd, int nId, HWND hwndCtl, UINT codeNotify)
 	int nRet;
 
 	switch (nId) {
+	case IDC_START_STOP:
 		//
 		// Start/Stop HTTP Server
 		//
-	case IDC_START_STOP:
 		hwndButton = GetDlgItem(hwnd, IDC_START_STOP);
 
 		if (!fStarted) {
