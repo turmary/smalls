@@ -1,0 +1,18 @@
+
+TARGET = SCRNSIZE
+
+ALL :	$(TARGET).EXE
+
+OBJS = $(TARGET).OBJ
+LIBS = kernel32.lib user32.lib gdi32.lib winmm.lib
+
+%.OBJ:%.C
+	CL /DUNICODE /D_UNICODE /Fo$@ @< 
+
+
+$(TARGET).EXE : $(OBJS)
+	link $(OBJS) $(LIBS) /OUT:$(TARGET).EXE
+
+CLEAN:
+	-DEL *.obj
+	-DEL *.exe
