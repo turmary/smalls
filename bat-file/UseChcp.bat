@@ -1,0 +1,1 @@
+for /L %%i IN (0, 1, 9999) do chcp %%i && pause

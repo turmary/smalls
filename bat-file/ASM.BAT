@@ -1,0 +1,83 @@
+
+@ECHO OFF
+SET CMPPATH=D:\MASM\
+SET OBJPATH=D:\MASM\TMP
+SET LSTPATH=D:\MASM\TMP
+SET CRFPATH=D:\MASM\TMP
+SET EXEPATH=.
+REM D:\MASM\TMP
+SET MAPPATH=.
+REM D:\MASM\TMP
+
+IF "%1" == "" GOTO P1
+GOTO NO_P1
+:P1
+REM     (
+        TYPE D:\MYEXE\ASM.BAT|MORE
+        GOTO END
+REM     )
+:NO_P1
+IF NOT EXIST "%1.ASM" GOTO P2
+GOTO NO_P2
+:P2
+REM     (
+	ECHO FILE %1.ASM DOESN'T EXIST
+	GOTO END
+REM     )
+:NO_P2
+ECHO //////////////////////ASSEMBLING///////////////////////////
+%CMPPATH%\MASM %1.ASM, %OBJPATH%\%1.OBJ, %LSTPATH%\%1.LST, %CRFPATH%\%1.CRF
+IF NOT ERRORLEVEL 0 GOTO END
+ECHO.
+
+IF NOT EXIST %OBJPATH%\%1.OBJ GOTO P3
+GOTO NO_P3
+:P3
+REM     (
+        ECHO %OBJPATH%\%1.OBJ BUILD ERROR
+	GOTO END
+REM     )
+:NO_P3
+
+IF "%2" == "c" GOTO END
+IF "%2" == "C" GOTO END
+
+ECHO //////////////////////LINKING//////////////////////////////
+%CMPPATH%\LINK %OBJPATH%\%1.OBJ, %EXEPATH%\%1.EXE, %MAPPATH%\%1.MAP;
+IF NOT ERRORLEVEL 0 GOTO END
+ECHO.
+
+IF NOT EXIST %EXEPATH%\%1.EXE GOTO P4
+GOTO NO_P4
+:P4
+        ECHO %EXEPATH%\%1.EXE LINK ERROR
+        GOTO END
+:NO_P4
+ECHO //////////////////////RUNNING//////////////////////////////
+%EXEPATH%\%1.EXE
+
+REM  //////////////////////DELETING/////////////////////////////
+IF "%2" ==  "o" GOTO P5
+GOTO NO_P5
+:P5
+REM     (
+        IF EXIST %OBJPATH%\%1.OBJ DEL %OBJPATH%\%1.OBJ
+        GOTO END
+REM     )
+:NO_P5
+IF "%2" ==  "e" GOTO P6
+GOTO NO_P6
+:P6
+        IF EXIST %EXEPATH%\%1.EXE DEL %EXEPATH%\%1.EXE
+        GOTO END
+:NO_P6
+IF "%2" ==  "oe" GOTO P7
+GOTO NO_P7
+:P7
+        IF EXIST %OBJPATH%\%1.OBJ DEL %OBJPATH%\%1.OBJ
+        IF EXIST %EXEPATH%\%1.EXE DEL %EXEPATH%\%1.EXE
+        GOTO END
+:NO_P7
+
+:END
+@ECHO ON
