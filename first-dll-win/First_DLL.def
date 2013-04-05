@@ -1,0 +1,6 @@
+EXPORTS
+	IncCounter
+	DecCounter
+	ModC
+	PortOut
+	PortIn
