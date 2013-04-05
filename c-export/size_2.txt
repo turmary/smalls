@@ -1,0 +1,3 @@
+   text	   data	    bss	    dec	    hex	filename
+   1024	   1024	   4012	   6060	   17ac	l119_1.exe
+-rwxr-xr-x    1 Administ None        18248 Jun 27 07:37 L119_1.exe
