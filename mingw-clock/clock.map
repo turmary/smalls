@@ -1,0 +1,645 @@
+Archive member included because of file (symbol)
+
+C:/MinGW/lib/libmingw32.a(gccmain.o)
+                              clock.o (__main)
+C:/MinGW/lib/libmingw32.a(CRTglob.o)
+                              C:/MinGW/lib/crt2.o (_CRT_glob)
+C:/MinGW/lib/libmingw32.a(CRTfmode.o)
+                              C:/MinGW/lib/crt2.o (_CRT_fmode)
+C:/MinGW/lib/libmingw32.a(txtmode.o)
+                              C:/MinGW/lib/crt2.o (_fmode)
+C:/MinGW/lib/libmingw32.a(cpu_features.o)
+                              C:/MinGW/lib/crt2.o (__cpu_features_init)
+C:/MinGW/lib/libmingw32.a(pseudo-reloc.o)
+                              C:/MinGW/lib/crt2.o (_pei386_runtime_relocator)
+C:/MinGW/lib/libmingw32.a(CRT_fp10.o)
+                              C:/MinGW/lib/crt2.o (_fpreset)
+C:/MinGW/lib/libmingw32.a(pseudo-reloc-list.o)
+                              C:/MinGW/lib/libmingw32.a(pseudo-reloc.o) (__RUNTIME_PSEUDO_RELOC_LIST_END__)
+C:/MinGW/lib/gcc/mingw32/3.4.5/libgcc.a(_chkstk.o)
+                              clock.o (_alloca)
+C:/MinGW/lib/gcc/mingw32/3.4.5/libgcc.a(w32-shared-ptr.o)
+                              C:/MinGW/lib/gcc/mingw32/3.4.5/crtbegin.o (__w32_sharedptr_initialize)
+C:/MinGW/lib/gcc/mingw32/3.4.5/libgcc.a(_ctors.o)
+                              C:/MinGW/lib/libmingw32.a(gccmain.o) (__CTOR_LIST__)
+C:/MinGW/lib/libmsvcrt.a(diwcs00598.o)
+                              clock.o (clock)
+C:/MinGW/lib/libmsvcrt.a(diwcs00689.o)
+                              clock.o (printf)
+C:/MinGW/lib/libmsvcrt.a(diwcs00590.o)
+                              C:/MinGW/lib/crt2.o (_imp__atexit)
+C:/MinGW/lib/libmsvcrt.a(diwcs00383.o)
+                              C:/MinGW/lib/crt2.o (_imp___onexit)
+C:/MinGW/lib/libmsvcrt.a(diwcs00266.o)
+                              C:/MinGW/lib/crt2.o (_imp___iob)
+C:/MinGW/lib/libmsvcrt.a(diwcs00099.o)
+                              C:/MinGW/lib/crt2.o (_imp____set_app_type)
+C:/MinGW/lib/libmsvcrt.a(diwcs00055.o)
+                              C:/MinGW/lib/crt2.o (__getmainargs)
+C:/MinGW/lib/libmsvcrt.a(diwcs00079.o)
+                              C:/MinGW/lib/crt2.o (__p__fmode)
+C:/MinGW/lib/libmsvcrt.a(diwcs00077.o)
+                              C:/MinGW/lib/crt2.o (__p__environ)
+C:/MinGW/lib/libmsvcrt.a(diwcs00147.o)
+                              C:/MinGW/lib/crt2.o (_cexit)
+C:/MinGW/lib/libmsvcrt.a(diwcs00426.o)
+                              C:/MinGW/lib/crt2.o (_setmode)
+C:/MinGW/lib/libmsvcrt.a(diwcs00706.o)
+                              C:/MinGW/lib/crt2.o (signal)
+C:/MinGW/lib/libmsvcrt.a(diwcs00633.o)
+                              C:/MinGW/lib/libmingw32.a(pseudo-reloc.o) (fwrite)
+C:/MinGW/lib/libmsvcrt.a(diwcs00748.o)
+                              C:/MinGW/lib/libmingw32.a(pseudo-reloc.o) (vfprintf)
+C:/MinGW/lib/libmsvcrt.a(diwcs00583.o)
+                              C:/MinGW/lib/libmingw32.a(pseudo-reloc.o) (abort)
+C:/MinGW/lib/libmsvcrt.a(diwcs00682.o)
+                              C:/MinGW/lib/libmingw32.a(pseudo-reloc.o) (memcpy)
+C:/MinGW/lib/libmsvcrt.a(diwcs00137.o)
+                              C:/MinGW/lib/gcc/mingw32/3.4.5/libgcc.a(w32-shared-ptr.o) (_assert)
+C:/MinGW/lib/libmsvcrt.a(diwcs00625.o)
+                              C:/MinGW/lib/gcc/mingw32/3.4.5/libgcc.a(w32-shared-ptr.o) (free)
+C:/MinGW/lib/libmsvcrt.a(diwcs00676.o)
+                              C:/MinGW/lib/gcc/mingw32/3.4.5/libgcc.a(w32-shared-ptr.o) (malloc)
+C:/MinGW/lib/libmsvcrt.a(diwcs00684.o)
+                              C:/MinGW/lib/gcc/mingw32/3.4.5/libgcc.a(w32-shared-ptr.o) (memset)
+C:/MinGW/lib/libmsvcrt.a(diwch.o)
+                              C:/MinGW/lib/libmsvcrt.a(diwcs00598.o) (_head_libmsvcrt_a)
+C:/MinGW/lib/libmsvcrt.a(diwct.o)
+                              C:/MinGW/lib/libmsvcrt.a(diwch.o) (_libmsvcrt_a_iname)
+C:/MinGW/lib/libkernel32.a(dkjes00739.o)
+                              C:/MinGW/lib/crt2.o (SetUnhandledExceptionFilter@4)
+C:/MinGW/lib/libkernel32.a(dkjes00156.o)
+                              C:/MinGW/lib/crt2.o (ExitProcess@4)
+C:/MinGW/lib/libkernel32.a(dkjes00801.o)
+                              C:/MinGW/lib/libmingw32.a(pseudo-reloc.o) (VirtualQuery@12)
+C:/MinGW/lib/libkernel32.a(dkjes00798.o)
+                              C:/MinGW/lib/libmingw32.a(pseudo-reloc.o) (VirtualProtect@16)
+C:/MinGW/lib/libkernel32.a(dkjes00221.o)
+                              C:/MinGW/lib/gcc/mingw32/3.4.5/libgcc.a(w32-shared-ptr.o) (_imp__GetAtomNameA@12)
+C:/MinGW/lib/libkernel32.a(dkjes00176.o)
+                              C:/MinGW/lib/gcc/mingw32/3.4.5/libgcc.a(w32-shared-ptr.o) (_imp__FindAtomA@4)
+C:/MinGW/lib/libkernel32.a(dkjes00001.o)
+                              C:/MinGW/lib/gcc/mingw32/3.4.5/libgcc.a(w32-shared-ptr.o) (_imp__AddAtomA@4)
+C:/MinGW/lib/libkernel32.a(dkjeh.o)
+                              C:/MinGW/lib/libkernel32.a(dkjes00739.o) (_head_libkernel32_a)
+C:/MinGW/lib/libkernel32.a(dkjet.o)
+                              C:/MinGW/lib/libkernel32.a(dkjeh.o) (_libkernel32_a_iname)
+
+分配公共符号
+公共符号            大小              文件
+
+__DTOR_LIST__       0x10              C:/MinGW/lib/gcc/mingw32/3.4.5/libgcc.a(_ctors.o)
+__w32_sharedptr_terminate
+                    0x10              C:/MinGW/lib/gcc/mingw32/3.4.5/libgcc.a(w32-shared-ptr.o)
+__w32_sharedptr     0x10              C:/MinGW/lib/gcc/mingw32/3.4.5/libgcc.a(w32-shared-ptr.o)
+__CTOR_LIST__       0x10              C:/MinGW/lib/gcc/mingw32/3.4.5/libgcc.a(_ctors.o)
+__w32_sharedptr_unexpected
+                    0x10              C:/MinGW/lib/gcc/mingw32/3.4.5/libgcc.a(w32-shared-ptr.o)
+
+Discarded input sections
+
+ .text          0x00000000        0x8 C:/MinGW/lib/libmsvcrt.a(diwcs00099.o)
+ .text          0x00000000        0x8 C:/MinGW/lib/libkernel32.a(dkjes00221.o)
+ .text          0x00000000        0x8 C:/MinGW/lib/libkernel32.a(dkjes00176.o)
+ .text          0x00000000        0x8 C:/MinGW/lib/libkernel32.a(dkjes00001.o)
+
+内存配置
+
+名称           来源             长度             属性
+*default*        0x00000000         0xffffffff
+
+Linker script and memory map
+
+                0x00400000                __image_base__ = 0x400000
+                0x00000000                __dll__ = 0x0
+                0x00400000                ___ImageBase = 0x400000
+                0x00001000                __section_alignment__ = 0x1000
+                0x00000200                __file_alignment__ = 0x200
+                0x00000004                __major_os_version__ = 0x4
+                0x00000000                __minor_os_version__ = 0x0
+                0x00000001                __major_image_version__ = 0x1
+                0x00000000                __minor_image_version__ = 0x0
+                0x00000004                __major_subsystem_version__ = 0x4
+                0x00000000                __minor_subsystem_version__ = 0x0
+                0x00000003                __subsystem__ = 0x3
+                0x00200000                __size_of_stack_reserve__ = 0x200000
+                0x00001000                __size_of_stack_commit__ = 0x1000
+                0x00100000                __size_of_heap_reserve__ = 0x100000
+                0x00001000                __size_of_heap_commit__ = 0x1000
+                0x00000000                __loader_flags__ = 0x0
+                0x00000000                __dll_characteristics__ = 0x0
+LOAD clock.o
+LOAD C:/MinGW/lib/crt2.o
+LOAD C:/MinGW/lib/gcc/mingw32/3.4.5/crtbegin.o
+LOAD C:/MinGW/lib/gcc/mingw32/3.4.5/crtend.o
+LOAD C:/MinGW/lib/libmingw32.a
+LOAD C:/MinGW/lib/gcc/mingw32/3.4.5/libgcc.a
+LOAD C:/MinGW/lib/libmsvcrt.a
+LOAD C:/MinGW/lib/libkernel32.a
+                0x00000240                . = SIZEOF_HEADERS
+                0x00001000                . = ALIGN (__section_alignment__)
+
+.text           0x00401000      0xe00
+ *(.init)
+ *(.text)
+ .text          0x00401000       0xdc clock.o
+                0x00401000                main
+                0x004010ba                sleep
+ *fill*         0x004010dc        0x4 00
+ .text          0x004010e0      0x2c0 C:/MinGW/lib/crt2.o
+                0x004010e0                atexit
+                0x004010f0                _onexit
+                0x004011f0                WinMainCRTStartup
+                0x00401210                mainCRTStartup
+ .text          0x004013a0       0x10 C:/MinGW/lib/gcc/mingw32/3.4.5/crtbegin.o
+                0x004013a0                __do_sjlj_init
+ .text          0x004013b0       0x10 C:/MinGW/lib/gcc/mingw32/3.4.5/crtend.o
+ .text          0x004013c0       0xb0 C:/MinGW/lib/libmingw32.a(gccmain.o)
+                0x004013c0                __do_global_dtors
+                0x004013f0                __do_global_ctors
+                0x00401450                __main
+ .text          0x00401470        0x0 C:/MinGW/lib/libmingw32.a(CRTglob.o)
+ .text          0x00401470        0x0 C:/MinGW/lib/libmingw32.a(CRTfmode.o)
+ .text          0x00401470        0x0 C:/MinGW/lib/libmingw32.a(txtmode.o)
+ .text          0x00401470       0xe0 C:/MinGW/lib/libmingw32.a(cpu_features.o)
+                0x00401470                __cpu_features_init
+ .text          0x00401550      0x2e0 C:/MinGW/lib/libmingw32.a(pseudo-reloc.o)
+                0x00401680                _pei386_runtime_relocator
+ .text          0x00401830       0x10 C:/MinGW/lib/libmingw32.a(CRT_fp10.o)
+                0x00401830                fpreset
+                0x00401830                _fpreset
+ .text          0x00401840        0x0 C:/MinGW/lib/libmingw32.a(pseudo-reloc-list.o)
+ .text          0x00401840       0x30 C:/MinGW/lib/gcc/mingw32/3.4.5/libgcc.a(_chkstk.o)
+                0x00401840                _alloca
+                0x00401840                __chkstk
+ .text          0x00401870      0x320 C:/MinGW/lib/gcc/mingw32/3.4.5/libgcc.a(w32-shared-ptr.o)
+                0x00401920                __w32_sharedptr_initialize
+ .text          0x00401b90        0x0 C:/MinGW/lib/gcc/mingw32/3.4.5/libgcc.a(_ctors.o)
+ .text          0x00401b90        0x8 C:/MinGW/lib/libmsvcrt.a(diwcs00598.o)
+                0x00401b90                clock
+ .text          0x00401b98        0x8 C:/MinGW/lib/libmsvcrt.a(diwcs00689.o)
+                0x00401b98                printf
+ .text          0x00401ba0        0x0 C:/MinGW/lib/libmsvcrt.a(diwcs00590.o)
+ .text          0x00401ba0        0x0 C:/MinGW/lib/libmsvcrt.a(diwcs00383.o)
+ .text          0x00401ba0        0x0 C:/MinGW/lib/libmsvcrt.a(diwcs00266.o)
+ .text          0x00401ba0        0x8 C:/MinGW/lib/libmsvcrt.a(diwcs00055.o)
+                0x00401ba0                __getmainargs
+ .text          0x00401ba8        0x8 C:/MinGW/lib/libmsvcrt.a(diwcs00079.o)
+                0x00401ba8                __p__fmode
+ .text          0x00401bb0        0x8 C:/MinGW/lib/libmsvcrt.a(diwcs00077.o)
+                0x00401bb0                __p__environ
+ .text          0x00401bb8        0x8 C:/MinGW/lib/libmsvcrt.a(diwcs00147.o)
+                0x00401bb8                _cexit
+ .text          0x00401bc0        0x8 C:/MinGW/lib/libmsvcrt.a(diwcs00426.o)
+                0x00401bc0                _setmode
+ .text          0x00401bc8        0x8 C:/MinGW/lib/libmsvcrt.a(diwcs00706.o)
+                0x00401bc8                signal
+ .text          0x00401bd0        0x8 C:/MinGW/lib/libmsvcrt.a(diwcs00633.o)
+                0x00401bd0                fwrite
+ .text          0x00401bd8        0x8 C:/MinGW/lib/libmsvcrt.a(diwcs00748.o)
+                0x00401bd8                vfprintf
+ .text          0x00401be0        0x8 C:/MinGW/lib/libmsvcrt.a(diwcs00583.o)
+                0x00401be0                abort
+ .text          0x00401be8        0x8 C:/MinGW/lib/libmsvcrt.a(diwcs00682.o)
+                0x00401be8                memcpy
+ .text          0x00401bf0        0x8 C:/MinGW/lib/libmsvcrt.a(diwcs00137.o)
+                0x00401bf0                _assert
+ .text          0x00401bf8        0x8 C:/MinGW/lib/libmsvcrt.a(diwcs00625.o)
+                0x00401bf8                free
+ .text          0x00401c00        0x8 C:/MinGW/lib/libmsvcrt.a(diwcs00676.o)
+                0x00401c00                malloc
+ .text          0x00401c08        0x8 C:/MinGW/lib/libmsvcrt.a(diwcs00684.o)
+                0x00401c08                memset
+ .text          0x00401c10        0x0 C:/MinGW/lib/libmsvcrt.a(diwch.o)
+ .text          0x00401c10        0x0 C:/MinGW/lib/libmsvcrt.a(diwct.o)
+ .text          0x00401c10        0x8 C:/MinGW/lib/libkernel32.a(dkjes00739.o)
+                0x00401c10                SetUnhandledExceptionFilter@4
+ .text          0x00401c18        0x8 C:/MinGW/lib/libkernel32.a(dkjes00156.o)
+                0x00401c18                ExitProcess@4
+ .text          0x00401c20        0x8 C:/MinGW/lib/libkernel32.a(dkjes00801.o)
+                0x00401c20                VirtualQuery@12
+ .text          0x00401c28        0x8 C:/MinGW/lib/libkernel32.a(dkjes00798.o)
+                0x00401c28                VirtualProtect@16
+ .text          0x00401c30        0x0 C:/MinGW/lib/libkernel32.a(dkjeh.o)
+ .text          0x00401c30        0x0 C:/MinGW/lib/libkernel32.a(dkjet.o)
+ *(SORT(.text$*))
+ *(.text.*)
+ *(.glue_7t)
+ *(.glue_7)
+                0x00401c30                ___CTOR_LIST__ = .
+                0x00401c30                __CTOR_LIST__ = .
+                0x00401c30        0x4 LONG 0xffffffff
+ *(.ctors)
+ .ctors         0x00401c34        0x4 C:/MinGW/lib/gcc/mingw32/3.4.5/crtend.o
+ *(.ctor)
+ *(SORT(.ctors.*))
+                0x00401c38        0x4 LONG 0x0
+                0x00401c3c                ___DTOR_LIST__ = .
+                0x00401c3c                __DTOR_LIST__ = .
+                0x00401c3c        0x4 LONG 0xffffffff
+ *(.dtors)
+ *(.dtor)
+ *(SORT(.dtors.*))
+                0x00401c40        0x4 LONG 0x0
+ *(.fini)
+ *(.gcc_exc)
+                0x00401c44                PROVIDE (etext, .)
+ *(.gcc_except_table)
+
+.data           0x00402000      0x200
+                0x00402000                __data_start__ = .
+ *(.data)
+ .data          0x00402000        0x0 clock.o
+ .data          0x00402000        0x0 C:/MinGW/lib/crt2.o
+ .data          0x00402000        0x0 C:/MinGW/lib/gcc/mingw32/3.4.5/crtbegin.o
+ .data          0x00402000        0x0 C:/MinGW/lib/gcc/mingw32/3.4.5/crtend.o
+ .data          0x00402000        0x4 C:/MinGW/lib/libmingw32.a(gccmain.o)
+ .data          0x00402004        0x4 C:/MinGW/lib/libmingw32.a(CRTglob.o)
+                0x00402004                _CRT_glob
+ .data          0x00402008        0x0 C:/MinGW/lib/libmingw32.a(CRTfmode.o)
+ .data          0x00402008        0x4 C:/MinGW/lib/libmingw32.a(txtmode.o)
+                0x00402008                _fmode
+ .data          0x0040200c        0x0 C:/MinGW/lib/libmingw32.a(cpu_features.o)
+ .data          0x0040200c        0x0 C:/MinGW/lib/libmingw32.a(pseudo-reloc.o)
+ .data          0x0040200c        0x0 C:/MinGW/lib/libmingw32.a(CRT_fp10.o)
+ .data          0x0040200c        0x0 C:/MinGW/lib/libmingw32.a(pseudo-reloc-list.o)
+ .data          0x0040200c        0x0 C:/MinGW/lib/gcc/mingw32/3.4.5/libgcc.a(_chkstk.o)
+ .data          0x0040200c       0x20 C:/MinGW/lib/gcc/mingw32/3.4.5/libgcc.a(w32-shared-ptr.o)
+ .data          0x0040202c        0x0 C:/MinGW/lib/gcc/mingw32/3.4.5/libgcc.a(_ctors.o)
+ .data          0x0040202c        0x0 C:/MinGW/lib/libmsvcrt.a(diwcs00598.o)
+ .data          0x0040202c        0x0 C:/MinGW/lib/libmsvcrt.a(diwcs00689.o)
+ .data          0x0040202c        0x0 C:/MinGW/lib/libmsvcrt.a(diwcs00590.o)
+ .data          0x0040202c        0x0 C:/MinGW/lib/libmsvcrt.a(diwcs00383.o)
+ .data          0x0040202c        0x0 C:/MinGW/lib/libmsvcrt.a(diwcs00266.o)
+ .data          0x0040202c        0x0 C:/MinGW/lib/libmsvcrt.a(diwcs00099.o)
+ .data          0x0040202c        0x0 C:/MinGW/lib/libmsvcrt.a(diwcs00055.o)
+ .data          0x0040202c        0x0 C:/MinGW/lib/libmsvcrt.a(diwcs00079.o)
+ .data          0x0040202c        0x0 C:/MinGW/lib/libmsvcrt.a(diwcs00077.o)
+ .data          0x0040202c        0x0 C:/MinGW/lib/libmsvcrt.a(diwcs00147.o)
+ .data          0x0040202c        0x0 C:/MinGW/lib/libmsvcrt.a(diwcs00426.o)
+ .data          0x0040202c        0x0 C:/MinGW/lib/libmsvcrt.a(diwcs00706.o)
+ .data          0x0040202c        0x0 C:/MinGW/lib/libmsvcrt.a(diwcs00633.o)
+ .data          0x0040202c        0x0 C:/MinGW/lib/libmsvcrt.a(diwcs00748.o)
+ .data          0x0040202c        0x0 C:/MinGW/lib/libmsvcrt.a(diwcs00583.o)
+ .data          0x0040202c        0x0 C:/MinGW/lib/libmsvcrt.a(diwcs00682.o)
+ .data          0x0040202c        0x0 C:/MinGW/lib/libmsvcrt.a(diwcs00137.o)
+ .data          0x0040202c        0x0 C:/MinGW/lib/libmsvcrt.a(diwcs00625.o)
+ .data          0x0040202c        0x0 C:/MinGW/lib/libmsvcrt.a(diwcs00676.o)
+ .data          0x0040202c        0x0 C:/MinGW/lib/libmsvcrt.a(diwcs00684.o)
+ .data          0x0040202c        0x0 C:/MinGW/lib/libmsvcrt.a(diwch.o)
+ .data          0x0040202c        0x0 C:/MinGW/lib/libmsvcrt.a(diwct.o)
+ .data          0x0040202c        0x0 C:/MinGW/lib/libkernel32.a(dkjes00739.o)
+ .data          0x0040202c        0x0 C:/MinGW/lib/libkernel32.a(dkjes00156.o)
+ .data          0x0040202c        0x0 C:/MinGW/lib/libkernel32.a(dkjes00801.o)
+ .data          0x0040202c        0x0 C:/MinGW/lib/libkernel32.a(dkjes00798.o)
+ .data          0x0040202c        0x0 C:/MinGW/lib/libkernel32.a(dkjes00221.o)
+ .data          0x0040202c        0x0 C:/MinGW/lib/libkernel32.a(dkjes00176.o)
+ .data          0x0040202c        0x0 C:/MinGW/lib/libkernel32.a(dkjes00001.o)
+ .data          0x0040202c        0x0 C:/MinGW/lib/libkernel32.a(dkjeh.o)
+ .data          0x0040202c        0x0 C:/MinGW/lib/libkernel32.a(dkjet.o)
+ *(.data2)
+ *(SORT(.data$*))
+ *(.jcr)
+                0x0040202c                __data_end__ = .
+ *(.data_cygwin_nocopy)
+
+.rdata          0x00403000      0x200
+ *(.rdata)
+ .rdata         0x00403000       0x58 clock.o
+ .rdata         0x00403058       0xac C:/MinGW/lib/libmingw32.a(pseudo-reloc.o)
+ .rdata         0x00403104       0xc0 C:/MinGW/lib/gcc/mingw32/3.4.5/libgcc.a(w32-shared-ptr.o)
+ *(SORT(.rdata$*))
+                0x004031c4                ___RUNTIME_PSEUDO_RELOC_LIST__ = .
+                0x004031c4                __RUNTIME_PSEUDO_RELOC_LIST__ = .
+ *(.rdata_runtime_pseudo_reloc)
+                0x004031c4                ___RUNTIME_PSEUDO_RELOC_LIST_END__ = .
+                0x004031c4                __RUNTIME_PSEUDO_RELOC_LIST_END__ = .
+
+.eh_frame
+ *(.eh_frame)
+
+.pdata
+ *(.pdata)
+
+.bss            0x00404000       0xc4
+                0x00404000                __bss_start__ = .
+ *(.bss)
+ .bss           0x00404000        0x0 clock.o
+ .bss           0x00404000        0x8 C:/MinGW/lib/crt2.o
+                0x00404000                _argc
+                0x00404004                _argv
+ .bss           0x00404008        0x0 C:/MinGW/lib/gcc/mingw32/3.4.5/crtbegin.o
+ .bss           0x00404008        0x0 C:/MinGW/lib/gcc/mingw32/3.4.5/crtend.o
+ .bss           0x00404008       0x10 C:/MinGW/lib/libmingw32.a(gccmain.o)
+ .bss           0x00404018        0x0 C:/MinGW/lib/libmingw32.a(CRTglob.o)
+ .bss           0x00404018        0x4 C:/MinGW/lib/libmingw32.a(CRTfmode.o)
+                0x00404018                _CRT_fmode
+ .bss           0x0040401c        0x0 C:/MinGW/lib/libmingw32.a(txtmode.o)
+ .bss           0x0040401c        0x4 C:/MinGW/lib/libmingw32.a(cpu_features.o)
+                0x0040401c                __cpu_features
+ .bss           0x00404020       0x10 C:/MinGW/lib/libmingw32.a(pseudo-reloc.o)
+ .bss           0x00404030        0x0 C:/MinGW/lib/libmingw32.a(CRT_fp10.o)
+ .bss           0x00404030        0x4 C:/MinGW/lib/libmingw32.a(pseudo-reloc-list.o)
+ .bss           0x00404034        0x0 C:/MinGW/lib/gcc/mingw32/3.4.5/libgcc.a(_chkstk.o)
+ .bss           0x00404034       0x40 C:/MinGW/lib/gcc/mingw32/3.4.5/libgcc.a(w32-shared-ptr.o)
+ .bss           0x00404074        0x0 C:/MinGW/lib/gcc/mingw32/3.4.5/libgcc.a(_ctors.o)
+ .bss           0x00404074        0x0 C:/MinGW/lib/libmsvcrt.a(diwcs00598.o)
+ .bss           0x00404074        0x0 C:/MinGW/lib/libmsvcrt.a(diwcs00689.o)
+ .bss           0x00404074        0x0 C:/MinGW/lib/libmsvcrt.a(diwcs00590.o)
+ .bss           0x00404074        0x0 C:/MinGW/lib/libmsvcrt.a(diwcs00383.o)
+ .bss           0x00404074        0x0 C:/MinGW/lib/libmsvcrt.a(diwcs00266.o)
+ .bss           0x00404074        0x0 C:/MinGW/lib/libmsvcrt.a(diwcs00099.o)
+ .bss           0x00404074        0x0 C:/MinGW/lib/libmsvcrt.a(diwcs00055.o)
+ .bss           0x00404074        0x0 C:/MinGW/lib/libmsvcrt.a(diwcs00079.o)
+ .bss           0x00404074        0x0 C:/MinGW/lib/libmsvcrt.a(diwcs00077.o)
+ .bss           0x00404074        0x0 C:/MinGW/lib/libmsvcrt.a(diwcs00147.o)
+ .bss           0x00404074        0x0 C:/MinGW/lib/libmsvcrt.a(diwcs00426.o)
+ .bss           0x00404074        0x0 C:/MinGW/lib/libmsvcrt.a(diwcs00706.o)
+ .bss           0x00404074        0x0 C:/MinGW/lib/libmsvcrt.a(diwcs00633.o)
+ .bss           0x00404074        0x0 C:/MinGW/lib/libmsvcrt.a(diwcs00748.o)
+ .bss           0x00404074        0x0 C:/MinGW/lib/libmsvcrt.a(diwcs00583.o)
+ .bss           0x00404074        0x0 C:/MinGW/lib/libmsvcrt.a(diwcs00682.o)
+ .bss           0x00404074        0x0 C:/MinGW/lib/libmsvcrt.a(diwcs00137.o)
+ .bss           0x00404074        0x0 C:/MinGW/lib/libmsvcrt.a(diwcs00625.o)
+ .bss           0x00404074        0x0 C:/MinGW/lib/libmsvcrt.a(diwcs00676.o)
+ .bss           0x00404074        0x0 C:/MinGW/lib/libmsvcrt.a(diwcs00684.o)
+ .bss           0x00404074        0x0 C:/MinGW/lib/libmsvcrt.a(diwch.o)
+ .bss           0x00404074        0x0 C:/MinGW/lib/libmsvcrt.a(diwct.o)
+ .bss           0x00404074        0x0 C:/MinGW/lib/libkernel32.a(dkjes00739.o)
+ .bss           0x00404074        0x0 C:/MinGW/lib/libkernel32.a(dkjes00156.o)
+ .bss           0x00404074        0x0 C:/MinGW/lib/libkernel32.a(dkjes00801.o)
+ .bss           0x00404074        0x0 C:/MinGW/lib/libkernel32.a(dkjes00798.o)
+ .bss           0x00404074        0x0 C:/MinGW/lib/libkernel32.a(dkjes00221.o)
+ .bss           0x00404074        0x0 C:/MinGW/lib/libkernel32.a(dkjes00176.o)
+ .bss           0x00404074        0x0 C:/MinGW/lib/libkernel32.a(dkjes00001.o)
+ .bss           0x00404074        0x0 C:/MinGW/lib/libkernel32.a(dkjeh.o)
+ .bss           0x00404074        0x0 C:/MinGW/lib/libkernel32.a(dkjet.o)
+ *(COMMON)
+ COMMON         0x00404074       0x30 C:/MinGW/lib/gcc/mingw32/3.4.5/libgcc.a(w32-shared-ptr.o)
+                0x00404074                __w32_sharedptr_terminate
+                0x00404084                __w32_sharedptr
+                0x00404094                __w32_sharedptr_unexpected
+ COMMON         0x004040a4       0x20 C:/MinGW/lib/gcc/mingw32/3.4.5/libgcc.a(_ctors.o)
+                0x004040c4                __bss_end__ = .
+
+.edata
+ *(.edata)
+
+/DISCARD/
+ *(.debug$S)
+ *(.debug$T)
+ *(.debug$F)
+ *(.drectve)
+
+.idata          0x00405000      0x400
+ SORT(*)(.idata$2)
+ .idata$2       0x00405000       0x14 C:/MinGW/lib/libkernel32.a(dkjeh.o)
+                0x00405000                _head_libkernel32_a
+ .idata$2       0x00405014       0x14 C:/MinGW/lib/libmsvcrt.a(diwch.o)
+                0x00405014                _head_libmsvcrt_a
+ SORT(*)(.idata$3)
+                0x00405028        0x4 LONG 0x0
+                0x0040502c        0x4 LONG 0x0
+                0x00405030        0x4 LONG 0x0
+                0x00405034        0x4 LONG 0x0
+                0x00405038        0x4 LONG 0x0
+ SORT(*)(.idata$4)
+ .idata$4       0x0040503c        0x0 C:/MinGW/lib/libkernel32.a(dkjeh.o)
+ .idata$4       0x0040503c        0x4 C:/MinGW/lib/libkernel32.a(dkjes00001.o)
+ .idata$4       0x00405040        0x4 C:/MinGW/lib/libkernel32.a(dkjes00156.o)
+ .idata$4       0x00405044        0x4 C:/MinGW/lib/libkernel32.a(dkjes00176.o)
+ .idata$4       0x00405048        0x4 C:/MinGW/lib/libkernel32.a(dkjes00221.o)
+ .idata$4       0x0040504c        0x4 C:/MinGW/lib/libkernel32.a(dkjes00739.o)
+ .idata$4       0x00405050        0x4 C:/MinGW/lib/libkernel32.a(dkjes00798.o)
+ .idata$4       0x00405054        0x4 C:/MinGW/lib/libkernel32.a(dkjes00801.o)
+ .idata$4       0x00405058        0x4 C:/MinGW/lib/libkernel32.a(dkjet.o)
+ .idata$4       0x0040505c        0x0 C:/MinGW/lib/libmsvcrt.a(diwch.o)
+ .idata$4       0x0040505c        0x4 C:/MinGW/lib/libmsvcrt.a(diwcs00055.o)
+ .idata$4       0x00405060        0x4 C:/MinGW/lib/libmsvcrt.a(diwcs00077.o)
+ .idata$4       0x00405064        0x4 C:/MinGW/lib/libmsvcrt.a(diwcs00079.o)
+ .idata$4       0x00405068        0x4 C:/MinGW/lib/libmsvcrt.a(diwcs00099.o)
+ .idata$4       0x0040506c        0x4 C:/MinGW/lib/libmsvcrt.a(diwcs00137.o)
+ .idata$4       0x00405070        0x4 C:/MinGW/lib/libmsvcrt.a(diwcs00147.o)
+ .idata$4       0x00405074        0x4 C:/MinGW/lib/libmsvcrt.a(diwcs00266.o)
+ .idata$4       0x00405078        0x4 C:/MinGW/lib/libmsvcrt.a(diwcs00383.o)
+ .idata$4       0x0040507c        0x4 C:/MinGW/lib/libmsvcrt.a(diwcs00426.o)
+ .idata$4       0x00405080        0x4 C:/MinGW/lib/libmsvcrt.a(diwcs00583.o)
+ .idata$4       0x00405084        0x4 C:/MinGW/lib/libmsvcrt.a(diwcs00590.o)
+ .idata$4       0x00405088        0x4 C:/MinGW/lib/libmsvcrt.a(diwcs00598.o)
+ .idata$4       0x0040508c        0x4 C:/MinGW/lib/libmsvcrt.a(diwcs00625.o)
+ .idata$4       0x00405090        0x4 C:/MinGW/lib/libmsvcrt.a(diwcs00633.o)
+ .idata$4       0x00405094        0x4 C:/MinGW/lib/libmsvcrt.a(diwcs00676.o)
+ .idata$4       0x00405098        0x4 C:/MinGW/lib/libmsvcrt.a(diwcs00682.o)
+ .idata$4       0x0040509c        0x4 C:/MinGW/lib/libmsvcrt.a(diwcs00684.o)
+ .idata$4       0x004050a0        0x4 C:/MinGW/lib/libmsvcrt.a(diwcs00689.o)
+ .idata$4       0x004050a4        0x4 C:/MinGW/lib/libmsvcrt.a(diwcs00706.o)
+ .idata$4       0x004050a8        0x4 C:/MinGW/lib/libmsvcrt.a(diwcs00748.o)
+ .idata$4       0x004050ac        0x4 C:/MinGW/lib/libmsvcrt.a(diwct.o)
+ SORT(*)(.idata$5)
+ .idata$5       0x004050b0        0x0 C:/MinGW/lib/libkernel32.a(dkjeh.o)
+ .idata$5       0x004050b0        0x4 C:/MinGW/lib/libkernel32.a(dkjes00001.o)
+                0x004050b0                _imp__AddAtomA@4
+ .idata$5       0x004050b4        0x4 C:/MinGW/lib/libkernel32.a(dkjes00156.o)
+                0x004050b4                _imp__ExitProcess@4
+ .idata$5       0x004050b8        0x4 C:/MinGW/lib/libkernel32.a(dkjes00176.o)
+                0x004050b8                _imp__FindAtomA@4
+ .idata$5       0x004050bc        0x4 C:/MinGW/lib/libkernel32.a(dkjes00221.o)
+                0x004050bc                _imp__GetAtomNameA@12
+ .idata$5       0x004050c0        0x4 C:/MinGW/lib/libkernel32.a(dkjes00739.o)
+                0x004050c0                _imp__SetUnhandledExceptionFilter@4
+ .idata$5       0x004050c4        0x4 C:/MinGW/lib/libkernel32.a(dkjes00798.o)
+                0x004050c4                _imp__VirtualProtect@16
+ .idata$5       0x004050c8        0x4 C:/MinGW/lib/libkernel32.a(dkjes00801.o)
+                0x004050c8                _imp__VirtualQuery@12
+ .idata$5       0x004050cc        0x4 C:/MinGW/lib/libkernel32.a(dkjet.o)
+ .idata$5       0x004050d0        0x0 C:/MinGW/lib/libmsvcrt.a(diwch.o)
+ .idata$5       0x004050d0        0x4 C:/MinGW/lib/libmsvcrt.a(diwcs00055.o)
+                0x004050d0                _imp____getmainargs
+ .idata$5       0x004050d4        0x4 C:/MinGW/lib/libmsvcrt.a(diwcs00077.o)
+                0x004050d4                _imp____p__environ
+ .idata$5       0x004050d8        0x4 C:/MinGW/lib/libmsvcrt.a(diwcs00079.o)
+                0x004050d8                _imp____p__fmode
+ .idata$5       0x004050dc        0x4 C:/MinGW/lib/libmsvcrt.a(diwcs00099.o)
+                0x004050dc                _imp____set_app_type
+ .idata$5       0x004050e0        0x4 C:/MinGW/lib/libmsvcrt.a(diwcs00137.o)
+                0x004050e0                _imp___assert
+ .idata$5       0x004050e4        0x4 C:/MinGW/lib/libmsvcrt.a(diwcs00147.o)
+                0x004050e4                _imp___cexit
+ .idata$5       0x004050e8        0x4 C:/MinGW/lib/libmsvcrt.a(diwcs00266.o)
+                0x004050e8                _imp___iob
+ .idata$5       0x004050ec        0x4 C:/MinGW/lib/libmsvcrt.a(diwcs00383.o)
+                0x004050ec                _imp___onexit
+ .idata$5       0x004050f0        0x4 C:/MinGW/lib/libmsvcrt.a(diwcs00426.o)
+                0x004050f0                _imp___setmode
+ .idata$5       0x004050f4        0x4 C:/MinGW/lib/libmsvcrt.a(diwcs00583.o)
+                0x004050f4                _imp__abort
+ .idata$5       0x004050f8        0x4 C:/MinGW/lib/libmsvcrt.a(diwcs00590.o)
+                0x004050f8                _imp__atexit
+ .idata$5       0x004050fc        0x4 C:/MinGW/lib/libmsvcrt.a(diwcs00598.o)
+                0x004050fc                _imp__clock
+ .idata$5       0x00405100        0x4 C:/MinGW/lib/libmsvcrt.a(diwcs00625.o)
+                0x00405100                _imp__free
+ .idata$5       0x00405104        0x4 C:/MinGW/lib/libmsvcrt.a(diwcs00633.o)
+                0x00405104                _imp__fwrite
+ .idata$5       0x00405108        0x4 C:/MinGW/lib/libmsvcrt.a(diwcs00676.o)
+                0x00405108                _imp__malloc
+ .idata$5       0x0040510c        0x4 C:/MinGW/lib/libmsvcrt.a(diwcs00682.o)
+                0x0040510c                _imp__memcpy
+ .idata$5       0x00405110        0x4 C:/MinGW/lib/libmsvcrt.a(diwcs00684.o)
+                0x00405110                _imp__memset
+ .idata$5       0x00405114        0x4 C:/MinGW/lib/libmsvcrt.a(diwcs00689.o)
+                0x00405114                _imp__printf
+ .idata$5       0x00405118        0x4 C:/MinGW/lib/libmsvcrt.a(diwcs00706.o)
+                0x00405118                _imp__signal
+ .idata$5       0x0040511c        0x4 C:/MinGW/lib/libmsvcrt.a(diwcs00748.o)
+                0x0040511c                _imp__vfprintf
+ .idata$5       0x00405120        0x4 C:/MinGW/lib/libmsvcrt.a(diwct.o)
+ SORT(*)(.idata$6)
+ .idata$6       0x00405124        0xc C:/MinGW/lib/libkernel32.a(dkjes00001.o)
+ .idata$6       0x00405130        0xe C:/MinGW/lib/libkernel32.a(dkjes00156.o)
+ .idata$6       0x0040513e        0xc C:/MinGW/lib/libkernel32.a(dkjes00176.o)
+ .idata$6       0x0040514a       0x10 C:/MinGW/lib/libkernel32.a(dkjes00221.o)
+ .idata$6       0x0040515a       0x1e C:/MinGW/lib/libkernel32.a(dkjes00739.o)
+ .idata$6       0x00405178       0x12 C:/MinGW/lib/libkernel32.a(dkjes00798.o)
+ .idata$6       0x0040518a       0x10 C:/MinGW/lib/libkernel32.a(dkjes00801.o)
+ .idata$6       0x0040519a       0x10 C:/MinGW/lib/libmsvcrt.a(diwcs00055.o)
+ .idata$6       0x004051aa       0x10 C:/MinGW/lib/libmsvcrt.a(diwcs00077.o)
+ .idata$6       0x004051ba        0xe C:/MinGW/lib/libmsvcrt.a(diwcs00079.o)
+ .idata$6       0x004051c8       0x12 C:/MinGW/lib/libmsvcrt.a(diwcs00099.o)
+ .idata$6       0x004051da        0xa C:/MinGW/lib/libmsvcrt.a(diwcs00137.o)
+ .idata$6       0x004051e4        0xa C:/MinGW/lib/libmsvcrt.a(diwcs00147.o)
+ .idata$6       0x004051ee        0x8 C:/MinGW/lib/libmsvcrt.a(diwcs00266.o)
+ .idata$6       0x004051f6        0xa C:/MinGW/lib/libmsvcrt.a(diwcs00383.o)
+ .idata$6       0x00405200        0xc C:/MinGW/lib/libmsvcrt.a(diwcs00426.o)
+ .idata$6       0x0040520c        0x8 C:/MinGW/lib/libmsvcrt.a(diwcs00583.o)
+ .idata$6       0x00405214        0xa C:/MinGW/lib/libmsvcrt.a(diwcs00590.o)
+ .idata$6       0x0040521e        0x8 C:/MinGW/lib/libmsvcrt.a(diwcs00598.o)
+ .idata$6       0x00405226        0x8 C:/MinGW/lib/libmsvcrt.a(diwcs00625.o)
+ .idata$6       0x0040522e        0xa C:/MinGW/lib/libmsvcrt.a(diwcs00633.o)
+ .idata$6       0x00405238        0xa C:/MinGW/lib/libmsvcrt.a(diwcs00676.o)
+ .idata$6       0x00405242        0xa C:/MinGW/lib/libmsvcrt.a(diwcs00682.o)
+ .idata$6       0x0040524c        0xa C:/MinGW/lib/libmsvcrt.a(diwcs00684.o)
+ .idata$6       0x00405256        0xa C:/MinGW/lib/libmsvcrt.a(diwcs00689.o)
+ .idata$6       0x00405260        0xa C:/MinGW/lib/libmsvcrt.a(diwcs00706.o)
+ .idata$6       0x0040526a        0xc C:/MinGW/lib/libmsvcrt.a(diwcs00748.o)
+ SORT(*)(.idata$7)
+ *fill*         0x00405276        0x2 00
+ .idata$7       0x00405278        0x4 C:/MinGW/lib/libkernel32.a(dkjes00001.o)
+ .idata$7       0x0040527c        0x4 C:/MinGW/lib/libkernel32.a(dkjes00156.o)
+ .idata$7       0x00405280        0x4 C:/MinGW/lib/libkernel32.a(dkjes00176.o)
+ .idata$7       0x00405284        0x4 C:/MinGW/lib/libkernel32.a(dkjes00221.o)
+ .idata$7       0x00405288        0x4 C:/MinGW/lib/libkernel32.a(dkjes00739.o)
+ .idata$7       0x0040528c        0x4 C:/MinGW/lib/libkernel32.a(dkjes00798.o)
+ .idata$7       0x00405290        0x4 C:/MinGW/lib/libkernel32.a(dkjes00801.o)
+ .idata$7       0x00405294       0x10 C:/MinGW/lib/libkernel32.a(dkjet.o)
+                0x00405294                _libkernel32_a_iname
+ .idata$7       0x004052a4        0x4 C:/MinGW/lib/libmsvcrt.a(diwcs00055.o)
+ .idata$7       0x004052a8        0x4 C:/MinGW/lib/libmsvcrt.a(diwcs00077.o)
+ .idata$7       0x004052ac        0x4 C:/MinGW/lib/libmsvcrt.a(diwcs00079.o)
+ .idata$7       0x004052b0        0x4 C:/MinGW/lib/libmsvcrt.a(diwcs00099.o)
+ .idata$7       0x004052b4        0x4 C:/MinGW/lib/libmsvcrt.a(diwcs00137.o)
+ .idata$7       0x004052b8        0x4 C:/MinGW/lib/libmsvcrt.a(diwcs00147.o)
+ .idata$7       0x004052bc        0x4 C:/MinGW/lib/libmsvcrt.a(diwcs00266.o)
+ .idata$7       0x004052c0        0x4 C:/MinGW/lib/libmsvcrt.a(diwcs00383.o)
+ .idata$7       0x004052c4        0x4 C:/MinGW/lib/libmsvcrt.a(diwcs00426.o)
+ .idata$7       0x004052c8        0x4 C:/MinGW/lib/libmsvcrt.a(diwcs00583.o)
+ .idata$7       0x004052cc        0x4 C:/MinGW/lib/libmsvcrt.a(diwcs00590.o)
+ .idata$7       0x004052d0        0x4 C:/MinGW/lib/libmsvcrt.a(diwcs00598.o)
+ .idata$7       0x004052d4        0x4 C:/MinGW/lib/libmsvcrt.a(diwcs00625.o)
+ .idata$7       0x004052d8        0x4 C:/MinGW/lib/libmsvcrt.a(diwcs00633.o)
+ .idata$7       0x004052dc        0x4 C:/MinGW/lib/libmsvcrt.a(diwcs00676.o)
+ .idata$7       0x004052e0        0x4 C:/MinGW/lib/libmsvcrt.a(diwcs00682.o)
+ .idata$7       0x004052e4        0x4 C:/MinGW/lib/libmsvcrt.a(diwcs00684.o)
+ .idata$7       0x004052e8        0x4 C:/MinGW/lib/libmsvcrt.a(diwcs00689.o)
+ .idata$7       0x004052ec        0x4 C:/MinGW/lib/libmsvcrt.a(diwcs00706.o)
+ .idata$7       0x004052f0        0x4 C:/MinGW/lib/libmsvcrt.a(diwcs00748.o)
+ .idata$7       0x004052f4        0xc C:/MinGW/lib/libmsvcrt.a(diwct.o)
+                0x004052f4                _libmsvcrt_a_iname
+
+.CRT            0x00406000        0x0
+                0x00406000                ___crt_xc_start__ = .
+ *(SORT(.CRT$XC*))
+                0x00406000                ___crt_xc_end__ = .
+                0x00406000                ___crt_xi_start__ = .
+ *(SORT(.CRT$XI*))
+                0x00406000                ___crt_xi_end__ = .
+                0x00406000                ___crt_xl_start__ = .
+ *(SORT(.CRT$XL*))
+                0x00406000                ___crt_xp_start__ = .
+ *(SORT(.CRT$XP*))
+                0x00406000                ___crt_xp_end__ = .
+                0x00406000                ___crt_xt_start__ = .
+ *(SORT(.CRT$XT*))
+                0x00406000                ___crt_xt_end__ = .
+
+.tls            0x00406000        0x0
+                0x00406000                ___tls_start__ = .
+ *(.tls)
+ *(.tls$)
+ *(SORT(.tls$*))
+                0x00406000                ___tls_end__ = .
+
+.endjunk        0x00406000        0x0
+                0x00406000                PROVIDE (end, .)
+                0x00406000                PROVIDE (_end, .)
+                0x00406000                __end__ = .
+
+.rsrc
+ *(.rsrc)
+ *(SORT(.rsrc$*))
+
+.reloc
+ *(.reloc)
+
+.stab
+ *(.stab)
+
+.stabstr
+ *(.stabstr)
+
+.debug_aranges
+ *(.debug_aranges)
+
+.debug_pubnames
+ *(.debug_pubnames)
+
+.debug_pubtypes
+ *(.debug_pubtypes)
+
+.debug_info
+ *(.debug_info)
+ *(.gnu.linkonce.wi.*)
+
+.debug_abbrev
+ *(.debug_abbrev)
+
+.debug_line
+ *(.debug_line)
+
+.debug_frame
+ *(.debug_frame)
+
+.debug_str
+ *(.debug_str)
+
+.debug_loc
+ *(.debug_loc)
+
+.debug_macinfo
+ *(.debug_macinfo)
+
+.debug_weaknames
+ *(.debug_weaknames)
+
+.debug_funcnames
+ *(.debug_funcnames)
+
+.debug_typenames
+ *(.debug_typenames)
+
+.debug_varnames
+ *(.debug_varnames)
+
+.debug_ranges
+ *(.debug_ranges)
+OUTPUT(clock.exe pei-i386)
