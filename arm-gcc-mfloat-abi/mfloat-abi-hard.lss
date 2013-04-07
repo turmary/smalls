@@ -1,0 +1,103 @@
+
+mfloat-abi-hard:     file format elf32-littlearm
+mfloat-abi-hard
+architecture: arm, flags 0x00000011:
+HAS_RELOC, HAS_SYMS
+start address 0x00000000
+private flags = 5000000: [Version5 EABI]
+
+Sections:
+Idx Name          Size      VMA       LMA       File off  Algn
+  0 .text         00000058  00000000  00000000  00000034  2**2
+                  CONTENTS, ALLOC, LOAD, READONLY, CODE
+  1 .data         00000000  00000000  00000000  0000008c  2**0
+                  CONTENTS, ALLOC, LOAD, DATA
+  2 .bss          00000000  00000000  00000000  0000008c  2**0
+                  ALLOC
+  3 .debug_abbrev 00000071  00000000  00000000  0000008c  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  4 .debug_info   000000b1  00000000  00000000  000000fd  2**0
+                  CONTENTS, RELOC, READONLY, DEBUGGING
+  5 .debug_line   0000003f  00000000  00000000  000001ae  2**0
+                  CONTENTS, RELOC, READONLY, DEBUGGING
+  6 .ARM.extab    00000000  00000000  00000000  000001ed  2**0
+                  CONTENTS, ALLOC, LOAD, READONLY, DATA
+  7 .ARM.exidx    00000008  00000000  00000000  000001f0  2**2
+                  CONTENTS, ALLOC, LOAD, RELOC, READONLY, DATA
+  8 .debug_frame  00000028  00000000  00000000  000001f8  2**2
+                  CONTENTS, RELOC, READONLY, DEBUGGING
+  9 .debug_loc    0000002b  00000000  00000000  00000220  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 10 .debug_pubnames 0000001b  00000000  00000000  0000024b  2**0
+                  CONTENTS, RELOC, READONLY, DEBUGGING
+ 11 .debug_aranges 00000020  00000000  00000000  00000266  2**0
+                  CONTENTS, RELOC, READONLY, DEBUGGING
+ 12 .debug_str    00000058  00000000  00000000  00000286  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 13 .comment      0000002b  00000000  00000000  000002de  2**0
+                  CONTENTS, READONLY
+ 14 .note.GNU-stack 00000000  00000000  00000000  00000309  2**0
+                  CONTENTS, READONLY
+ 15 .ARM.attributes 00000035  00000000  00000000  00000309  2**0
+                  CONTENTS, READONLY
+SYMBOL TABLE:
+00000000 l    df *ABS*	00000000 mfloat-abi.c
+00000000 l    d  .text	00000000 .text
+00000000 l    d  .data	00000000 .data
+00000000 l    d  .bss	00000000 .bss
+00000000 l    d  .debug_abbrev	00000000 .debug_abbrev
+00000000 l    d  .debug_info	00000000 .debug_info
+00000000 l    d  .debug_line	00000000 .debug_line
+00000000 l    d  .ARM.extab	00000000 .ARM.extab
+00000000 l    d  .ARM.exidx	00000000 .ARM.exidx
+00000000 l    d  .debug_frame	00000000 .debug_frame
+00000000 l    d  .debug_loc	00000000 .debug_loc
+00000000 l    d  .debug_pubnames	00000000 .debug_pubnames
+00000000 l    d  .debug_aranges	00000000 .debug_aranges
+00000000 l    d  .debug_str	00000000 .debug_str
+00000000 l    d  .note.GNU-stack	00000000 .note.GNU-stack
+00000000 l    d  .comment	00000000 .comment
+00000000 l    d  .ARM.attributes	00000000 .ARM.attributes
+00000000 g     F .text	00000058 main
+00000000         *UND*	00000000 __aeabi_unwind_cpp_pr0
+
+
+
+Disassembly of section .text:
+
+00000000 <main>:
+// tary, 11:33 2013-4-7
+#include <math.h>
+
+int main(int argc, char* argv[]) {
+   0:	e52db004 	push	{fp}		; (str fp, [sp, #-4]!)
+   4:	e28db000 	add	fp, sp, #0	; 0x0
+   8:	e24dd01c 	sub	sp, sp, #28	; 0x1c
+   c:	e50b0018 	str	r0, [fp, #-24]
+  10:	e50b101c 	str	r1, [fp, #-28]
+	volatile float x, y;
+	float z;
+
+	x = 3.25f;
+  14:	e59f3034 	ldr	r3, [pc, #52]	; 50 <main+0x50>
+  18:	e50b300c 	str	r3, [fp, #-12]
+	y = 2.125f;
+  1c:	e59f3030 	ldr	r3, [pc, #48]	; 54 <main+0x54>
+  20:	e50b3010 	str	r3, [fp, #-16]
+
+	z = x * y;
+  24:	ed1b7a03 	vldr	s14, [fp, #-12]
+  28:	ed5b7a04 	vldr	s15, [fp, #-16]
+  2c:	ee677a27 	vmul.f32	s15, s14, s15
+  30:	ed4b7a02 	vstr	s15, [fp, #-8]
+	return (int)z;
+  34:	ed5b7a02 	vldr	s15, [fp, #-8]
+  38:	eefd7ae7 	vcvt.s32.f32	s15, s15
+  3c:	ee173a90 	vmov	r3, s15
+}
+  40:	e1a00003 	mov	r0, r3
+  44:	e28bd000 	add	sp, fp, #0	; 0x0
+  48:	e8bd0800 	pop	{fp}
+  4c:	e12fff1e 	bx	lr
+  50:	40500000 	.word	0x40500000
+  54:	40080000 	.word	0x40080000
