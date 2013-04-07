@@ -498,7 +498,7 @@ void SendFile(LPREQUEST lpReq)
 
 void SendFileContents(LPREQUEST lpReq)
 {
-	static BYTE buf[1024];
+	BYTE buf[1024];
 	DWORD dwRead;
 	BOOL fRet;
 
