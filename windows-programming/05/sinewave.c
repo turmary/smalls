@@ -187,7 +187,7 @@ LRESULT CALLBACK WndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam) 
 		MoveToEx(hdc, 0, cyClient / 2, NULL);
 		LineTo	(hdc, cxClient, cyClient / 2);
 
-#if 0
+#if 1
 		for (i = 0; i < NUM; i++) {
 			apt[i].x = i * cxClient / NUM;
 			apt[i].y =(int)(cyClient / 2 *(1 - sin(TWOPI * i / NUM)));
