@@ -1,0 +1,113 @@
+<HTML><HEAD><TITLE>堈最諷秶</TITLE><META http-equiv=refresh content=10>
+<SCRIPT LANGUAGE=JAVASCRIPT>
+function getswitch() {
+	var newval, i, mask;
+
+	mask = 0x01;
+	newval = 0;
+	for (i = 0; i < 8; i++) {
+		if (switch_sel(2 * i).checked) {
+			newval +=  mask;
+		}
+		mask <<= 1;
+	}
+	document.forms(0).switch_result.value = "" + newval;
+	document.forms(0).submit();
+	return true;
+}
+
+function body_load(){
+	var newval, i, mask;
+
+	newval = document.forms(0).switch_result.value;
+	mask = 0x01;
+	for (i = 0; i < 8; i++) {
+		if (newval & mask) {
+			switch_sel(2 * i).checked = true;
+		} else {
+			switch_sel(2 * i + 1).checked = true;
+		}
+		mask <<= 1;
+	}
+	return true;
+}
+</SCRIPT>
+</HEAD>
+<BODY onload='javascript:body_load();'>
+<TABLE width=780>
+<tr><td colspan=2>
+<H1> <IMG height=74 src=photo1.jpg width=305></H1>
+<H1>數呾儂悝埏</H1>
+&nbsp&nbsp;&nbsp;<FONT size=4>堈最諷秶栳尨厙珜</FONT>
+</td></tr>
+
+<tr><td>
+<TABLE width=419 border=0>
+<TR>
+<TD width=120>LED1</TD>
+<TD width=150>
+<INPUT type=radio id=switch_sel  value=1 name=s1>謠 
+<INPUT type=radio id=switch_sel  value=0 name=s1>做 
+</TD>
+</TR>
+<TR>
+<TD width=120>LED2</TD>
+<TD width=150>
+<INPUT type=radio id=switch_sel  value=1 name=s2>謠 
+<INPUT type=radio id=switch_sel  value=0 name=s2>做 
+</TD>
+</TR>
+<TR>
+<TD width=120>LED3</TD>
+<TD width=150>
+<INPUT type=radio id=switch_sel  value=1 name=s3>謠 
+<INPUT type=radio id=switch_sel  value=0 name=s3>做 
+</TD>
+</TR>
+<TR>
+<TD width=120>LED4</TD>
+<TD width=150>
+<INPUT type=radio id=switch_sel  value=1 name=s4>謠 
+<INPUT type=radio id=switch_sel  value=0 name=s4>做 
+</TD>
+</TR>
+<TR>
+<TD width=120>LED5</TD>
+<TD width=150>
+<INPUT type=radio id=switch_sel  value=1 name=s5>謠 
+<INPUT type=radio id=switch_sel  value=0 name=s5>做 
+</TD>
+</TR>
+<TR>
+<TD width=120>LED6</TD>
+<TD width=150>
+<INPUT type=radio id=switch_sel  value=1 name=s6>謠 
+<INPUT type=radio id=switch_sel  value=0 name=s6>做 
+</TD>
+</TR>
+<TR>
+<TD width=120>LED7</TD>
+<TD width=150>
+<INPUT type=radio id=switch_sel  value=1 name=s7>謠 
+<INPUT type=radio id=switch_sel  value=0 name=s7>做 
+</TD>
+</TR>
+<TR>
+<TD width=120>LED8</TD>
+<TD width=150>
+<INPUT type=radio id=switch_sel  value=1 name=s8>謠 
+<INPUT type=radio id=switch_sel  value=0 name=s8>做 
+</TD>
+</TR>
+</TABLE>
+</td></tr>
+
+<tr><td>
+<FORM action=/index.html method=POST>
+<INPUT type=hidden id=switch_result name=switch value=TAG:CHK2>
+<INPUT type=button value=楷冞 onclick='javascript:return getswitch()'>
+</FORM>
+</td></tr>
+</TABLE>
+
+</BODY></HTML>
