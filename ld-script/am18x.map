@@ -42,7 +42,7 @@ LOAD am18x_t.ld
  *(.rel.text .rel.text.* .rel.gnu.linkonce.t.*)
  *(.rel.fini)
  *(.rel.rodata .rel.rodata.* .rel.gnu.linkonce.r.*)
- *(.rel.data.rel.ro* .rel.gnu.linkonce.d.rel.ro.*)
+ *(.rel.data.rel.ro .rel.data.rel.ro.* .rel.gnu.linkonce.d.rel.ro.*)
  *(.rel.data .rel.data.* .rel.gnu.linkonce.d.*)
  *(.rel.tdata .rel.tdata.* .rel.gnu.linkonce.td.*)
  *(.rel.tbss .rel.tbss.* .rel.gnu.linkonce.tb.*)
@@ -81,7 +81,7 @@ LOAD am18x_t.ld
  *(.rela.plt)
 
 .init
- *(.init)
+ *(SORT(.init))
 
 .plt
  *(.plt)
@@ -91,6 +91,9 @@ LOAD am18x_t.ld
 
 .text           0x00008000        0x0
  *(.text.unlikely .text.*_unlikely)
+ *(.text.exit .text.exit.*)
+ *(.text.startup .text.startup.*)
+ *(.text.hot .text.hot.*)
  *(.text .stub .text.* .gnu.linkonce.t.*)
  *(.gnu.warning)
  *(.glue_7t)
@@ -103,7 +106,7 @@ LOAD am18x_t.ld
  .v4_bx         0x00000000        0x0 linker stubs
 
 .fini
- *(.fini)
+ *(SORT(.fini))
                 0x00008000                PROVIDE (__etext, .)
                 0x00008000                PROVIDE (_etext, .)
                 0x00008000                PROVIDE (etext, .)
@@ -124,19 +127,34 @@ LOAD am18x_t.ld
 
 .eh_frame_hdr
  *(.eh_frame_hdr)
+ *(.eh_frame_entry .eh_frame_entry.*)
 
 .eh_frame
  *(.eh_frame)
+ *(.eh_frame.*)
 
 .gcc_except_table
  *(.gcc_except_table .gcc_except_table.*)
+
+.gnu_extab
+ *(.gnu_extab*)
+
+.exception_ranges
+ *(.exception_ranges .exception_ranges*)
                 0x00008000                . = (ALIGN (0x8000) + (. & 0x7fff))
 
 .eh_frame
  *(.eh_frame)
+ *(.eh_frame.*)
+
+.gnu_extab
+ *(.gnu_extab)
 
 .gcc_except_table
  *(.gcc_except_table .gcc_except_table.*)
+
+.exception_ranges
+ *(.exception_ranges .exception_ranges*)
 
 .tdata
  *(.tdata .tdata.* .gnu.linkonce.td.*)
@@ -181,7 +199,7 @@ LOAD am18x_t.ld
 
 .data.rel.ro
  *(.data.rel.ro.local* .gnu.linkonce.d.rel.ro.local.*)
- *(.data.rel.ro* .gnu.linkonce.d.rel.ro.*)
+ *(.data.rel.ro .data.rel.ro.* .gnu.linkonce.d.rel.ro.*)
 
 .dynamic
  *(.dynamic)
@@ -200,6 +218,7 @@ LOAD am18x_t.ld
  *(.data1)
                 0x00008000                _edata = .
                 0x00008000                PROVIDE (edata, .)
+                0x00008000                . = .
                 0x00008000                __bss_start = .
                 0x00008000                __bss_start__ = .
 
@@ -294,6 +313,9 @@ LOAD am18x_t.ld
 .debug_ranges
  *(.debug_ranges)
 
+.debug_macro
+ *(.debug_macro)
+
 .stack          0x00080000        0x0
                 0x00080000                _stack = .
  *(.stack)
@@ -314,9 +336,11 @@ OUTPUT(am18x.elf elf32-littlearm)
 
 SECTIONX        0x00001000      0x100 load address 0x00000000
                 0x00001000        0x4 LONG 0x12345600
-                0x00001100                . = 0x100
+                0x00000100                . = 0x100
  *fill*         0x00001004       0xfc 5005a00a
+                0x00001100                sx_size = .
                 0x00001100                current = .
+                [0x00000100]                sx_size = (sx_size - ADDR (SECTIONX))
 
 SECTION1        0x00002000       0x1c load address 0x00000100
                 0x00002000        0x4 LONG 0x1

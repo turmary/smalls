@@ -4,8 +4,10 @@ SECTIONS {
 	SECTIONX : AT(0) {
 		LONG(0x12345600)
 		. = 0x100;
+		sx_size = .;
 	} = 0x5005A00A
 	current = .;
+	sx_size -= ADDR(SECTIONX);
 	SECTION1 0x2000 : AT(0x100) {
 		LONG(1)
 		LONG(2)
