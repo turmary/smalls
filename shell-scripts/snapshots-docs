@@ -1,0 +1,128 @@
+#!/bin/bash
+
+# set -x
+
+SEPARATE_MOUNT=1
+SYNCDIR="/home/svn"
+MOUNT_DEVICE="/dev/sdb3"
+MOUNT_TYPE="-t ext3"
+SNAPSHOT_RW=/snapshot
+DEST=$SNAPSHOT_RW/snap
+
+MONTHLY_STAMP=`date +%e`
+WEEKLY_STAMP=`date +%u`
+DAILY_STAMP=`date +%k`
+HOURLY_STAMP=`date +%k`
+MONTHLY=11
+WEEKLY=3
+DAILY=6
+HOURLY=1
+BACKUPS="MONTHLY WEEKLY DAILY HOURLY"
+
+ID=`which id`
+ECHO=`which echo`
+GREP=`which grep`
+FSCK=`which fsck`
+MKDIR=`which mkdir`
+MOUNT=`which mount`
+UMOUNT=`which umount`
+FUSER=`which fuser`
+LS=`which ls`
+RM=`which rm`
+BC=`which bc`
+MV=`which mv`
+TOUCH=`which touch`
+RSYNC=`which rsync`
+
+# make sure we're running as root
+if [ `$ID -u` -ne 0 ]; then
+	$ECHO "Sorry, must be root.  Exiting..."
+	exit 1
+fi
+
+# umount the device if necessary
+if [ $SEPARATE_MOUNT -ne 0 ]; then
+	mounted=`$MOUNT | $GREP $SNAPSHOT_RW`
+	if [ "$mounted" != "" ]; then
+		$FUSER -k $SNAPSHOT_RW
+		$UMOUNT $SNAPSHOT_RW
+		if [ $? -ne 0 ]; then
+			$ECHO "snapshot: could not umount $SNAPSHOT_RW!"
+			exit 1
+		fi
+	fi
+fi
+
+$ECHO fsck\'ing $MOUNT_DEVICE
+$FSCK -y $MOUNT_DEVICE
+if [ $? -ne 0 ]; then
+	$ECHO "snapshot: had problems fsck'ing $MOUNT_DEVICE!"
+	exit 1
+fi
+
+# attempt to remount the RW mount point as RW; else abort
+$MOUNT -o rw $MOUNT_TYPE $MOUNT_DEVICE $SNAPSHOT_RW
+if [ $? -ne 0 ]; then
+	$ECHO "snapshot: could not mount $SNAPSHOT_RW"
+	exit 1
+fi
+
+[ ! -d $DEST ] && $MKDIR -p $DEST;
+
+PREV_BU=""
+PREV_STAMP=0
+
+# moving low granule(hourly, etc) to high granule(monthly, etc)
+for BU in $BACKUPS; do
+	eval max_count=\$$BU
+	eval stamp=\$${BU}_STAMP
+
+	if [ -d $DEST/${BU}.0 ]; then
+		current_oldest=`$LS -td $DEST/${BU}* | tail -1 | cut -d. -f2`
+	fi
+
+	# moving from low granule to # 0 of this granule
+	if [ $PREV_STAMP -eq 1 -a $HOURLY_STAMP -eq 1 ] && \
+	[ "$current_oldest" != "" ]; then
+		[ -d $DEST/$PREV_BU.0 ] && $RM -rf $DEST/$PREV_BU.0
+		$MV $DEST/$BU.$current_oldest $DEST/$PREV_BU.0
+	fi
+
+	# roll the # of this granule
+	if [ "$BU" = "HOURLY" ] || [ $stamp -eq 1 -a $HOURLY_STAMP -eq 1 ]; then
+		while [ $max_count -ge 0 ]; do
+			count_plus=`$ECHO $max_count+1 | $BC`
+			if [ -d $DEST/$BU.$max_count ]; then
+				[ -d $DEST/$BU.$count_plus ] && $RM -rf $DEST/$BU.$count_plus
+				$MV $DEST/$BU.$max_count $DEST/$BU.$count_plus
+			fi
+			max_count=`echo $max_count-1 | $BC`
+		done
+	fi
+
+	PREV_BU=$BU
+	PREV_STAMP=$stamp
+done
+
+# retrieving hourly.0
+for dir in $SYNCDIR; do
+	final_location=`dirname $dir`
+	$MKDIR -p $DEST/HOURLY.0/$final_location
+	$RSYNC -a --delete --link-dest=$DEST/HOURLY.1/$final_location \
+	  $dir $DEST/HOURLY.0/$final_location
+done
+
+if [ $? -ne 0 ]; then
+	$ECHO "$RSYNC error, sync did not complete correctly, aboring"
+	exit 1
+fi
+
+# remount the device as readonly
+if [ $SEPARATE_MOUNT -ne 0 ]; then
+	$MOUNT -o remount,ro $MOUNT_TYPE $MOUNT_DEVICE $SNAPSHOT_RW
+	if [ $? -ne 0 ]; then
+		$ECHO "snapshot: could not remount ${SNAPSHOT_RW} readonly"
+		exit 1
+	fi
+fi
+
