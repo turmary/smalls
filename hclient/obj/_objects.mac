@@ -1,0 +1,36 @@
+386_OBJECTS= \
+    $(_OBJ_DIR)\i386\hclient.res \
+    $(_OBJ_DIR)\i386\hclient.obj \
+    $(_OBJ_DIR)\i386\pnp.obj \
+    $(_OBJ_DIR)\i386\report.obj \
+    $(_OBJ_DIR)\i386\strings.obj \
+    $(_OBJ_DIR)\i386\logpnp.obj \
+    $(_OBJ_DIR)\i386\buffers.obj \
+    $(_OBJ_DIR)\i386\ecdisp.obj
+
+PASS0_386_OBJECTS=
+
+IA64_OBJECTS= \
+    $(_OBJ_DIR)\ia64\hclient.res \
+    $(_OBJ_DIR)\ia64\hclient.obj \
+    $(_OBJ_DIR)\ia64\pnp.obj \
+    $(_OBJ_DIR)\ia64\report.obj \
+    $(_OBJ_DIR)\ia64\strings.obj \
+    $(_OBJ_DIR)\ia64\logpnp.obj \
+    $(_OBJ_DIR)\ia64\buffers.obj \
+    $(_OBJ_DIR)\ia64\ecdisp.obj
+
+PASS0_IA64_OBJECTS=
+
+AMD64_OBJECTS= \
+    $(_OBJ_DIR)\amd64\hclient.res \
+    $(_OBJ_DIR)\amd64\hclient.obj \
+    $(_OBJ_DIR)\amd64\pnp.obj \
+    $(_OBJ_DIR)\amd64\report.obj \
+    $(_OBJ_DIR)\amd64\strings.obj \
+    $(_OBJ_DIR)\amd64\logpnp.obj \
+    $(_OBJ_DIR)\amd64\buffers.obj \
+    $(_OBJ_DIR)\amd64\ecdisp.obj
+
+PASS0_AMD64_OBJECTS=
+
