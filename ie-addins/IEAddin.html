@@ -1,0 +1,18 @@
+<HTML>
+<SCRIPT LANGUAGE="JavaScript">
+
+// var op = new String("http://www.china.com");
+// window.location.href = op;
+
+</SCRIPT>
+
+<SCRIPT LANGUAGE="VBScript">
+Set IEp = CreateObject("AddIEFun.IEContext")
+If Err <> 0 Then
+	MsgBox "Error!"
+Else
+	Call IEp.AddContext()
+End If
+</SCRIPT>
+
+</HTML>
