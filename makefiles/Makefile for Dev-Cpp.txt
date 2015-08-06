@@ -1,0 +1,62 @@
+DEVROOT	=F:/TaryInst/Dev-Cpp
+
+TARGET	=clock
+
+CC	=$(DEVROOT)/bin/gcc.exe
+AS	=$(DEVROOT)/bin/as.exe
+LD	=$(DEVROOT)/bin/ld.exe
+
+INCDIRS	=$(DEVROOT)/include \
+	$(DEVROOT)/lib/gcc/mingw32/3.4.2/include
+
+LIBDIRS	=$(DEVROOT)/lib/gcc/mingw32/3.4.2	\
+	$(DEVROOT)/lib/gcc 			\
+	$(DEVROOT)/mingw32/lib 			\
+	$(DEVROOT)/lib
+
+LIBS	=mingw32	\
+	gcc		\
+	moldname	\
+	mingwex		\
+	msvcrt		\
+	user32		\
+	kernel32	\
+	advapi32	\
+	shell32
+
+OBJS	=$(TARGET).o					\
+	$(DEVROOT)/lib/crt2.o				\
+	$(DEVROOT)/lib/gcc/mingw32/3.4.2/crtbegin.o	\
+	$(DEVROOT)/lib/gcc/mingw32/3.4.2/crtend.o	\
+
+CCFLAGS	=$(patsubst %,-I%,$(INCDIRS))
+ASFLGAS	=
+LDFLAGS	=-Map $(TARGET).map				\
+	$(patsubst %,-L%,$(LIBDIRS))			\
+	$(patsubst %,-l%,$(LIBS))			\
+
+#	$(OBJS)						\
+#	$(TARGET).o					\
+#	$(DEVROOT)/lib/crt2.o				\
+#	$(DEVROOT)/lib/gcc/mingw32/3.4.2/crtbegin.o	\
+#	$(DEVROOT)/lib/gcc/mingw32/3.4.2/crtend.o	\
+
+
+
+all:	$(TARGET).exe
+
+$(TARGET).exe: $(TARGET).o
+	$(LD)  -Bdynamic $(OBJS) $(LDFLAGS) -o $@
+
+
+$(TARGET).o: $(TARGET).s
+	$(AS) $(ASFLAGS) -o $@ $<
+
+$(TARGET).s: $(TARGET).c
+	$(CC) $(CCFLAGS) -S -o $@ $<
+
+clean:
+	del $(TARGET).s
+	del $(TARGET).o
+	del $(TARGET).exe
+	del $(TARGET).map

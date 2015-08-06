@@ -1,0 +1,114 @@
+1>
+
+OBJ = $(ASRC:.s=.o) $(SRC:.c=.o)
+.s=.o的意思是做一个替换,
+将变量$(ASRC)和$(SRC)所有的.s及.c替换成.o
+
+这就是所有的目标文件了
+
+
+2>
+
+-rm前的-,表示忽略命令的错误执行
+
+
+3>
+
+y:=$(x)
+同
+y=$(x)
+但是x必须是已定义的变量
+
+
+4>
+
+是否定义过
+ifeq($(origin FOO), undefined)
+FOO = bar
+endif
+等价于
+FOO?=bar
+
+
+5>
+
+变量值可以做变量名的
+如$($(x))
+
+
+6>
+
+.c.o:
+这样的是老式风格的后缀规则,
+后面不能接依赖文件名
+不提倡使用
+
+
+7>
+
+定义
+objects := $(objects) another.o
+等价于
+objects += another.o
+
+
+8>
+
+条件语法
+ifeq
+ifneq
+ifdef
+ifndef
+读入makefile文件时即计算条件式,
+而不是执行时,所以最好不要在条件式中使用自动变量$@等
+
+
+9>
+
+%是通配符,任意长度字串
+
+
+10>
+
+$(patsubst %,-I%,$(EXTRAINCDIRS))
+patsubst	模式替换函数
+查找$(EXTRAINCDIRS)中的单词(单词以空格,TAB,回车,换行分隔)
+给每个单词前加上-I,
+-I%中的%代表模式中的%(即patsubst后的%)
+
+
+11>
+
+$(addsuffix /AVRProject.ncb, $(SUBDIRS))
+
+$(addsuffix <suffix>,<names...> )
+名称：加后缀函数——addsuffix。
+功能：把后缀<suffix>加到<names>中的每个单词后面。
+返回：返回加过后缀的文件名序列。
+示例：$(addsuffix .c,foo bar)返回值是“foo.c bar.c”
+
+
+12>
+
+hello.o : hello.c
+^           ^
+$@          $<         $* = hello
+使用如下Makefile测试自动变量的值
+%.o %.d : %.c
+# @gcc -M $< | sed 's/\($*\).o[:]*/\1.o $@:/g'
+	@gcc -M $< | sed 's,\($*\).o[:]*,\1.o $@:,g'
+	@echo '$$@=$@'
+	@echo '$$%=$%'
+	@echo '$$<=$<'
+	@echo '$$?=$?'
+	@echo '$$^=$^'
+	@echo '$$+=$+'
+	@echo '$$*=$*'
+
+hello.d : hello.c
+
+
+
+13>
+
+

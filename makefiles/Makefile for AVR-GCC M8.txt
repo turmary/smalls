@@ -1,0 +1,49 @@
+
+.PHONY : all begin end clean
+
+TARGET	:= cmdlinetest
+MCU	:=atmega8
+FORMAT	:= ihex
+CC	:= avr-gcc
+SIZE	:= avr-size
+CFLAGS	:= -Os -mmcu=$(MCU) -I. -I$(AVRLIB)
+OBJCOPY	:= avr-objcopy
+LDFLAGS	:= -mmcu=$(MCU) -Wl,-Map=$(TARGET).map,--cref
+SRC	:= $(AVRLIB)/buffer.c \
+	$(AVRLIB)/uart.c \
+	$(AVRLIB)/rprintf.c \
+	$(AVRLIB)/timer.c \
+	$(AVRLIB)/cmdline.c \
+	$(AVRLIB)/a2d.c \
+	$(AVRLIB)/vt100.c \
+	$(TARGET).c
+OBJ := $(SRC:.c=.o)
+
+all : begin $(TARGET).hex $(TARGET).elf end size
+
+%.o: %.c
+	$(CC) -c $(CFLAGS) $(CPPFLAGS) $< -o $@
+
+
+%.elf: $(OBJ)
+	$(CC) $(OBJ) $(LDFLAGS) -o $@
+
+
+%.hex:%.elf
+	$(OBJCOPY) -O $(FORMAT) -R .eeprom $< $@
+
+
+begin:
+	@echo Hello Begin!
+
+end:
+	@echo Hello End!
+
+
+clean:
+	-@rm $(TARGET).map
+	-@rm $(TARGET).elf
+	-@rm $(TARGET).hex
+
+size:
+	$(SIZE) $(TARGET).elf

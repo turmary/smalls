@@ -1,0 +1,14 @@
+
+
+A = old
+X = $(A)
+Y := $(A)
+
+A = new
+
+X += plus
+Y += plus
+
+_all:
+	@echo X=$(X)
+	@echo Y=$(Y)

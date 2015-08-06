@@ -1,0 +1,124 @@
+# Microsoft Developer Studio Generated NMAKE File, Based on Test_EDN_D12.dsp
+
+OUTDIR=.
+INTDIR=.
+
+ALL : ".\Test_EDN_D12.exe"
+
+
+CLEAN :
+	-@erase "$(INTDIR)\OpenByIntf.obj"
+	-@erase "$(INTDIR)\Test_EDN_D12.obj"
+	-@erase "$(INTDIR)\Test_EDN_D12.pdb"
+	-@erase "$(INTDIR)\vc60.idb"
+	-@erase "$(INTDIR)\vc60.pdb"
+	-@erase ""$(OUTDIR)\Test_EDN_D12.exe"
+	-@erase ".\Test_EDN_D12.ilk"
+
+"$(OUTDIR)" :
+    if not exist "$(OUTDIR)/$(NULL)" mkdir "$(OUTDIR)"
+
+CPP=cl.exe
+# /nologo 	suppress copyright message
+# /MLd		link with LIBCD.LIB debug lib
+# /W3		set warning level = 3 (default = 1)
+# /Gm		enable minimal rebuild
+# /GX		enable C++ Exception Handler
+# /Zi		enable debugging information
+# /Od		disable Optimization
+# /D		define macro
+# /I		add to include search path
+# /YX		automatic .PCH
+# /Fo		name object file
+# /Fd		name PDB file
+# /FD		?
+# /c		compile only, no link
+CPP_PROJ=/nologo		\
+	/MLd			\
+#	/W3			\
+	/GX			\
+#	/Zi			\
+#	/Od			\
+	/I "$(DRIVERWORKS)\include"	\
+	/D "WIN32"		\
+	/D "_DEBUG"		\
+	/D "_CONSOLE"		\
+	/D "_MBCS"		\
+#	/Fo"$(INTDIR)\\"	\
+	/c 
+
+.c{$(INTDIR)}.obj::
+   $(CPP) @<<
+   $(CPP_PROJ) $< 
+<<
+
+.cpp{$(INTDIR)}.obj::
+   $(CPP) @<<
+   $(CPP_PROJ) $< 
+<<
+
+.cxx{$(INTDIR)}.obj::
+   $(CPP) @<<
+   $(CPP_PROJ) $< 
+<<
+
+.c{$(INTDIR)}.sbr::
+   $(CPP) @<<
+   $(CPP_PROJ) $< 
+<<
+
+.cpp{$(INTDIR)}.sbr::
+   $(CPP) @<<
+   $(CPP_PROJ) $< 
+<<
+
+.cxx{$(INTDIR)}.sbr::
+   $(CPP) @<<
+   $(CPP_PROJ) $< 
+<<
+
+RSC=rc.exe
+BSC32=bscmake.exe
+BSC32_FLAGS=/nologo /o"$(OUTDIR)\Test_EDN_D12.bsc" 
+BSC32_SBRS= \
+	
+LINK32=link.exe
+LINK32_FLAGS=setupapi.lib	\
+	kernel32.lib		\
+	user32.lib		\
+	gdi32.lib		\
+	winspool.lib		\
+	comdlg32.lib		\
+	advapi32.lib		\
+	shell32.lib		\
+	ole32.lib		\
+	oleaut32.lib		\
+	uuid.lib		\
+	/nologo			\
+	/subsystem:console	\
+	/incremental:yes	\
+	/debug			\
+	/machine:I386		\
+	/libpath:$(DRIVERWORKS)\lib	\
+	/out:"$(OUTDIR)\Test_EDN_D12.exe"
+
+LINK32_OBJS= \
+	"$(INTDIR)\Test_EDN_D12.obj" \
+	"$(INTDIR)\OpenByIntf.obj"
+
+"$(OUTDIR)\Test_EDN_D12.exe" : "$(OUTDIR)" $(DEF_FILE) $(LINK32_OBJS)
+    $(LINK32) @<<
+  $(LINK32_FLAGS) $(LINK32_OBJS)
+<<
+
+
+
+SOURCE=.\OpenByIntf.cpp
+
+"$(INTDIR)\OpenByIntf.obj" : $(SOURCE) "$(INTDIR)"
+
+
+SOURCE=.\Test_EDN_D12.cpp
+
+"$(INTDIR)\Test_EDN_D12.obj" : $(SOURCE) "$(INTDIR)"
+
