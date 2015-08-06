@@ -1,0 +1,183 @@
+#!/bin/sh
+
+# 该脚本用于测试EM104是否可以稳定地运行48小时
+
+# 定制测试时间
+TEST_SECS=$(expr 48 \* 3600)
+# 调试使用
+# TEST_SECS=10
+
+# 定制结果文件
+RESULT_FILE=/opt/Robustness
+# 调试使用
+# RESULT_FILE=./Robustness
+
+# 文件自己
+THIS_FILE="/opt/robtst"
+
+# 定制启动脚本
+START_FILE="/etc/init.d/rcS"
+
+
+
+BEGIN_SECS=""
+BEGIN_STR=""
+
+
+time_expire() {
+	local now_secs
+	local exp_secs
+	
+	hwclock -s
+	now_secs=$(date +%s)
+
+#	echo "now_secs=${now_secs} test_secs=${1-0}"
+	
+	exp_secs=$(expr ${BEGIN_SECS} + ${1-0})
+	if [ "$now_secs" -gt "$exp_secs" ]; then
+		return 1;
+	fi
+	return 0;
+}
+
+start_test() {
+	# 首先判断是否已测试过
+	if [ -e "${RESULT_FILE}" -a -s "${RESULT_FILE}" ]; then
+		cat "${RESULT_FILE}"
+		exit 1
+	fi
+
+	echo "该机器未做过拷机测试"
+	
+	# 新机器要设置RTC
+	date 112618082008 1>>/dev/null
+	hwclock -w
+	
+	echo "###############测试开始!###############"
+	>"${RESULT_FILE}"
+	return 0
+}
+
+
+test_rtc() {
+	local begs
+	local ends
+	local difs
+	
+	# 使用硬件时间
+	echo -ne "RTC测试"
+
+	hwclock -s
+	begs=$(date +%s)
+	for i in 1 2 3 4 5; do
+		sleep 1
+		echo -n "."
+	done
+
+	# 使用硬件时间
+	hwclock -s
+	ends=$(date +%s)
+
+	difs=$(expr "${ends}" - "${begs}")
+	if [ "${difs}" -lt "5"  -o  "${difs}" -gt "10" ]; then
+		# RTC发生错误
+		echo -e "\rRTC测试: 失败"
+		return 1;
+	fi
+
+	echo -e "\rRTC测试: 正常"
+	return 0
+}
+
+graph=0
+test_mach() {
+	local r
+	
+	# 是否已流过TEST_SECS秒
+	time_expire ${TEST_SECS}
+	r=$?
+	while [ "$r" -eq "0" ]; do
+		# sleep 0.1s
+		usleep 100000
+
+		time_expire ${TEST_SECS}
+		r=$?
+
+		case ${graph} in
+		0)	echo -ne "\r--";;
+		1)	echo -ne "\r\\\\\\\\";;
+		2)	echo -ne "\r||";;
+		3)	echo -ne "\r//";;
+		esac
+
+		graph=$(expr ${graph} + 1)
+		if [ "${graph}" -gt "3" ]; then
+			graph=0
+		fi
+	done
+	echo
+	return 0
+}
+
+gene_result() {
+	echo "###############测试完成!###############"
+#	echo "测试开始时间:${BEGIN_STR}"
+#	hwclock -s
+#	echo "测试结束时间:$(date -u)"
+
+	# 写结果文件
+	echo "测试开始时间:${BEGIN_STR}" >>"${RESULT_FILE}"
+	hwclock -s
+	echo "测试结束时间:$(date -u)" >>"${RESULT_FILE}"
+	echo "如果需要重新测试,请删除文件${RESULT_FILE}" >>"${RESULT_FILE}"
+	
+	# 显示测试结果
+	cat "${RESULT_FILE}"
+}
+
+del_self() {
+	sed -e "s,${THIS_FILE},,g" "${START_FILE}" > ${START_FILE}~~
+	rm -f "${START_FILE}"
+	mv "${START_FILE}~~" "${START_FILE}"
+	chmod a+x "${START_FILE}"
+
+	# rm -f "${THIS_FILE}"
+	# echo "rm -f ${THIS_FILE}"
+	return 0
+}
+
+# 脚本调试使用
+# rm -f "${RESULT_FILE}"
+
+main() {
+	local r
+
+	start_test
+
+	hwclock -s
+	BEGIN_SECS=$(date +%s)
+
+	hwclock -s
+	BEGIN_STR=$(date -u)
+
+	test_rtc
+	r=$?
+	if [ "${r}" ]; then
+		test_mach
+		# 结果正常试图删除自己的执行
+		del_self
+	fi
+
+	echo "###############拷机测试结果:###############" >>"${RESULT_FILE}"
+	if [ "${r}" ]; then
+		echo "RTC测试: 正常" >>"${RESULT_FILE}"
+	else
+		echo "RTC测试: 失败" >>"${RESULT_FILE}"
+	fi
+
+	gene_result
+}
+
+main
+
+
