@@ -167,7 +167,7 @@ vReadDataFromControls(
     int iCount
 );
 
-INT_PTR CALLBACK 
+BOOL CALLBACK 
 bGetDataDlgProc(
     HWND hDlg, 
     UINT message, 
@@ -1454,7 +1454,7 @@ iPrepareDataFields(
 }  //end function iPrepareDataFields//
 
 
-INT_PTR CALLBACK 
+BOOL CALLBACK 
 bReadDlgProc(
     HWND hDlg, 
     UINT message, 
@@ -1673,7 +1673,7 @@ bReadDlgProc(
                         
                         readThread = CreateThread(  NULL,
                                                     0,
-                                                    AsynchReadThreadProc,
+                                                    (LPTHREAD_START_ROUTINE)AsynchReadThreadProc,
                                                     &readContext,
                                                     0,
                                                     &threadID);

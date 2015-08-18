@@ -66,7 +66,7 @@ typedef struct {
 /* Global Extended Call display function declarations
 /*****************************************************************************/
 
-LRESULT CALLBACK
+BOOL CALLBACK
 bExtCallDlgProc(
     HWND   hDlg,
     UINT   message,

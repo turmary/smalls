@@ -480,7 +480,7 @@ BuildReportIDList(
     OUT INT               *nReportIDs
 );
 
-LRESULT CALLBACK
+BOOL CALLBACK
 bSetUsagesDlgProc(
     HWND hDlg,
     UINT message,
@@ -488,7 +488,7 @@ bSetUsagesDlgProc(
     LPARAM lParam
 );
 
-LRESULT CALLBACK
+BOOL CALLBACK
 bSetValueDlgProc(
     HWND hDlg,
     UINT message,
@@ -496,7 +496,7 @@ bSetValueDlgProc(
     LPARAM lParam
 );
 
-LRESULT CALLBACK
+BOOL CALLBACK
 bSetInputBuffDlgProc(
     HWND hDlg,
     UINT message,
@@ -504,7 +504,7 @@ bSetInputBuffDlgProc(
     LPARAM lParam
 );
 
-LRESULT CALLBACK
+BOOL CALLBACK
 bSetDataDlgProc(
     HWND hDlg,
     UINT message,
@@ -512,7 +512,7 @@ bSetDataDlgProc(
     LPARAM lParam
 );
 
-LRESULT CALLBACK
+BOOL CALLBACK
 bSetBufLenDlgProc(
     HWND hDlg,
     UINT message,
@@ -520,7 +520,7 @@ bSetBufLenDlgProc(
     LPARAM lParam
 );
 
-LRESULT CALLBACK
+BOOL CALLBACK
 bSetInputBuffersDlgProc(
     HWND hDlg,
     UINT message,
@@ -528,7 +528,7 @@ bSetInputBuffersDlgProc(
     LPARAM lParam
 );
 
-LRESULT CALLBACK
+BOOL CALLBACK
 bGetIndexedDlgProc(
     HWND hDlg,
     UINT message,
@@ -536,7 +536,7 @@ bGetIndexedDlgProc(
     LPARAM lParam
 );
 
-LRESULT CALLBACK
+BOOL CALLBACK
 bGetUsageDiffDlgProc(
     HWND hDlg,
     UINT message,
@@ -618,7 +618,7 @@ DisplayExtendedAttributes(
 /* Global function definitions
 /*****************************************************************************/
 
-LRESULT CALLBACK
+BOOL CALLBACK
 bExtCallDlgProc(
     HWND hDlg,
     UINT message,
@@ -766,9 +766,9 @@ bExtCallDlgProc(
 
                 ReadThread = CreateThread(  NULL,
                                             0,
-                                            (LOWORD(wParam) == IDC_READ_SYNCH) ? 
+                                            (LPTHREAD_START_ROUTINE)((LOWORD(wParam) == IDC_READ_SYNCH) ? 
                                             SynchReadThreadProc :
-                                            AsynchReadThreadProc,
+                                            AsynchReadThreadProc),
                                             (LPVOID) &readContext,
                                             0,
                                             &threadID);
@@ -1323,7 +1323,7 @@ RoutineDescription:
         {
             status = HidP_GetButtonCaps(CallParams -> ReportType,
                                         CallParams -> List,
-                                        (PUSHORT) &CallParams -> ListLength,
+                                        (PULONG) &CallParams -> ListLength,
                                         CallParams -> Ppd);
 
             CallStatus -> IsHidError = (HIDP_STATUS_SUCCESS != status);
@@ -1456,7 +1456,7 @@ RoutineDescription:
                                                 CallParams -> LinkCollection,
                                                 CallParams -> Usage,
                                                 CallParams -> List,
-                                                (PUSHORT) &CallParams -> ListLength,
+                                                (PULONG) &CallParams -> ListLength,
                                                 CallParams -> Ppd);
 
             CallStatus -> IsHidError = (HIDP_STATUS_SUCCESS != status);
@@ -1475,7 +1475,7 @@ RoutineDescription:
                                                CallParams -> LinkCollection,
                                                CallParams -> Usage,
                                                CallParams -> List,
-                                               (PUSHORT) &CallParams -> ListLength,
+                                               (PULONG) &CallParams -> ListLength,
                                                CallParams -> Ppd);
 
             CallStatus -> IsHidError = (HIDP_STATUS_SUCCESS != status);
@@ -1551,7 +1551,7 @@ RoutineDescription:
                                            CallParams -> LinkCollection,
                                            CallParams -> Usage,
                                            &ValueCaps,
-                                           &ValueCapsLength,
+                                           (PULONG)&ValueCapsLength,
                                            CallParams -> Ppd);
 
         if (HIDP_STATUS_SUCCESS != status) 
@@ -1589,7 +1589,7 @@ RoutineDescription:
         {
             status = HidP_GetValueCaps(CallParams -> ReportType,
                                        CallParams -> List,
-                                       (PUSHORT) &CallParams -> ListLength,
+                                       (PULONG) &CallParams -> ListLength,
                                        CallParams -> Ppd);
 
             CallStatus -> IsHidError = (HIDP_STATUS_SUCCESS != status);
@@ -1714,7 +1714,7 @@ RoutineDescription:
                                            CallParams -> LinkCollection,
                                            CallParams -> Usage,
                                            &ValueCaps,
-                                           &ValueCapsLength,
+                                           (PULONG)&ValueCapsLength,
                                            CallParams -> Ppd);
 
         if (HIDP_STATUS_SUCCESS != status) 
@@ -3173,7 +3173,7 @@ RoutineDescription:
     return;
 }
 
-LRESULT CALLBACK
+BOOL CALLBACK
 bSetUsagesDlgProc(
     HWND hDlg,
     UINT message,
@@ -3238,7 +3238,7 @@ bSetUsagesDlgProc(
     return (FALSE);
 }
 
-LRESULT CALLBACK
+BOOL CALLBACK
 bSetValueDlgProc(
     HWND hDlg,
     UINT message,
@@ -3309,7 +3309,7 @@ bSetValueDlgProc(
     return (FALSE);
 }
 
-LRESULT CALLBACK
+BOOL CALLBACK
 bSetInputBuffDlgProc(
     HWND hDlg,
     UINT message,
@@ -3371,7 +3371,7 @@ bSetInputBuffDlgProc(
 }
 
 
-LRESULT CALLBACK
+BOOL CALLBACK
 bSetDataDlgProc(
     HWND hDlg,
     UINT message,
@@ -3524,7 +3524,7 @@ bSetDataDlgProc(
     return (FALSE);
 }
 
-LRESULT CALLBACK
+BOOL CALLBACK
 bSetBufLenDlgProc(
     HWND hDlg,
     UINT message,
@@ -3586,7 +3586,7 @@ bSetBufLenDlgProc(
     return (FALSE);
 }
 
-LRESULT CALLBACK
+BOOL CALLBACK
 bSetInputBuffersDlgProc(
     HWND hDlg,
     UINT message,
@@ -3647,7 +3647,7 @@ bSetInputBuffersDlgProc(
     return (FALSE);
 }
 
-LRESULT CALLBACK
+BOOL CALLBACK
 bGetIndexedDlgProc(
     HWND hDlg,
     UINT message,
@@ -3721,7 +3721,7 @@ bGetIndexedDlgProc(
     return (FALSE);
 }
 
-LRESULT CALLBACK
+BOOL CALLBACK
 bGetUsageDiffDlgProc(
     HWND hDlg,
     UINT message,

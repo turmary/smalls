@@ -334,8 +334,8 @@ FillDeviceInfo(
     IN  PHID_DEVICE HidDevice
 )
 {
-    USHORT              numValues;
-    USHORT              numCaps;
+    ULONG               numValues;
+    ULONG               numCaps;
     PHIDP_BUTTON_CAPS   buttonCaps;
     PHIDP_VALUE_CAPS    valueCaps;
     PHID_DATA           data;
