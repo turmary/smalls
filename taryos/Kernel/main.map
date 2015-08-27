@@ -1,0 +1,26 @@
+ main
+
+ Timestamp is 55df41fb (Fri Aug 28 00:59:39 2015)
+
+ Preferred load address is 00000000
+
+ Start         Length     Name                   Class
+ 0001:00000000 00000296H .text                   CODE
+ 0002:00000000 0000000dH .rdata                  DATA
+ 0002:0000000d 00000000H .edata                  DATA
+
+  Address         Publics by Value              Rva+Base       Lib:Object
+
+ 0000:00000000       ___safe_se_handler_table   00000000     <absolute>
+ 0000:00000000       ___safe_se_handler_count   00000000     <absolute>
+ 0001:00000000       EntryPoint                 00001000 f   Entry.obj
+ 0001:00000028       EntryPoint32               00001028 f   Entry.obj
+ 0001:00000058       _Gdt                       00001058     Entry.obj
+ 0001:00000070       _Idt                       00001070     Entry.obj
+ 0001:00000270       _main                      00001270 f   main.obj
+ 0002:00000000       ??_C@_0N@GCDOMLDM@Hello?5World?$CB?$AA@ 00002000     main.obj
+
+ entry point at        0001:00000270
+
+ Static symbols
+

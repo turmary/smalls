@@ -1,0 +1,87 @@
+00000000000i[     ] Bochs x86 Emulator 2.1
+00000000000i[     ]   January 11, 2004
+00000000000i[     ] System configuration
+00000000000i[     ]   processors: 1
+00000000000i[     ]   A20 line support: yes
+00000000000i[     ]   APIC support: no
+00000000000i[     ] CPU configuration
+00000000000i[     ]   level: 5
+00000000000i[     ]   fpu support: yes
+00000000000i[     ]   paging support: yes, tlb enabled: yes
+00000000000i[     ]   mmx support: yes
+00000000000i[     ]   sse support: no
+00000000000i[     ]   v8086 mode support: yes
+00000000000i[     ]   3dnow! support: no
+00000000000i[     ]   PAE support: no
+00000000000i[     ]   PGE support: no
+00000000000i[     ]   PSE support: no
+00000000000i[     ]   x86-64 support: no
+00000000000i[     ]   SEP support: no
+00000000000i[     ] Optimization configuration
+00000000000i[     ]   Guest2HostTLB support: yes
+00000000000i[     ]   RepeatSpeedups support: yes
+00000000000i[     ]   Icache support: yes
+00000000000i[     ]   Host Asm support: yes
+00000000000i[MEM0 ] allocated memory at 017A0020. after alignment, vector=017A1000
+00000000000i[MEM0 ] 32.00MB
+00000000000i[MEM0 ] rom at 0xf0000/65536 ('C:\TaryInst\Bochs-2.1/BIOS-bochs-latest')
+00000000000i[MEM0 ] rom at 0xc0000/32768 ('C:\TaryInst\Bochs-2.1/VGABIOS-elpin-2.40')
+00000000000i[CMOS ] Using local time for initial clock
+00000000000i[CMOS ] Setting initial clock to: Fri Aug 28 00:47:23 2015 (time0=1440694043)
+00000000000i[DMA  ] channel 4 used by cascade
+00000000000i[DMA  ] channel 2 used by Floppy Drive
+00000000000i[FDD  ] fd0: 'a:' ro=0, h=2,t=80,spt=18
+00000000000i[WGUI ] IME disabled
+00000000000i[KMAP ] Loading keymap from 'C:\TaryInst\Bochs-2.1/keymaps/x11-pc-us.map'
+00000000000i[KMAP ] Loaded 168 symbols
+00000000000i[VGA  ] interval=30000
+00000000000i[VGA  ] VBE Bochs Display Extension Enabled
+00000000000i[     ] init_mem of 'harddrv' plugin device by virtual method
+00000000000i[     ] init_mem of 'keyboard' plugin device by virtual method
+00000000000i[     ] init_mem of 'serial' plugin device by virtual method
+00000000000i[     ] init_mem of 'parallel' plugin device by virtual method
+00000000000i[     ] init_mem of 'extfpuirq' plugin device by virtual method
+00000000000i[     ] init_mem of 'gameport' plugin device by virtual method
+00000000000i[     ] init_dev of 'harddrv' plugin device by virtual method
+00000000000i[HD   ] Boot device will be 'a'
+00000000000i[HD   ] Floppy boot signature check is enabled
+00000000000i[     ] init_dev of 'keyboard' plugin device by virtual method
+00000000000i[KBD  ] will paste characters every 1000 keyboard ticks
+00000000000i[     ] init_dev of 'serial' plugin device by virtual method
+00000000000i[SER  ] com1 at 0x03f8 irq 4
+00000000000i[     ] init_dev of 'parallel' plugin device by virtual method
+00000000000i[PAR  ] parallel port 1 at 0x378 irq 7
+00000000000i[     ] init_dev of 'extfpuirq' plugin device by virtual method
+00000000000i[     ] init_dev of 'gameport' plugin device by virtual method
+00000000000i[     ] reset of 'harddrv' plugin device by virtual method
+00000000000i[     ] reset of 'keyboard' plugin device by virtual method
+00000000000i[     ] reset of 'serial' plugin device by virtual method
+00000000000i[     ] reset of 'parallel' plugin device by virtual method
+00000000000i[     ] reset of 'extfpuirq' plugin device by virtual method
+00000000000i[     ] reset of 'gameport' plugin device by virtual method
+00000004049i[BIOS ]  rombios.c,v 1.103 2003/12/18 16:48:19 vruppert Exp $
+00000480065i[KBD  ] reset-disable command received
+00000720000i[WGUI ] dimension update x=720 y=400 fontheight=16 fontwidth=9 bpp=8
+00016240183e[HD   ] device set to 0 which does not exist
+00016240476e[HD   ] device set to 1 which does not exist
+00040800000p[WGUI ] >>PANIC<< POWER button turned off.
+00040800000i[SYS  ] Last time is 1440694053
+00040800000i[CPU  ] protected mode
+00040800000i[CPU  ] CS.d_b = 32 bit
+00040800000i[CPU  ] SS.d_b = 32 bit
+00040800000i[CPU  ] | EAX=000b87d4  EBX=00001050  ECX=00000000  EDX=0000200c
+00040800000i[CPU  ] | ESP=00007ffc  EBP=00000000  ESI=00000000  EDI=00000000
+00040800000i[CPU  ] | IOPL=0 NV UP DI PL NZ NA PE NC
+00040800000i[CPU  ] | SEG selector     base    limit G D
+00040800000i[CPU  ] | SEG sltr(index|ti|rpl)     base    limit G D
+00040800000i[CPU  ] |  DS:0010( 0002| 0|  0) 00000000 000fffff 1 1
+00040800000i[CPU  ] |  ES:0010( 0002| 0|  0) 00000000 000fffff 1 1
+00040800000i[CPU  ] |  FS:0010( 0002| 0|  0) 00000000 000fffff 1 1
+00040800000i[CPU  ] |  GS:0010( 0002| 0|  0) 00000000 000fffff 1 1
+00040800000i[CPU  ] |  SS:0010( 0002| 0|  0) 00000000 000fffff 1 1
+00040800000i[CPU  ] |  CS:0008( 0001| 0|  0) 00000000 000fffff 1 1
+00040800000i[CPU  ] | EIP=00001283 (00001283)
+00040800000i[CPU  ] | CR0=0x60000011 CR1=0x00000000 CR2=0x00000000
+00040800000i[CPU  ] | CR3=0x00000000 CR4=0x00000000
+00040800000i[     ] restoring default signal behavior
+00040800000i[CTRL ] quit_sim called with exit code 1
