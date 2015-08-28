@@ -27,7 +27,7 @@ unsigned nhash;
 unsigned nlookup;
 unsigned nsym;
 unsigned nx[30];
-FORWARD void printchain P((void));
+FORWARD void printchain P((unsigned));
 #endif
 
 FORWARD void install P((register char *keyptr, int data));
