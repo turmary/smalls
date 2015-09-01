@@ -1,6 +1,7 @@
 
 CC=gcc
-CFLAGS=-O -DDEBUG_HASH
+CFLAGS=-O
+# -DDEBUG_HASH
 LDFLAGS=-s
 LIBDIR=/usr/bin
 BINDIR=/usr/bin

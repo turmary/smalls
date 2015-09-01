@@ -57,6 +57,12 @@ FORWARD void usage P((void));
 #ifdef DEBUG_HASH
 #warning defined DEBUG_HASH
 #endif
+#ifdef BINSYM
+#warning defined BINSYM
+#endif
+#ifdef MSDOS
+#warning defined MSDOS
+#endif
 
 PUBLIC int main(argc, argv)
 int argc;

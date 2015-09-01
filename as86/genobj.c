@@ -469,6 +469,7 @@ PUBLIC void objheader()
 
     /* segment size descriptors */
     /* produce only 0 and 2 byte sizes */
+    /* four segments as a group(byte) */
 
     lcp = lctabtop;
     byte = 0;
@@ -495,7 +496,7 @@ PUBLIC void objheader()
 
     /* segment sizes */
 
-    do				/* lcp starts at lctab */
+    do {			/* lcp starts at lctab */
 	if (lcp->lc != 0)
 	{
 #if SIZEOF_OFFSET_T > 2
@@ -505,7 +506,15 @@ PUBLIC void objheader()
 #endif
 		putobjword((unsigned) lcp->lc);
 	}
-    while (++lcp < lctabtop);
+	{
+	    static int lcc;
+
+	    if (lcp->lc != 0) {
+		printf("lcc %d, lc %d\n", lcc, lcp->lc);
+	    }
+	    lcc++;
+	}
+    } while (++lcp < lctabtop);
 
     /* symbol count */
 

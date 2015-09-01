@@ -435,7 +435,7 @@ again:	/* On EOF for main or included files */
         goto again;
     }
 
-#if 1
+#if 0
     *eol_ptr = 0;
     printf("LINE %d:%s.\n", linum, lineptr);
 #endif
