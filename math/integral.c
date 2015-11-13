@@ -12,10 +12,15 @@ int main(int argc, char* argv[]) {
 
 	dr = 1e-6;
 	f = 0.0;
+	/*
 	for  (r = 0.0; r < sqrt(2); r += dr) {
 		f += 1.0 / 2 * pow(r, 3) * sqrt(1 + r * r) * dr;
 	}
+	*/
+	for (r = 0.0; r < 2 * M_PI; r += dr) {
+		f += pow(sin(r), 2) * dr;
+	}
 	printf("f = %lf\n", f);
-	printf("x = %lf\n", (2 * sqrt(3) + 1.0 / 3) / 5.0);
+	// printf("x = %lf\n", (2 * sqrt(3) + 1.0 / 3) / 5.0);
 	return 0;
 }
