@@ -1,0 +1,35 @@
+#define CPSR_XXX(fields)	CPSR ## fields
+#define SPSR_XXX(fields)	SPSR ## fields
+#define all_fields		_fsxc
+#define CPSR_XXXX(f)		CPSR_XXX(f)
+#define SPSR_XXXX(f)		SPSR_XXX(f)
+
+以下为宏调用CPSR_XXXX的展开过程
+1	CPSR_XXXX(all_fields)
+2	CPSR_XXX(all_fields) ->	CPSR_XXX(_fsxc)
+3	CPSR ## _fsxc
+4	CPSR_fsxc
+
+以下为宏调用CPSR_XXX的展开过程
+1	CPSR_XXX(all_fields)
+2	CPSR ## all_fields
+3	CPSRall_fields
+
+#define STR_(x)	#x
+#define STR(x)	STR_(x)
+
+以下为宏调用STR的展开过程
+1	STR(INT_MAX)
+2	STR_(INT_MAX) -> STR_(0x7FFFFFFF)
+3	#0x7FFFFFFF
+4	"0x7FFFFFFF"
+以下为宏调用STR_的展开过程
+1	STR_(INT_MAX)
+2	#INT_MAX
+3	"INT_MAX"
+
+总结如下:
+碰到#define就记录下宏名和宏值，
+在代码行里碰到标识符是宏的就展开,一直展开到没有宏为止。
+但是展开过程中,如果展开的串里面有#和##这些宏运算符,就比较特别了，
+在#之后的和##两边的标识符直接参与宏计算,不再展开。
