@@ -1,4 +1,4 @@
-SET BXSHARE=C:\TaryInst\Bochs-2.1
+SET BXSHARE=F:\TaryInst\Bochs-2.1
 PUSHD ".\"
 IF NOT EXIST A:\NUL (
 	"F:\TaryInst\vfd21\vfdwin.exe" /open A: TARYOS.IMG /Q
