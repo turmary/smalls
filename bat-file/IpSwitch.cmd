@@ -10,10 +10,11 @@ TYPE IPLIST.TXT
 SET THISIP=""
 SET THISGATEWAY=192.192.192.101
 SET THISMASK=255.255.255.0
-SET THISDNS=202.96.128.166
+SET THISDNS=192.192.192.248
+SET THISDNS2=8.8.8.8
 
-SET IP1=192.192.192.184
-SET IP2=192.192.192.154
+SET IP1=192.192.192.147
+SET IP2=192.192.192.202
 :- default value if no set
 SET THISIP=%IP1%
 
@@ -34,5 +35,6 @@ ECHO    DNS:	%THISDNS%
 ECHO =======================================
 NETSH interface ip set address name="本地连接" source=static addr=%THISIP% mask=%THISMASK% gateway=%THISGATEWAY% 1
 NETSH interface ip set dns name="本地连接" source=static addr=%THISDNS%
+NETSH interface ip add dns name="本地连接" addr=%THISDNS2% index=2
 
 @ECHO ON
