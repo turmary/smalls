@@ -42,7 +42,7 @@ EXTERN struct sym_s **spt_top;	/* top of symbol ptr table */
 /* for translator */
 
 EXTERN struct sym_s *label;	/* non-null if valid label starts line */
-EXTERN unsigned char pedata;	/* shows how PROGENT bound, flags like LCDATA*/
+EXTERN unsigned char pedata;	/* shows how PROGENT bound, flags like LCDATA */
 EXTERN unsigned char popflags;	/* pseudo-op flags */
 
 /* for BLOCK stack */
@@ -62,9 +62,9 @@ EXTERN offset_t lc;		/* location counter */
 EXTERN unsigned char lcdata;	/* shows how lc is bound */
 				/* FORBIT is set if lc is forward referenced */
 				/* RELBIT is is if lc is relocat. (not ASEG) */
-EXTERN offset_t lcjump; 	/* lc jump between lines */
+EXTERN offset_t lcjump;		/* lc jump between lines */
 
-EXTERN offset_t oldlabel; 	/* Used for checking for moving labels */
+EXTERN offset_t oldlabel;	/* Used for checking for moving labels */
 #ifdef LOW_BYTE
 #define mcount (((unsigned char *) &lcjump)[LOW_BYTE])
 				/* low byte of lcjump */
@@ -121,4 +121,3 @@ extern char hexdigit[];
 #define setcpu(x)
 #define cpuwarn()
 #endif
-

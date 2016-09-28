@@ -31,8 +31,8 @@ void putbin P((int ch));
 /* genlist.c */
 char *build_2hex_number P((unsigned num, char *where));
 char *build_number P((unsigned num, unsigned width, char *where));
-void warning P((char * errorstr));
-void error P((char * errorstr));
+void warning P((char *errorstr));
+void error P((char *errorstr));
 void listline P((void));
 void writec P((int ch));
 void writenl P((void));
@@ -55,7 +55,7 @@ void putobj P((opcode_pt ch));
 void gensym P((void));
 
 /* macro.c */
-void entermac P((struct sym_s *symptr));
+void entermac P((struct sym_s * symptr));
 void pmacro P((void));
 
 /* mops.c */
@@ -134,11 +134,11 @@ void getcomma P((void));
 void mshort P((void));
 
 /* pops.c */
-bool_pt checksegrel P((struct sym_s *symptr));
+bool_pt checksegrel P((struct sym_s * symptr));
 void checkdatabounds P((void));
 void datatoobig P((void));
-void fatalerror P((char * errorstr));
-void labelerror P((char * errorstr));
+void fatalerror P((char *errorstr));
+void labelerror P((char *errorstr));
 void palign P((void));
 void pasciz P((void));
 void pblkw P((void));
@@ -218,8 +218,7 @@ void u4cn P((char *buf, u32_T offset, unsigned count));
 bool_pt typeconv_init P((bool_pt big_endian, bool_pt long_big_endian));
 
 /* alloc.c */
-void * asalloc P((unsigned int size));
-void * asrealloc P((void * oldptr, unsigned int size));
-void * temp_buf P((void));
+void *asalloc P((unsigned int size));
+void *asrealloc P((void *oldptr, unsigned int size));
+void *temp_buf P((void));
 void init_heap P((void));
-

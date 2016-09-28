@@ -11,7 +11,7 @@
 
 /* major switches */
 
-/* #define MC6809 */		/* generate 6809 code */
+/* #define MC6809 *//* generate 6809 code */
 #ifndef MC6809
 #define I80386			/* generate 80386 code */
 #endif
@@ -64,155 +64,152 @@
 #define STDIN		0
 #define STDOUT		1
 
-enum
-{
+enum {
 /* Register codes (internal to assembler). */
 #ifdef I80386
 
 /* Index regs must be first. */
-    BPREG,
-    BXREG,
-    DIREG,
-    SIREG,
+	BPREG,
+	BXREG,
+	DIREG,
+	SIREG,
 #define MAX16BITINDREG	SIREG
 
-    EAXREG,
-    EBPREG,
-    EBXREG,
-    ECXREG,
-    EDIREG,
-    EDXREG,
-    ESIREG,
-    ESPREG,
+	EAXREG,
+	EBPREG,
+	EBXREG,
+	ECXREG,
+	EDIREG,
+	EDXREG,
+	ESIREG,
+	ESPREG,
 #define MAXINDREG	ESPREG
 
-    AXREG,
-    CXREG,
-    DXREG,
-    SPREG,
+	AXREG,
+	CXREG,
+	DXREG,
+	SPREG,
 
-    AHREG,
-    ALREG,
-    BHREG,
-    BLREG,
-    CHREG,
-    CLREG,
-    DHREG,
-    DLREG,
+	AHREG,
+	ALREG,
+	BHREG,
+	BLREG,
+	CHREG,
+	CLREG,
+	DHREG,
+	DLREG,
 
-    CSREG,
-    DSREG,
-    ESREG,
-    FSREG,
-    GSREG,
-    SSREG,
+	CSREG,
+	DSREG,
+	ESREG,
+	FSREG,
+	GSREG,
+	SSREG,
 
-    CR0REG,
-    CR2REG,
-    CR3REG,
-    DR0REG,
-    DR1REG,
-    DR2REG,
-    DR3REG,
-    DR6REG,
-    DR7REG,
-    TR3REG,
-    TR4REG,
-    TR5REG,
-    TR6REG,
-    TR7REG,
+	CR0REG,
+	CR2REG,
+	CR3REG,
+	DR0REG,
+	DR1REG,
+	DR2REG,
+	DR3REG,
+	DR6REG,
+	DR7REG,
+	TR3REG,
+	TR4REG,
+	TR5REG,
+	TR6REG,
+	TR7REG,
 
-    ST0REG,
-    ST1REG,
-    ST2REG,
-    ST3REG,
-    ST4REG,
-    ST5REG,
-    ST6REG,
-    ST7REG,
-#endif /* I80386 */
+	ST0REG,
+	ST1REG,
+	ST2REG,
+	ST3REG,
+	ST4REG,
+	ST5REG,
+	ST6REG,
+	ST7REG,
+#endif				/* I80386 */
 
 #ifdef MC6809
 
 /* Index regs must be first, then PC. */
-    SREG,
-    UREG,
-    XREG,
-    YREG,
+	SREG,
+	UREG,
+	XREG,
+	YREG,
 #define MAXINDREG	YREG
 
-    PCREG,
-    AREG,
-    BREG,
-    CCREG,
-    DPREG,
-    DREG,
-#endif /* MC6809 */
+	PCREG,
+	AREG,
+	BREG,
+	CCREG,
+	DPREG,
+	DREG,
+#endif				/* MC6809 */
 
-    NOREG
+	NOREG
 };
 
 #ifdef I80386
-enum
-{
+enum {
 /* Type and size keywords. */
-    BYTEOP,
-    DWORDOP,
-    FWORDOP,
-    FAROP,
-    PTROP,
-    PWORDOP,
-    QWORDOP,
-    TBYTEOP,
-    WORDOP
+	BYTEOP,
+	DWORDOP,
+	FWORDOP,
+	FAROP,
+	PTROP,
+	PWORDOP,
+	QWORDOP,
+	TBYTEOP,
+	WORDOP
 };
-#endif /* I80386 */
+#endif				/* I80386 */
 
 /* special chars */
 
 #define EOL		0
 #define MACROCHAR	'?'
 
-enum
-{
+enum {
 /* Symbol codes. */
 
 /* The first 2 must be from chars in identifiers. */
-    IDENT,
-    INTCONST,
+	IDENT,
+	INTCONST,
 
 /* The next few are best for other possibly-multi-char tokens. */
-    ADDOP,			/* also ++ */
-    BINCONST,
-    CHARCONST,
-    GREATERTHAN,		/* also >> and context-sensitive */
-    HEXCONST,
-    LESSTHAN,			/* also << and context-sensitive */
-    SUBOP,			/* also -- */
-    WHITESPACE,
+	ADDOP,			/* also ++ */
+	BINCONST,
+	CHARCONST,
+	GREATERTHAN,		/* also >> and context-sensitive */
+	HEXCONST,
+	LESSTHAN,		/* also << and context-sensitive */
+	SUBOP,			/* also -- */
+	WHITESPACE,
 
-    ANDOP,
-    COMMA,
-    EOLSYM,
-    EQOP,
-    IMMEDIATE,
-    INDIRECT,
-    LBRACKET,
-    LPAREN,
-    MACROARG,
-    NOTOP,
-    OROP,
-    OTHERSYM,
-    POSTINCOP,
-    PREDECOP,
-    RBRACKET,
-    RPAREN,
-    SLASH,			/* context-sensitive */
-    SLOP,
-    SROP,
-    STAR,			/* context-sensitive */
-    STRINGCONST,
-    COLON
+	ANDOP,
+	COMMA,
+	EOLSYM,
+	EQOP,
+	IMMEDIATE,
+	INDIRECT,
+	LBRACKET,
+	LPAREN,
+	MACROARG,
+	NOTOP,
+	OROP,
+	OTHERSYM,
+	POSTINCOP,
+	PREDECOP,
+	RBRACKET,
+	RPAREN,
+	SLASH,			/* context-sensitive */
+	SLOP,
+	SROP,
+	STAR,			/* context-sensitive */
+	STRINGCONST,
+	COLON
 };
 
 /* symbol table entry */
@@ -261,36 +258,31 @@ oops - RELBIT misplaced
 #endif
 #define OBJ_E_MASK	0x80	/* exported bit (symbols) */
 #if OBJ_E_MASK - EXPBIT		/* must match internal format (byte 0 -> 0) */
-oops - EXPBIT misplaced
+    oops - EXPBIT misplaced
 #endif
 #define OBJ_I_MASK	0x40	/* imported bit (symbols) */
 #if OBJ_I_MASK - IMPBIT		/* must match internal format (byte 1 -> 0) */
-oops - IMPBIT misplaced
+    oops - IMPBIT misplaced
 #endif
 #define OBJ_N_MASK	0x01	/* entry bit (symbols) */
 #if OBJ_N_MASK - ENTBIT		/* must match internal format (byte 0 -> 1) */
-oops - ENTBIT misplaced
+    oops - ENTBIT misplaced
 #endif
 #define OBJ_SA_MASK	0x20	/* size allocation bit (symbols) */
 #define OBJ_SZ_ONE	0x40	/* size one code for symbol value */
 #define OBJ_SZ_TWO	0x80	/* size two code for symbol value */
 #define OBJ_SZ_FOUR	0xC0	/* size four code for symbol value */
-
 #define OBJ_R_MASK	0x20	/* PC-rel bit (off & sym reloc commands) */
 #define OBJ_SEGM_MASK	0x0F	/* segment mask (symbols, off reloc command) */
-
 #define OBJ_OF_MASK	0x03	/* offset size code for symbol reloc */
 #define OBJ_S_MASK	0x04	/* symbol number size code for symbol reloc */
-
 #define SYMLIS_NAMELEN	26
 #define SYMLIS_LEN	(sizeof (struct sym_listing_s))
-
 #define FILNAMLEN	64	/* max length of a file name */
 #define LINLEN		256	/* max length of input line */
 #define LINUM_LEN	5	/* length of formatted line number */
-
 #define SPTSIZ		1024	/* number of symbol ptrs */
-				/* pseudo-op flags */
+    /* pseudo-op flags */
 #define POPHI		1	/* set to print hi byte of adr */
 #define POPLO		2	/* to print lo byte of ADR */
 #define POPLC		4	/* to print LC */
@@ -299,20 +291,16 @@ oops - ENTBIT misplaced
 #define MAXGET		8	/* max nesting level of GET stack */
 #define MAXIF		8	/* max nesting level of IF stack */
 #define MACPSIZ		(128 / sizeof (struct schain_s))
-				/* size of macro param buffer */
+    /* size of macro param buffer */
 #define MAXMAC		8	/* max nesting level of macro stack */
 #define NLOC		16	/* number of location counters */
 #ifdef I80386
 #define NO_SIB		0340	/* illegal sib (3 with 4) to mean no sib */
 #endif
-
 /* special segments */
-
 #define BSSLOC		3
 #define DATALOC		3
 #define DPLOC		2
 #define STRLOC		1
 #define TEXTLOC		0
-
 #include "errors.h"
-

@@ -10,133 +10,132 @@
 
 PRIVATE bool_t nocolonlabel;	/* set for labels not followed by ':' */
 PRIVATE void (*routine) P((void));
-PRIVATE pfv rout_table[] =
-{
-    pelse,
-    pelseif,
-    pelsifc,
-    pendif,
-    pif,
-    pifc,
+PRIVATE pfv rout_table[] = {
+	pelse,
+	pelseif,
+	pelsifc,
+	pendif,
+	pif,
+	pifc,
 
-    /* start of non-conditionals */
-    palign,
-    pasciz,
-    pblkw,
-    pblock,
-    pbss,
-    pcomm,
-    pcomm1,
-    pdata,
-    pendb,
-    penter,
-    pentry,
-    pequ,
-    peven,
-    pexport,
-    pfail,
-    pfcb,
-    pfcc,
-    pfdb,
+	/* start of non-conditionals */
+	palign,
+	pasciz,
+	pblkw,
+	pblock,
+	pbss,
+	pcomm,
+	pcomm1,
+	pdata,
+	pendb,
+	penter,
+	pentry,
+	pequ,
+	peven,
+	pexport,
+	pfail,
+	pfcb,
+	pfcc,
+	pfdb,
 #if SIZEOF_OFFSET_T > 2
-    pfqb,
+	pfqb,
 #endif
-    pget,
-    pglobl,
-    pident,
-    pimport,
-    plcomm,
-    plcomm1,
-    plist,
-    ploc,
-    pmaclist,
-    pmacro,
-    pmap,
-    porg,
-    pproceof,
-    prmb,
-    psect,
-    pset,
-    psetdp,
-    ptext,
+	pget,
+	pglobl,
+	pident,
+	pimport,
+	plcomm,
+	plcomm1,
+	plist,
+	ploc,
+	pmaclist,
+	pmacro,
+	pmap,
+	porg,
+	pproceof,
+	prmb,
+	psect,
+	pset,
+	psetdp,
+	ptext,
 #ifdef I80386
-    puse16,
-    puse32,
+	puse16,
+	puse32,
 #endif
-    pwarn,
-    /* end of pseudo-ops */
+	pwarn,
+	/* end of pseudo-ops */
 
 #ifdef I80386
-    mbcc,
-    mbswap,
-    mcall,
-    mcalli,
-    mdivmul,
-    menter,
-    mEwGw,
-    mExGx,
-    mf_inher,
-    mf_m,
-    mf_m2,
-    mf_m2_ax,
-    mf_m2_m4,
-    mf_m2_m4_m8,
-    mf_m4_m8_optst,
-    mf_m4_m8_st,
-    mf_m4_m8_stst,
-    mf_m4_m8_m10_st,
-    mf_m10,
-    mf_optst,
-    mf_st,
-    mf_stst,
-    mf_w_inher,
-    mf_w_m,
-    mf_w_m2,
-    mf_w_m2_ax,
-    mgroup1,
-    mgroup2,
-    mgroup6,
-    mgroup7,
-    mgroup8,
-    mGvEv,
-    mGvMa,
-    mGvMp,
-    mimul,
-    min,
-    mincdec,
-    minher,
-    minher16,
-    minher32,
-    minhera,
-    mint,
-    mjcc,
-    mjcxz,
-    mlea,
-    mmov,
-    mmovx,
-    mnegnot,
-    mout,
-    mpushpop,
-    mret,
-    mseg,
-    msetcc,
-    mshdouble,
-    mtest,
-    mxchg,
-#endif /* I80386 */
+	mbcc,
+	mbswap,
+	mcall,
+	mcalli,
+	mdivmul,
+	menter,
+	mEwGw,
+	mExGx,
+	mf_inher,
+	mf_m,
+	mf_m2,
+	mf_m2_ax,
+	mf_m2_m4,
+	mf_m2_m4_m8,
+	mf_m4_m8_optst,
+	mf_m4_m8_st,
+	mf_m4_m8_stst,
+	mf_m4_m8_m10_st,
+	mf_m10,
+	mf_optst,
+	mf_st,
+	mf_stst,
+	mf_w_inher,
+	mf_w_m,
+	mf_w_m2,
+	mf_w_m2_ax,
+	mgroup1,
+	mgroup2,
+	mgroup6,
+	mgroup7,
+	mgroup8,
+	mGvEv,
+	mGvMa,
+	mGvMp,
+	mimul,
+	min,
+	mincdec,
+	minher,
+	minher16,
+	minher32,
+	minhera,
+	mint,
+	mjcc,
+	mjcxz,
+	mlea,
+	mmov,
+	mmovx,
+	mnegnot,
+	mout,
+	mpushpop,
+	mret,
+	mseg,
+	msetcc,
+	mshdouble,
+	mtest,
+	mxchg,
+#endif				/* I80386 */
 
 #ifdef MC6809
-    mall,			/* all address modes allowed, like LDA */
-    malter,			/* all but immediate, like STA */
-    mimmed,			/* immediate only (ANDCC, ORCC) */
-    mindex,			/* indexed (LEA's) */
-    minher,			/* inherent, like CLC or CLRA */
-    mlong,			/* long branches */
-    mshort,			/* short branches */
-    msstak,			/* S-stack	(PSHS, PULS) */
-    mswap,			/* TFR, EXG */
-    mustak,			/* U-stack	(PSHU,PULU) */
-#endif /* MC6809 */
+	mall,			/* all address modes allowed, like LDA */
+	malter,			/* all but immediate, like STA */
+	mimmed,			/* immediate only (ANDCC, ORCC) */
+	mindex,			/* indexed (LEA's) */
+	minher,			/* inherent, like CLC or CLRA */
+	mlong,			/* long branches */
+	mshort,			/* short branches */
+	msstak,			/* S-stack      (PSHS, PULS) */
+	mswap,			/* TFR, EXG */
+	mustak,			/* U-stack      (PSHU,PULU) */
+#endif				/* MC6809 */
 };
 
 FORWARD void asline P((void));
@@ -155,185 +154,165 @@ FORWARD void asline P((void));
 
 PUBLIC void assemble()
 {
-    while (TRUE)
-    {
-	asline();
-	if (label != NUL_PTR)	/* must be confirmed if still set */
-	{			/* it is nulled by EQU,	COMM and SET */
+	while (TRUE) {
+		asline();
+		if (label != NUL_PTR) {	/* must be confirmed if still set *//* it is nulled by EQU, COMM and SET */
 #ifndef MC6809
 #define NEEDENDLABEL ILLAB
-	    if (nocolonlabel)
-		error(NEEDENDLABEL);
+			if (nocolonlabel)
+				error(NEEDENDLABEL);
 #endif
-	    if(pass && label->value_reg_or_op.value != oldlabel)
-	    {
-	       dirty_pass = TRUE;
-	       if( pass == last_pass )
-	          error(UNSTABLE_LABEL);
-            }
+			if (pass && label->value_reg_or_op.value != oldlabel) {
+				dirty_pass = TRUE;
+				if (pass == last_pass)
+					error(UNSTABLE_LABEL);
+			}
 
-	    label->type |= LABIT;	/* confirm, perhaps redundant */
-	    if (label->type & REDBIT)
-	    {
-		/* REDBIT meant 'GLOBLBIT' while LABIT was not set. */
-		label->type |= EXPBIT;
-		label->type &= ~REDBIT;
-	    }
-	    if ((mcount | popflags) == 0)
-		/* unaccompanied label, display adr like EQU and SET */
-		showlabel();
-	    label = NUL_PTR;	/* reset for next line */
-	}
-        skipline();
-	listline();
-	genbin();
-	genobj();
-	binmbuf = lc += lcjump
+			label->type |= LABIT;	/* confirm, perhaps redundant */
+			if (label->type & REDBIT) {
+				/* REDBIT meant 'GLOBLBIT' while LABIT was not set. */
+				label->type |= EXPBIT;
+				label->type &= ~REDBIT;
+			}
+			if ((mcount | popflags) == 0)
+				/* unaccompanied label, display adr like EQU and SET */
+				showlabel();
+			label = NUL_PTR;	/* reset for next line */
+		}
+		skipline();
+		listline();
+		genbin();
+		genobj();
+		binmbuf = lc += lcjump
 #ifdef I80386
-	    + immcount
+		    + immcount
 #endif
-	    ;
-    }
+		    ;
+	}
 }
 
 PRIVATE void asline()
 {
-    register struct sym_s *symptr;
+	register struct sym_s *symptr;
 
-    postb = popflags = pcrflag =
+	postb = popflags = pcrflag =
 #ifdef I80386
-	sprefix = oprefix = aprefix =
+	    sprefix = oprefix = aprefix =
 #endif
-	immcount = lastexp.data = lcjump = 0;
+	    immcount = lastexp.data = lcjump = 0;
 #ifdef I80386
-    sib = NO_SIB;
+	sib = NO_SIB;
 #endif
 #if SIZEOF_OFFSET_T > 2
-    fqflag =
+	fqflag =
 #endif
-	fdflag = fcflag = FALSE;
-    cpuwarn();
-    readline();
-    getsym();
-    if (sym != IDENT)		/* expect label, mnemonic or macro */
-    {	
-       /* Warn if not a comment marker or a hash (for /lib/cpp) */
-       if( sym != EOLSYM && sym != IMMEDIATE )
-          list_force = TRUE;
-       return;			/* anything else is a comment */
-    }
-    symptr = gsymptr;
-    if (!ifflag)
-	/* not assembling, just test for IF/ELSE/ELSEIF/ENDIF */
-    {
-	if (symptr == NUL_PTR || !(symptr->type & MNREGBIT) ||
-	    symptr->data & REGBIT ||
-	    symptr->value_reg_or_op.op.routine >= MIN_NONCOND)
-	    return;
-    }
-    else if (!(symptr->type & (MACBIT | MNREGBIT)))
-	/* not macro, op, pseudo-op or register, expect label */
-    {
-	oldlabel = symptr->value_reg_or_op.value;
-
-	if ((nocolonlabel = (*lineptr - ':')) == 0)	/* exported label? */
-	{
-	    sym = COLON;
-	    ++lineptr;
-	}
-	if (symptr->type & (LABIT | VARBIT))
-	{
-	    if (symptr->type & REDBIT)
-		labelerror(RELAB);
-	    label = symptr;
-
-	    if (pass && !(symptr->type & VARBIT) /*&& last_pass>1*/)
-	    {
-	       label->data = (label->data & FORBIT) | lcdata;
-	       label->value_reg_or_op.value = lc;
-	    }
-	}
-	else if (checksegrel(symptr))
-	{
-	    symptr->type &= ~COMMBIT;	/* ignore COMM, PCOMM gives warning */
-#ifdef MC6809
-#if 0
-	    if (sym == COLON)
-		symptr->type |= EXPBIT;
-#endif
-#endif
-				/* remember if forward referenced */
-	    symptr->data = (symptr->data & FORBIT) | lcdata;
-	    symptr->value_reg_or_op.value = lc;
-				/* unless changed by EQU,COMM or SET */
-	    label = symptr;
-	}
-
+	    fdflag = fcflag = FALSE;
+	cpuwarn();
+	readline();
 	getsym();
-	if (sym != IDENT)
-	{
-	    if (sym == EQOP)
-	    {
-		getsym();
-		pequ();
-	    }
-	    return;		/* anything but ident is comment */
+	if (sym != IDENT) {	/* expect label, mnemonic or macro */
+		/* Warn if not a comment marker or a hash (for /lib/cpp) */
+		if (sym != EOLSYM && sym != IMMEDIATE)
+			list_force = TRUE;
+		return;		/* anything else is a comment */
 	}
 	symptr = gsymptr;
-    }
-    if (symptr->type & MACBIT)
-    {
-	entermac(symptr);
-	return;
-    }
-    if (!(symptr->type & MNREGBIT))
-    {
-	error(OPEXP);
-	return;
-    }
-    if (symptr->data & REGBIT)
-    {
-	error(REGUID);
-	return;
-    }
-    mnsize = 0;
-    if ((page = (symptr->data & (PAGE1 | PAGE2))) != 0)
-    {
-#ifdef MNSIZE
-	if (page == (PAGE1 | PAGE2))
+	if (!ifflag)
+		/* not assembling, just test for IF/ELSE/ELSEIF/ENDIF */
 	{
-	    mnsize = 1;
-	    page = 0;
-	}
-	else
-#endif
+		if (symptr == NUL_PTR || !(symptr->type & MNREGBIT) ||
+		    symptr->data & REGBIT || symptr->value_reg_or_op.op.routine >= MIN_NONCOND)
+			return;
+	} else if (!(symptr->type & (MACBIT | MNREGBIT)))
+		/* not macro, op, pseudo-op or register, expect label */
 	{
-#ifdef PAGE2_OPCODE
-	    if (page == PAGE2)
-		page = PAGE2_OPCODE;
-	    else
-#endif
-		page = PAGE1_OPCODE;
-	    mcount = 1;
-	}
-    }
-    opcode = symptr->value_reg_or_op.op.opcode;
-#ifdef I80386
-    needcpu((page==0 && ((opcode&0xF0) == 0x60||(opcode&0xF6)==0xC0))?1:0);
-#endif
-    routine = rout_table[symptr->value_reg_or_op.op.routine];
-    getsym();
-    (*routine)();
-    if (sym != EOLSYM)
-	error(JUNK_AFTER_OPERANDS);
-#ifdef I80386
-    needcpu(page==PAGE1_OPCODE?2:0);
+		oldlabel = symptr->value_reg_or_op.value;
 
-    if (aprefix != 0)
-	++mcount;
-    if (oprefix != 0)
-	++mcount;
-    if (sprefix != 0)
-	++mcount;
+		if ((nocolonlabel = (*lineptr - ':')) == 0) {	/* exported label? */
+			sym = COLON;
+			++lineptr;
+		}
+		if (symptr->type & (LABIT | VARBIT)) {
+			if (symptr->type & REDBIT)
+				labelerror(RELAB);
+			label = symptr;
+
+			if (pass && !(symptr->type & VARBIT) /*&& last_pass>1 */ ) {
+				label->data = (label->data & FORBIT) | lcdata;
+				label->value_reg_or_op.value = lc;
+			}
+		} else if (checksegrel(symptr)) {
+			symptr->type &= ~COMMBIT;	/* ignore COMM, PCOMM gives warning */
+#ifdef MC6809
+#if 0
+			if (sym == COLON)
+				symptr->type |= EXPBIT;
+#endif
+#endif
+			/* remember if forward referenced */
+			symptr->data = (symptr->data & FORBIT) | lcdata;
+			symptr->value_reg_or_op.value = lc;
+			/* unless changed by EQU,COMM or SET */
+			label = symptr;
+		}
+
+		getsym();
+		if (sym != IDENT) {
+			if (sym == EQOP) {
+				getsym();
+				pequ();
+			}
+			return;	/* anything but ident is comment */
+		}
+		symptr = gsymptr;
+	}
+	if (symptr->type & MACBIT) {
+		entermac(symptr);
+		return;
+	}
+	if (!(symptr->type & MNREGBIT)) {
+		error(OPEXP);
+		return;
+	}
+	if (symptr->data & REGBIT) {
+		error(REGUID);
+		return;
+	}
+	mnsize = 0;
+	if ((page = (symptr->data & (PAGE1 | PAGE2))) != 0) {
+#ifdef MNSIZE
+		if (page == (PAGE1 | PAGE2)) {
+			mnsize = 1;
+			page = 0;
+		} else
+#endif
+		{
+#ifdef PAGE2_OPCODE
+			if (page == PAGE2)
+				page = PAGE2_OPCODE;
+			else
+#endif
+				page = PAGE1_OPCODE;
+			mcount = 1;
+		}
+	}
+	opcode = symptr->value_reg_or_op.op.opcode;
+#ifdef I80386
+	needcpu((page == 0 && ((opcode & 0xF0) == 0x60 || (opcode & 0xF6) == 0xC0)) ? 1 : 0);
+#endif
+	routine = rout_table[symptr->value_reg_or_op.op.routine];
+	getsym();
+	(*routine) ();
+	if (sym != EOLSYM)
+		error(JUNK_AFTER_OPERANDS);
+#ifdef I80386
+	needcpu(page == PAGE1_OPCODE ? 2 : 0);
+
+	if (aprefix != 0)
+		++mcount;
+	if (oprefix != 0)
+		++mcount;
+	if (sprefix != 0)
+		++mcount;
 #endif
 }

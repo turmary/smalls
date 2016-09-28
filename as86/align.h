@@ -14,10 +14,3 @@
 		   ((char *)(x) + ((S_ALIGNMENT-(char)(x)) & (S_ALIGNMENT-1))))
 #endif
 #endif
-
-
-
-
-
-
-
