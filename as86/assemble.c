@@ -137,6 +137,134 @@ PRIVATE pfv rout_table[] = {
 	mustak,			/* U-stack      (PSHU,PULU) */
 #endif				/* MC6809 */
 };
+PUBLIC const char* rout_names[] = {
+	"pelse",
+	"pelseif",
+	"pelsifc",
+	"pendif",
+	"pif",
+	"pifc",
+
+	/* start of non-conditionals */
+	"palign",
+	"pasciz",
+	"pblkw",
+	"pblock",
+	"pbss",
+	"pcomm",
+	"pcomm1",
+	"pdata",
+	"pendb",
+	"penter",
+	"pentry",
+	"pequ",
+	"peven",
+	"pexport",
+	"pfail",
+	"pfcb",
+	"pfcc",
+	"pfdb",
+#if SIZEOF_OFFSET_T > 2
+	"pfqb",
+#endif
+	"pget",
+	"pglobl",
+	"pident",
+	"pimport",
+	"plcomm",
+	"plcomm1",
+	"plist",
+	"ploc",
+	"pmaclist",
+	"pmacro",
+	"pmap",
+	"porg",
+	"pproceof",
+	"prmb",
+	"psect",
+	"pset",
+	"psetdp",
+	"ptext",
+#ifdef I80386
+	"puse16",
+	"puse32",
+#endif
+	"pwarn",
+	/* end of pseudo-ops */
+
+#ifdef I80386
+	"mbcc",
+	"mbswap",
+	"mcall",
+	"mcalli",
+	"mdivmul",
+	"menter",
+	"mEwGw",
+	"mExGx",
+	"mf_inher",
+	"mf_m",
+	"mf_m2",
+	"mf_m2_ax",
+	"mf_m2_m4",
+	"mf_m2_m4_m8",
+	"mf_m4_m8_optst",
+	"mf_m4_m8_st",
+	"mf_m4_m8_stst",
+	"mf_m4_m8_m10_st",
+	"mf_m10",
+	"mf_optst",
+	"mf_st",
+	"mf_stst",
+	"mf_w_inher",
+	"mf_w_m",
+	"mf_w_m2",
+	"mf_w_m2_ax",
+	"mgroup1",
+	"mgroup2",
+	"mgroup6",
+	"mgroup7",
+	"mgroup8",
+	"mGvEv",
+	"mGvMa",
+	"mGvMp",
+	"mimul",
+	"min",
+	"mincdec",
+	"minher",
+	"minher16",
+	"minher32",
+	"minhera",
+	"mint",
+	"mjcc",
+	"mjcxz",
+	"mlea",
+	"mmov",
+	"mmovx",
+	"mnegnot",
+	"mout",
+	"mpushpop",
+	"mret",
+	"mseg",
+	"msetcc",
+	"mshdouble",
+	"mtest",
+	"mxchg",
+#endif				/* I80386 */
+
+#ifdef MC6809
+	"mall",			/* all address modes allowed", like LDA */
+	"malter",			/* all but immediate", like STA */
+	"mimmed",			/* immediate only (ANDCC", ORCC) */
+	"mindex",			/* indexed (LEA's) */
+	"minher",			/* inherent", like CLC or CLRA */
+	"mlong",			/* long branches */
+	"mshort",			/* short branches */
+	"msstak",			/* S-stack      (PSHS", PULS) */
+	"mswap",			/* TFR", EXG */
+	"mustak",			/* U-stack      (PSHU",PULU) */
+#endif				/* MC6809 */
+};
+
 
 FORWARD void asline P((void));
 
@@ -226,6 +354,16 @@ PRIVATE void asline()
 	} else if (!(symptr->type & (MACBIT | MNREGBIT)))
 		/* not macro, op, pseudo-op or register, expect label */
 	{
+		{	// TARY DEBUG
+			#if 0
+			char sym_pr[lineptr - symname + 1];
+			strncpy(sym_pr, symname, lineptr - symname);
+			sym_pr[lineptr - symname] = '\0';
+			printf("label:%s ", sym_pr);
+			#else
+			xshowsym(symptr);
+			#endif
+		}
 		oldlabel = symptr->value_reg_or_op.value;
 
 		if ((nocolonlabel = (*lineptr - ':')) == 0) {	/* exported label? */
@@ -256,6 +394,8 @@ PRIVATE void asline()
 			label = symptr;
 		}
 
+		xshowsym(symptr);
+
 		getsym();
 		if (sym != IDENT) {
 			if (sym == EQOP) {
@@ -266,6 +406,7 @@ PRIVATE void asline()
 		}
 		symptr = gsymptr;
 	}
+	xshowsym(symptr);
 	if (symptr->type & MACBIT) {
 		entermac(symptr);
 		return;

@@ -4,6 +4,7 @@
 #include "const.h"
 #include "type.h"
 #include "globvar.h"
+#include "source.h"
 #undef EXTERN
 #define EXTERN
 #include "scan.h"
@@ -86,6 +87,44 @@ PRIVATE char symofchar[256] =	/* table to convert chars to their symbols */
 	WHITESPACE, WHITESPACE, WHITESPACE, WHITESPACE
 };
 
+static const char* symnames[] = {
+	"IDENT",
+	"INTCONST",
+
+/* The next few are best for other possibly-multi-char tokens. */
+	"ADDOP",		/* also ++ */
+	"BINCONST",
+	"CHARCONST",
+	"GREATERTHAN",		/* also >> and context-sensitive */
+	"HEXCONST",
+	"LESSTHAN",		/* also << and context-sensitive */
+	"SUBOP",		/* also -- */
+	"WHITESPACE",
+
+	"ANDOP",
+	"COMMA",
+	"EOLSYM",
+	"EQOP",
+	"IMMEDIATE",
+	"INDIRECT",
+	"LBRACKET",
+	"LPAREN",
+	"MACROARG",
+	"NOTOP",
+	"OROP",
+	"OTHERSYM",
+	"POSTINCOP",
+	"PREDECOP",
+	"RBRACKET",
+	"RPAREN",
+	"SLASH",		/* context-sensitive */
+	"SLOP",
+	"SROP",
+	"STAR",			/* context-sensitive */
+	"STRINGCONST",
+	"COLON",
+};
+
 FORWARD void intconst P((void));
 
 PUBLIC void context_hexconst()
@@ -114,7 +153,7 @@ PUBLIC void getsym()
 		numbase = 2;
 		lineptr = reglineptr;
 		intconst();
-		return;
+		goto ret_dbg;
 	case CHARCONST:
 		if ((number = *reglineptr) < ' ')
 			number = ' ';
@@ -132,14 +171,14 @@ PUBLIC void getsym()
 		numbase = 16;
 		lineptr = reglineptr;
 		intconst();
-		return;
+		goto ret_dbg;
 	case IDENT:
 		/* walk to end of identifier - magic INTCONST is max of INT, IDENT */
 		while (symofchar[(unsigned char) *reglineptr] <= INTCONST)
 			++reglineptr;
 		lineptr = reglineptr;
 		gsymptr = lookup();
-		return;
+		goto ret_dbg;
 	case INTCONST:
 		if (*(reglineptr - 1) == '0') {
 			if (*reglineptr != 'x' && *reglineptr != 'X')
@@ -154,7 +193,7 @@ PUBLIC void getsym()
 		}
 		lineptr = reglineptr;
 		intconst();
-		return;
+		goto ret_dbg;
 	case LESSTHAN:		/* context-sensitive */
 		if (*reglineptr == '<') {
 			sym = SLOP;
@@ -169,6 +208,19 @@ PUBLIC void getsym()
 		break;
 	}
 	lineptr = reglineptr;
+ret_dbg:
+	{	// TARY DEBUG
+		static int s_linum = 0;
+
+		if (linum != s_linum) {
+			s_linum = linum;
+			printf("### LINE%d ### ", linum);
+		}
+		printf("%s ", symnames[sym]);
+		if (sym == EOLSYM) {
+			printf("\n");
+		}
+	}
 	return;
 }
 

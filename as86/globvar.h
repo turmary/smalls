@@ -105,6 +105,7 @@ EXTERN int origcpuid;		/* Assembler instruction limit flag */
 /* miscellaneous */
 
 extern char hexdigit[];
+extern const char* rout_names[];
 
 /* cpuid functions */
 #ifdef I80386

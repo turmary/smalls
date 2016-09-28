@@ -186,6 +186,7 @@ void puse16 P((void));
 void puse32 P((void));
 void pwarn P((void));
 void showlabel P((void));
+void xshowsym(struct sym_s* sym);
 
 /* readsrc.c */
 void initsource P((void));

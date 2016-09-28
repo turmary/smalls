@@ -50,7 +50,7 @@ typedef unsigned long u32_T;
 
 struct sym_s {
 	struct sym_s *next;	/* next symbol in hash chain (NUL_PTR if none) */
-	/* zero offset because it is accessed most */
+				/* zero offset because it is accessed most */
 	unsigned char type;
 	unsigned char data;	/* flags valid for expressions as well as syms */
 	union {

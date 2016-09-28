@@ -1012,6 +1012,74 @@ PRIVATE void showredefinedlabel()
 	}
 }
 
+
+// TARY DEBUG
+static const char* typeflg_names[] = {
+	"entry",
+	"common",
+	"label",
+	"(pseudo)op",
+	"macro",
+	"redefined",
+	"variable",
+	"exported",
+	"page 1",
+	"page 2",
+	"register",
+	"sizing",
+	"relative",
+	"forward",
+	"imported",
+	"undefined",
+};
+
+PUBLIC void xshowsym(struct sym_s* sym) {
+	char name[sym->length + 1];
+	unsigned flag;
+	int i, v;
+	char* prfmt = NULL;
+
+	strncpy(name, sym->name, sym->length);
+	name[sym->length] = '\0';
+
+	flag = ((unsigned)sym->data << 8) | (unsigned)sym->type;
+	printf("\n%s 0x%X:\n", name, flag);
+	for (i = 0; i < sizeof typeflg_names / sizeof typeflg_names[0]; i++) {
+		if ((sym->type & MNREGBIT) == 0) {
+			if (8 == i) {
+				printf("segment%d ", (sym->data & SEGM));
+			} else if ((i < 8 || i >= 12) && flag & 0x0001) {
+				printf("%s ", typeflg_names[i]);
+			}
+		} else if (flag & 0x0001) {
+			printf("%s ", typeflg_names[i]);
+		}
+		flag >>= 1;
+	}
+	printf("\n");
+	if (sym->type & LABIT) {
+		v = sym->value_reg_or_op.value;
+		prfmt = "val = 0x%X (%d)\n";
+	}
+	if ((sym->type & MNREGBIT) && (sym->data & REGBIT)) {
+		v = sym->value_reg_or_op.reg;
+		prfmt = "reg = 0x%X (%d)\n";
+	}
+	if ((sym->type & MNREGBIT)) {
+		printf("route = %s\n", rout_names[sym->value_reg_or_op.op.routine]);
+		if ((v = sym->value_reg_or_op.op.opcode) != 0) {
+			prfmt = "op  = 0x%X (%d)\n";
+		} else {
+			prfmt = NULL;
+		}
+	}
+	if (prfmt != NULL) {
+		printf(prfmt, v, v);
+	}
+	printf("\n");
+	return;
+}
+
 PUBLIC void showlabel()
 {
 	register struct sym_s *labptr;
@@ -1020,6 +1088,7 @@ PUBLIC void showlabel()
 	lastexp.data = labptr->data;
 	lastexp.offset = labptr->value_reg_or_op.value;
 	popflags = POPLONG | POPHI | POPLO;
+	xshowsym(labptr);
 	label = NUL_PTR;	/* show handled by COMM, EQU or SET */
 }
 

@@ -1,0 +1,209 @@
+### LINE1 ### EOLSYM 
+### LINE2 ### IDENT 
+SYSSIZE 0x9000:
+segment0 relative undefined 
+
+
+SYSSIZE 0x1000:
+segment0 relative 
+
+EQOP INTCONST EOLSYM 
+
+SYSSIZE 0x4:
+label segment0 
+val = 0x3000 (12288)
+
+### LINE3 ### IDENT 
+SYSSEG 0x9000:
+segment0 relative undefined 
+
+
+SYSSEG 0x1000:
+segment0 relative 
+
+EQOP INTCONST EOLSYM 
+
+SYSSEG 0x4:
+label segment0 
+val = 0x1000 (4096)
+
+### LINE4 ### IDENT 
+SETUPLEN 0x9000:
+segment0 relative undefined 
+
+
+SETUPLEN 0x1000:
+segment0 relative 
+
+EQOP INTCONST EOLSYM 
+
+SETUPLEN 0x4:
+label segment0 
+val = 0x4 (4)
+
+### LINE5 ### IDENT 
+.globl 0x8:
+(pseudo)op 
+route = pglobl
+
+IDENT COMMA IDENT COMMA IDENT COMMA IDENT COMMA IDENT COMMA IDENT EOLSYM 
+### LINE6 ### IDENT 
+.text 0x8:
+(pseudo)op 
+route = ptext
+
+EOLSYM 
+### LINE7 ### IDENT 
+ENDSEG 0x9000:
+segment0 relative undefined 
+
+
+ENDSEG 0x1000:
+segment0 relative 
+
+EQOP IDENT ADDOP IDENT EOLSYM 
+
+ENDSEG 0x4:
+label segment0 
+val = 0x4000 (16384)
+
+### LINE8 ### IDENT 
+sread 0x9000:
+segment0 relative undefined 
+
+
+sread 0x1000:
+segment0 relative 
+
+IDENT 
+.word 0x8:
+(pseudo)op 
+route = pfdb
+
+INTCONST ADDOP IDENT EOLSYM 
+### LINE9 ### IDENT 
+bad_rt 0x9000:
+segment0 relative undefined 
+
+
+bad_rt 0x1000:
+segment0 relative 
+
+IDENT 
+mov 0x8:
+(pseudo)op 
+route = mmov
+op  = 0x88 (136)
+
+IDENT COMMA IMMEDIATE INTCONST EOLSYM 
+lcc 0, lc 5
+### LINE1 ### EOLSYM 
+### LINE2 ### IDENT 
+SYSSIZE 0x4:
+label segment0 
+val = 0x3000 (12288)
+
+
+SYSSIZE 0x1004:
+label segment0 relative 
+val = 0x0 (0)
+
+EQOP INTCONST EOLSYM 
+
+SYSSIZE 0x4:
+label segment0 
+val = 0x3000 (12288)
+
+### LINE3 ### IDENT 
+SYSSEG 0x4:
+label segment0 
+val = 0x1000 (4096)
+
+
+SYSSEG 0x1004:
+label segment0 relative 
+val = 0x0 (0)
+
+EQOP INTCONST EOLSYM 
+
+SYSSEG 0x4:
+label segment0 
+val = 0x1000 (4096)
+
+### LINE4 ### IDENT 
+SETUPLEN 0x4:
+label segment0 
+val = 0x4 (4)
+
+
+SETUPLEN 0x1004:
+label segment0 relative 
+val = 0x0 (0)
+
+EQOP INTCONST EOLSYM 
+
+SETUPLEN 0x4:
+label segment0 
+val = 0x4 (4)
+
+### LINE5 ### IDENT 
+.globl 0x8:
+(pseudo)op 
+route = pglobl
+
+IDENT COMMA IDENT COMMA IDENT COMMA IDENT COMMA IDENT COMMA IDENT EOLSYM 
+### LINE6 ### IDENT 
+.text 0x8:
+(pseudo)op 
+route = ptext
+
+EOLSYM 
+### LINE7 ### IDENT 
+ENDSEG 0x4:
+label segment0 
+val = 0x4000 (16384)
+
+
+ENDSEG 0x1004:
+label segment0 relative 
+val = 0x0 (0)
+
+EQOP IDENT ADDOP IDENT EOLSYM 
+
+ENDSEG 0x4:
+label segment0 
+val = 0x4000 (16384)
+
+### LINE8 ### IDENT 
+sread 0x1004:
+label segment0 relative 
+val = 0x0 (0)
+
+
+sread 0x1004:
+label segment0 relative 
+val = 0x0 (0)
+
+IDENT 
+.word 0x8:
+(pseudo)op 
+route = pfdb
+
+INTCONST ADDOP IDENT EOLSYM 
+### LINE9 ### IDENT 
+bad_rt 0x1004:
+label segment0 relative 
+val = 0x2 (2)
+
+
+bad_rt 0x1004:
+label segment0 relative 
+val = 0x2 (2)
+
+IDENT 
+mov 0x8:
+(pseudo)op 
+route = mmov
+op  = 0x88 (136)
+
+IDENT COMMA IMMEDIATE INTCONST EOLSYM 
