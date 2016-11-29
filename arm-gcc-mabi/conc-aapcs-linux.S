@@ -23,6 +23,17 @@ bssvar:
 	.size	globalvar, 4
 globalvar:
 	.word	1
+	.global	us
+	.align	1
+	.type	us, %object
+	.size	us, 2
+us:
+	.short	2
+	.global	uc
+	.type	uc, %object
+	.size	uc, 1
+uc:
+	.byte	3
 	.text
 	.align	2
 	.global	con
