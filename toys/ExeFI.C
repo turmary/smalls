@@ -1,7 +1,7 @@
 #include <stdio.h>
-#include <dos.h>
+#include <stdlib.h>
 
-#define WORD	unsigned int
+#define WORD	unsigned short
 #define LONG	unsigned long
 typedef struct tagIMAGE_DOS_HEADER {      /* DOS .EXE header */
     WORD   e_magic;                     /* Magic number */
@@ -101,7 +101,7 @@ int main(int argc, char* argv[]) {
 	}
 	disp_exe_info(exeheader);
 	printf("\nView relocation table?\n");
-	iret = getch();
+	iret = getchar();
 	if ('y' == iret || 'Y' == iret)
 		disp_reloc_list(fp, exeheader);
 	fclose(fp);
