@@ -1,0 +1,42 @@
+# tary, 21:01 2016/12/15
+
+$(shell { echo left.1=${MAKEFILE_LIST} ; echo ""; } 1>&2 )
+
+D1  =$(shell { echo right.D1=${MAKEFILE_LIST} ; echo ""; } 1>&2 )
+DM1 =$(shell { echo DM1=${MAKEFILE_LIST} ; echo ""; } )
+I1 :=$(shell { echo right.I1=${MAKEFILE_LIST} ; echo ""; } 1>&2 )
+IM1:=$(shell { echo IM1=${MAKEFILE_LIST} ; echo ""; } )
+
+$(shell { echo left.2=${MAKEFILE_LIST} ; echo ""; } 1>&2 )
+
+
+all:
+	@echo ${DM1}
+	@echo ${IM1}
+	@echo ${DM2}
+	@echo ${IM2}
+
+$(shell { echo left.3=${MAKEFILE_LIST} ; echo ""; } 1>&2 )
+
+-include new.mk
+
+$(shell { echo left.4=${MAKEFILE_LIST} ; echo ""; } 1>&2 )
+
+D2  =$(shell { echo right.D2=${MAKEFILE_LIST} ; echo ""; } 1>&2 )
+DM2 =$(shell { echo DM2=${MAKEFILE_LIST} ; echo ""; } )
+I2 :=$(shell { echo right.I2=${MAKEFILE_LIST} ; echo ""; } 1>&2 )
+IM2:=$(shell { echo IM2=${MAKEFILE_LIST} ; echo ""; } )
+
+$(shell { echo left.5=${MAKEFILE_LIST} ; echo ""; } 1>&2 )
+
+new.mk:
+	echo X=5 > $@
+
+$(shell { echo left.6=${MAKEFILE_LIST} ; echo ""; } 1>&2 )
+
+clean:
+	rm -f new.mk
+
+$(shell { echo left.7=${MAKEFILE_LIST} ; echo ""; } 1>&2 )
+
+.PHONY: all clean
