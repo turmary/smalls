@@ -50,8 +50,8 @@ $(TARGET):
 		print;						\
 	}' |							\
 	$(AWK) -F' ' '{						\
-		arg1=substr($$1, 1, length($$1)-1);		\
-		for(i=2; i<=NF; i++) {				\
+		arg1 = substr($$1, 1, length($$1)-1);		\
+		for(i = 2; i <= NF; i++) {			\
 			printf("\t%s -> %s;\n", arg1, $$i);	\
 		}						\
 	}' >> $g.dot
