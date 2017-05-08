@@ -177,10 +177,9 @@ int GeneratePoints(POINT* apt, int cnt, int maxx, int maxy) {
 
 #endif
 
-POINT		apt[NUM];
-
 LRESULT CALLBACK WndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam) {
 	static int cxClient, cyClient;
+	static POINT	apt[NUM];
 	HDC		hdc;
 	int		i;
 	PAINTSTRUCT	ps;

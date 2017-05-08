@@ -1,0 +1,16 @@
+//>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+#include		"resource\resource.h"
+//>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+//>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+ICO_MAIN	ICON		"resource\\main.ico"
+IDC_MAIN	CURSOR		"resource\\main.cur"
+IDC_MOVE	CURSOR		"resource\\move.cur"
+
+IDB_BACK1	BITMAP		"resource\\back1.bmp"
+IDB_CIRCLE1	BITMAP		"resource\\circle1.bmp"
+IDB_MASK1	BITMAP		"resource\\mask1.bmp"
+
+IDB_BACK2	BITMAP		"resource\\back2.bmp"
+IDB_CIRCLE2	BITMAP		"resource\\circle2.bmp"
+IDB_MASK2	BITMAP		"resource\\mask2.bmp"

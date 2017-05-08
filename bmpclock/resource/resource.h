@@ -1,0 +1,9 @@
+#define	ICO_MAIN		100
+#define	IDC_MAIN		100
+#define	IDC_MOVE		101
+#define	IDB_BACK1		100
+#define	IDB_CIRCLE1		101
+#define	IDB_MASK1		102
+#define	IDB_BACK2		103
+#define	IDB_CIRCLE2		104
+#define	IDB_MASK2		105

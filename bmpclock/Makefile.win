@@ -1,0 +1,32 @@
+# Project: bmpclock
+# Makefile created by Dev-C++ 4.9.9.0
+
+CPP  = g++.exe -D__DEBUG__
+CC   = gcc.exe -D__DEBUG__
+WINDRES = windres.exe
+RES  = bmpclock_private.res
+OBJ  = bmpclock.o $(RES)
+LINKOBJ  = bmpclock.o $(RES)
+LIBS =  -L"F:/TaryInst/Dev-Cpp/lib" -mwindows  -g3 
+INCS =  -I"F:/TaryInst/Dev-Cpp/include" 
+CXXINCS =  -I"F:/TaryInst/Dev-Cpp/include/c++/3.3.1"  -I"F:/TaryInst/Dev-Cpp/include/c++/3.3.1/mingw32"  -I"F:/TaryInst/Dev-Cpp/include/c++/3.3.1/backward"  -I"F:/TaryInst/Dev-Cpp/lib/gcc-lib/mingw32/3.3.1/include"  -I"F:/TaryInst/Dev-Cpp/include" 
+BIN  = bmpclock.exe
+CXXFLAGS = $(CXXINCS)   -g3
+CFLAGS = $(INCS)   -g3
+
+.PHONY: all all-before all-after clean clean-custom
+
+all: all-before bmpclock.exe all-after
+
+
+clean: clean-custom
+	rm -f $(OBJ) $(BIN)
+
+$(BIN): $(OBJ)
+	$(CC) $(LINKOBJ) -o "bmpclock.exe" $(LIBS)
+
+bmpclock.o: bmpclock.c
+	$(CC) -c bmpclock.c -o bmpclock.o $(CFLAGS)
+
+bmpclock_private.res: bmpclock_private.rc bmpclock.rc 
+	$(WINDRES) -i bmpclock_private.rc -I rc -o bmpclock_private.res -O coff 
