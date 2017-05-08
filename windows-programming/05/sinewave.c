@@ -7,7 +7,12 @@
 #include <math.h>
 
 #define NUM 50000
-#define TWOPI	(2 * 3.14159)
+#ifndef M_PI
+#define M_PI	3.14159
+#endif
+#ifndef _2_M_PI
+#define _2_M_PI	(2 * M_PI)
+#endif
 
 LRESULT CALLBACK WndProc(HWND, UINT, WPARAM, LPARAM);
 
@@ -27,16 +32,19 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
 	wndclass.hbrBackground	=(HBRUSH)GetStockObject(WHITE_BRUSH);
 	wndclass.lpszMenuName	= NULL;
 	wndclass.lpszClassName	= szAppName;
+
 	if (!RegisterClass(&wndclass)) {
 		MessageBox(	NULL, TEXT("Program requires Windows NT!"),
 			szAppName, MB_ICONERROR);
 		return 0;
 	}
+
 	hwnd = CreateWindow( szAppName, TEXT("Sine Wave Using Polyline"),
 				WS_OVERLAPPEDWINDOW,
 				CW_USEDEFAULT, CW_USEDEFAULT,
 				CW_USEDEFAULT, CW_USEDEFAULT,
 				NULL, NULL, hInstance, NULL);
+
 	ShowWindow(hwnd, iCmdShow);
 	UpdateWindow(hwnd);
 
@@ -169,12 +177,13 @@ int GeneratePoints(POINT* apt, int cnt, int maxx, int maxy) {
 
 #endif
 
+POINT		apt[NUM];
+
 LRESULT CALLBACK WndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam) {
 	static int cxClient, cyClient;
 	HDC		hdc;
 	int		i;
 	PAINTSTRUCT	ps;
-	POINT		apt[NUM];
 
 	switch (message) {
 	case WM_SIZE:
@@ -190,7 +199,7 @@ LRESULT CALLBACK WndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam) 
 #if 1
 		for (i = 0; i < NUM; i++) {
 			apt[i].x = i * cxClient / NUM;
-			apt[i].y =(int)(cyClient / 2 *(1 - sin(TWOPI * i / NUM)));
+			apt[i].y =(int)(cyClient / 2 *(1 - sin(_2_M_PI * i / NUM)));
 		}
 		
 		Polyline(hdc, apt, NUM);
