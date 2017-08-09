@@ -16,8 +16,8 @@
 
 HINSTANCE hInstance;
 HWND hWinMain, h2;
-HCURSOR hCursorMove	,	/*Cursor when move	*/
-hCursorMain;	/*Cursor when normal	*/
+HCURSOR hCursorMove,	/*Cursor when move	*/
+	hCursorMain;	/*Cursor when normal	*/
 HMENU hMenu;
 
 HBITMAP ghBmpBack, ghBmpClock;
@@ -255,7 +255,7 @@ LRESULT CALLBACK WndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam) 
 		MoveWindow(hwnd, X, Y, CLOCK_SIZE, CLOCK_SIZE, TRUE);
 		//UpdateWindow(hwnd);
 		break;
-	
+
 	case WM_PAINT:
 		hDC = BeginPaint (hwnd, &PtStr);
 		BitBlt(hDC, PtStr.rcPaint.left, PtStr.rcPaint.top,

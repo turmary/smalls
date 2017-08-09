@@ -29,4 +29,4 @@ bmpclock.o: bmpclock.c
 	$(CC) -c bmpclock.c -o bmpclock.o $(CFLAGS)
 
 bmpclock_private.res: bmpclock_private.rc bmpclock.rc 
-	$(WINDRES) -i bmpclock_private.rc -I rc -o bmpclock_private.res -O coff 
+	$(WINDRES) -i bmpclock_private.rc -J rc -o bmpclock_private.res -O coff 
