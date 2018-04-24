@@ -24,8 +24,8 @@ set backspace=indent,eol,start
 if has("vms")
   set nobackup		" do not keep a backup file, use versions instead
 else
-  set backup		" keep a backup file (restore to previous version)
-  set undofile		" keep an undo file (undo changes after closing)
+"  set backup		" keep a backup file (restore to previous version)
+"  set undofile		" keep an undo file (undo changes after closing)
 endif
 set history=50		" keep 50 lines of command line history
 set ruler		" show the cursor position all the time
@@ -44,7 +44,7 @@ inoremap <C-U> <C-G>u<C-U>
 
 " In many terminal emulators the mouse works just fine, thus enable it.
 if has('mouse')
-  set mouse=a
+"  set mouse=a
 endif
 
 " Switch syntax highlighting on, when the terminal has colors
@@ -107,3 +107,6 @@ endif
 " The matchit plugin makes the % command work better, but it is not backwards
 " compatible.
 packadd matchit
+
+:colorscheme darkblue
+
