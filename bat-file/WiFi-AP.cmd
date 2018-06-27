@@ -19,4 +19,9 @@ pause
 ECHO =======================================
 netsh wlan start hostednetwork
 
+:- ROUTE ADD     0.0.0.0  MASK 0.0.0.0  192.168.8.1  METRIC 50  IF 17
+:- ROUTE CHANGE  0.0.0.0  MASK 0.0.0.0  192.168.8.1  METRIC 20  IF 17
+:- ROUTE DELETE  0.0.0.0  MASK 0.0.0.0  192.168.8.1
+
 @ECHO ON
+
