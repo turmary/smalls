@@ -1,0 +1,5 @@
+:- tary, 21:37 2018/7/18
+:- show nonpresent devices
+SET DEVMGR_SHOW_NONPRESENT_DEVICES=1
+CD /D %SYSTEMROOT%/System32
+START DEVMGMT.MSC
