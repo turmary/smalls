@@ -162,14 +162,14 @@ main() {
 
 	test_rtc
 	r=$?
-	if [ "${r}" ]; then
+	if [ "${r}" -eq "0" ]; then
 		test_mach
 		# 结果正常试图删除自己的执行
 		del_self
 	fi
 
 	echo "###############拷机测试结果:###############" >>"${RESULT_FILE}"
-	if [ "${r}" ]; then
+	if [ "${r}" -eq "0" ]; then
 		echo "RTC测试: 正常" >>"${RESULT_FILE}"
 	else
 		echo "RTC测试: 失败" >>"${RESULT_FILE}"
