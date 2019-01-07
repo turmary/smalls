@@ -1,0 +1,17 @@
+# Copy the file to /etc/udev/rules.d/80-net-setup-link.rules
+# to get usb0/usb1 interface name
+
+SUBSYSTEM!="net", GOTO="net_setup_link_end"
+
+IMPORT{builtin}="path_id"
+
+ACTION!="add", GOTO="net_setup_link_end"
+
+IMPORT{builtin}="net_setup_link"
+
+NAME=="", ENV{ID_NET_NAME}!="", NAME="$env{ID_NET_NAME}"
+SUBSYSTEM=="net", ACTION=="add", DRIVERS=="", ATTR{dev_id}=="0x0", ATTR{type}=="1", ATTR{address}=="60:64:05:6e:27:05", NAME="usb0"
+SUBSYSTEM=="net", ACTION=="add", DRIVERS=="", ATTR{dev_id}=="0x0", ATTR{type}=="1", ATTR{address}=="60:64:05:6e:27:08", NAME="usb1"
+
+LABEL="net_setup_link_end"
+
