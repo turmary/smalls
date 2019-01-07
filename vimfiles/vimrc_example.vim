@@ -110,3 +110,6 @@ packadd matchit
 
 :colorscheme darkblue
 
+" Enable paste: noai, nosi
+" set paste
+
