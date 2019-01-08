@@ -1,0 +1,10 @@
+# /etc/udev/rules.d/82-gpio-config-pin.rules
+#
+# Corrects sys GPIO permissions on the BB so non-root users in the gpio group can manipulate bits
+#
+# Change group to gpio
+# Change user permissions to ensure user and group have read/write permissions
+# SUBSYSTEM=="platform", DEVPATH=="/devices/platform/ocp/ocp\:*pinmux", MODE="660", GROUP="gpio", OWNER="root"
+SUBSYSTEM=="platform", DEVPATH=="/devices/platform/ocp/ocp\:*pinmux", RUN+="/bin/sh -c '/bin/echo $devpath >> /home/debian/udev.log'"
+# SUBSYSTEM=="platform", DEVPATH=="/devices/platform/ocp/ocp\:*pinmux", RUN+="/bin/sh -c '/bin/echo $devpath >> /home/debian/udev.log'", MODE="660"
+# ACTION=="add", SUBSYSTEM=="platform", ENV{DEVPATH}=="/devices/platform/ocp/ocp\:*pinmux", RUN+="/bin/sh -c '/bin/echo $devpath >> /home/debian/udev.log'", MODE="771", GROUP="gpio", OWNER="root"
