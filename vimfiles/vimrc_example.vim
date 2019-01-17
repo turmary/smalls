@@ -113,3 +113,5 @@ packadd matchit
 " Enable paste: noai, nosi
 " set paste
 
+set viminfo='1000,f1,<2000
+
