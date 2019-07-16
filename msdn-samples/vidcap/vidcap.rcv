@@ -16,11 +16,22 @@
  *
  ***************************************************************************/
 
-#include <verinfo.h>
+// #include <verinfo.h>
 
 #define VERSIONNAME		"vidcap.exe\0"
 #define VERSIONDESCRIPTION	"Vidcap AVI Capture Application\0"
 #define VERSIONTYPE		VFT_APP
 #define VERSIONSUBTYPE		VFT2_UNKNOWN
+
+#define APPVERSION		1
+#define APPREVISION		0
+#define APPRELEASE		0
+
+#define VERSIONFILEFLAGSMASK	0
+#define VERSIONFLAGS		0
+#define VERSIONCOMPANYNAME	"Microsoft"
+#define VERSIONSTR		"1.0.0"
+#define VERSIONCOPYRIGHT	"(c) 1992 - 1996  Microsoft Corporation.  All Rights Reserved."
+#define VERSIONPRODUCTNAME	VERSIONNAME
 
 #include <verinfo.ver>
