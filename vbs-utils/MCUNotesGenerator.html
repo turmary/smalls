@@ -1,0 +1,350 @@
+<HTML>
+<HEAD>
+<TITLE>51音乐生成器</TITLE>
+<style>
+<!--
+body {
+	font-family: verdana,Arial, Helvetica, sans-serif,宋体(GB);
+	font-size: 9pt;
+	line-height: 13px;
+	color: #444444;
+}
+
+table {
+	font-size: 13px;
+	font-weight: normal;
+	margin: 0;
+	padding: 0;
+	font-family: verdana,Arial, Helvetica, sans-serif;
+	list-style-type: none;
+	color: #444444;
+	background: #ffffff;
+	border-collapse: collapse;
+	border-color: #f0fffe;
+}
+
+.tdStd {
+	background: black;
+	color:	white;
+}
+
+.tdHz {
+	background: #2b9017;
+	color: yellow;
+}
+
+.fontSim {
+	color: blue
+}
+
+-->
+</style>
+</HEAD>
+
+<SCRIPT LANGUAGE="VBScript">
+<!--
+Option Explicit
+Dim StdNoteName                 ' 标准音高集合
+Dim StdNoteNum			' 标准音高数目
+Dim SimIncArr			' 简谱音高增量
+Dim TdMask
+Dim StdTone			' 主调
+Dim bFirstSimNote		' 是否该输出第一个简谱音符了
+Dim ToneLevel			' 第几个八度音,0为中八度音
+' 增量定义 0多余  7->1   3->4 为半音,1表示,其余为全音,2表示
+'                 0  1  2  3  4  5  6  7
+SimIncArr = Array(0, 1, 2, 2, 1, 2, 2, 2)
+StdNoteNum = 12			' 12分标准音阶
+TdMask = "@"			' "#表示不显示#开头的标准音
+StdTone = "C"
+
+
+
+Function GetFreq(Base, StdNote)
+	GetFreq = CInt(Base * 2 ^ (StdNote / 12))
+End Function
+
+
+Sub Init_StdNoteName
+	Dim i, k, key, itm
+
+	k = 0
+	Set StdNoteName = CreateObject("Scripting.Dictionary")
+	For i = 0 to StdNoteNum + 1
+		key = CStr(k)
+		If ((i \ 2) * 2) = i Then
+			itm = ""
+		Else
+			itm = "#"
+		End If
+		itm = itm & Chr(Asc("A") + i \ 2)
+		If itm <> "#B" And itm <> "#E" Then
+			StdNoteName.Add key, itm	'添加键和项目
+			k = k + 1
+		End If
+	Next
+End Sub
+
+
+Function WriteRowStdNote(Mask)
+	Dim strRet, i, itm
+
+	strRet = "<tr>"
+	For i = 0 to StdNoteNum - 1
+		itm = StdNoteName.item(CStr(i))
+		strRet = strRet & "<td align='center' class='tdStd'>"
+		If Left(itm, 1) <> Mask Then
+			strRet = strRet &  itm
+		Else 
+			strRet = strRet & "&nbsp;"
+		End If
+		strRet = strRet & "</td>"
+	Next
+	WriteRowStdNote = strRet & "</tr>"
+End Function
+
+
+Function WriteRowHz (Base, Mask)
+	Dim strRet, i, itm
+
+	strRet = "<tr>"
+	For i = 0 to StdNoteNum - 1
+		itm = StdNoteName.item(CStr(i))
+		' If Mask is "NUL" Then there is a empty row
+		If Mask <> "NUL" And Left(itm, 1) <> Mask Then
+			strRet = strRet & "<td align='center' "
+			strRet = strRet & "class='tdHz'>&nbsp;" & _
+			  GetFreq(Base, i) & "&nbsp;Hz</td>"
+		Else 
+			strRet = strRet & "<td align='center'>&nbsp;</td>"
+		End If
+	Next
+	WriteRowHz = strRet & "</tr>"
+End Function
+
+
+Function WriteRowSimNote(tone, simnote, oldidx)
+	Dim strRet, UnWhite
+	Dim i, tdval, tdmidval
+
+	strRet = "<tr>"
+	i = 0
+	While i < StdNoteNum
+		UnWhite = False
+		If Not bFirstSimNote And StdNoteName.item(CStr(i)) = tone _
+		  And ToneLevel <= 3 Then
+			bFirstSimNote = True
+			UnWhite = True
+		End If
+
+		tdval = "<td align='center' class='fontSim'>"
+		tdmidval = "&nbsp;"
+		If bFirstSimNote Then
+			If (i - oldidx) = SimIncArr(simnote) Then
+				UnWhite = True
+			End If
+		End If
+		If UnWhite Then
+			tdmidval = ""
+			If ToneLevel > 0 Then
+				tdmidval = tdmidval & String(ToneLevel, ".")
+			End If
+			tdmidval = tdmidval & simnote
+			If ToneLevel < 0 Then
+				tdmidval = tdmidval & String(-ToneLevel, ".")
+			End If
+
+			simnote = simnote + 1
+			If simnote > 7 Then
+				simnote = 1
+				ToneLevel = ToneLevel + 1
+				If ToneLevel > 3 Then bFirstSimNote = False
+			End If
+			oldidx = i
+
+		End If
+		tdval = tdval & tdmidval & "</td>"
+		strRet = strRet & tdval
+		i = i + 1
+	Wend
+	WriteRowSimNote = strRet & "</tr>"
+End Function
+
+Function htmlOfTable(Tone, note)
+	Dim strRet, i, idx
+
+	strRet = "<table id=tblNote width='800px' border='1'>"
+	idx = 0
+	ToneLevel = -3			'初使化低三个八度音
+	bFirstSimNote = False
+	strRet = strRet & WriteRowStdNote(TdMask)
+	For i = -3 to 3
+		strRet = strRet & WriteRowHz(440 * (2 ^ i), TdMask)
+		strRet = strRet & WriteRowSimNote(Tone, note, idx)
+		strRet = strRet & WriteRowHz(0, "NUL")
+		idx = idx - StdNoteNum
+	Next
+	If ToneLevel <= 3 And note <= 7 Then
+		strRet = strRet & WriteRowHz(440 * (2 ^ 4), TdMask)
+		strRet = strRet & WriteRowSimNote(Tone, note, idx)
+		strRet = strRet & WriteRowHz(0, "NUL")
+	End If
+	htmlOfTable = strRet & "</table>"
+End Function
+
+Function WriteSelToneItem(Mask)
+	Dim strRet, FirstOne, i, itm
+
+	strRet = ""
+	FirstOne = False
+	For i = 0 to StdNoteNum - 1
+		itm = StdNoteName.item(CStr(i))
+		If Left(itm, 1) <> Mask Then
+			strRet = strRet & "<OPTION VALUE='"
+			strRet = strRet & i & "'"
+			If Not FirstOne And itm = StdTone Then
+				FirstOne = True
+				strRet = strRet & " SELECTED"
+			End If
+			strRet = strRet & ">" & itm
+		End If
+	Next
+	WriteSelToneItem = strRet
+End Function
+
+Init_StdNoteName
+
+-->
+</SCRIPT>
+<BODY style="background-image:url('images/BlankBkgrd.gif')" Bgproperties="fixed">
+<DIV align="left" style="width:805px; position:absolute; left:100px; top:50px; visibility:visible">
+<H1 ID="hTitle" style="position:relative; left:0px; top:0px"> C大调</H1>
+
+<DIV ID="divFreqTable" style="visibility:inherit">
+</DIV>
+
+<SCRIPT LANGUAGE="VBScript">
+<!--
+Function SubmitTblOk()
+	Dim TheForm, divFT, BeginNote
+
+	Set TheForm = Document.ValidForm
+	Set divFT = Document.All.divFreqTable
+	'Set divFT = Window.Document.All.Tags("div").item(1)
+
+	StdTone = StdNoteName.item(TheForm.SelTone.Value)
+	BeginNote = TheForm.SelBigSmall.Value
+	hTitle.innerHTML = StdTone & BeginNote
+	If BeginNote = "大调" Then
+		divFT.innerHTML = htmlOfTable(StdTone, 1)
+	Else
+		divFT.innerHTML = htmlOfTable(StdTone, 6)
+	End If
+	'SubmitOk = False
+End Function
+
+Function Note2CSrc(CodeNote)
+	Dim i
+End Function
+
+
+-->
+</SCRIPT>
+
+<FORM ID="ValidForm" NAME="ValidForm" ACTION="#" METHOD="GET">
+	<p>请选择音调<SELECT NAME="SelTone" SIZE="1" onchange="VBScript:SubmitTblOk">
+<SCRIPT LANGUAGE="VBScript">
+<!--
+
+Document.Write WriteSelToneItem("#")
+
+-->
+</SCRIPT>
+	
+	</SELECT>
+	<SELECT NAME="SelBigSmall" SIZE="1" onchange="VBScript:SubmitTblOk">
+		<OPTION VALUE='大调' SELECTED>大调</OPTION>
+		<OPTION VALUE='小调'>小调</OPTION>
+	</SELECT>
+	</p>
+	<hr width="100%" align="center" color="#666666" size=1>
+	<table width="100%" border='0px'>
+	<tr>
+		<td colspan=2>
+		<P align=center>
+			<LABEL For=AddComment>
+				添加注释
+			</LABEL>
+			<INPUT type=checkbox CHECKED ID=AddComment>&nbsp;&nbsp;&nbsp;
+			<LABEL for=CrystalFreq>选择晶振</LABEL>
+			<SELECT ID=CrystalFreq>
+				<OPTION value='1.00'>1.00</OPTION>
+				<OPTION value='6.00'>6.00</OPTION>
+				<OPTION value='11.0592'>11.0592</OPTION>
+				<OPTION value='12.00' selected>12.00</OPTION>
+				<OPTION value='24.00'>24.00</OPTION>
+				<OPTION value='33.00'>33.00</OPTION>
+				<OPTION value='40.00'>40.00</OPTION>
+			</SELECT>MHz&nbsp;&nbsp;&nbsp;
+		</P>
+		</td>
+	</tr><tr>
+		<td width="40%">
+			<TEXTAREA id=CodeNote rows=20 cols=49 OnMouseOver=
+			"javascript:if(this.value == '在这里输入简谱音符') this.value='';">在这里输入简谱音符</TEXTAREA>
+		</td><td width="20%" align="center">
+			<INPUT onclick="VBScript:Note2CSrc(CodeNote)" type=button value="转换->"><br><br>
+			<INPUT onclick="javascript:CodeNote.value='';" type=button value="<-清空">
+		</td><td width="40%">
+			<TEXTAREA id=CodeCSrc rows=20 cols=49>
+这里将给出转换结果(C51源文件)
+可以直接用Keil C51编译生成HEX文件
+将其烧入8051兼容的单片机中即可</TEXTAREA>
+		</td>
+	</tr>
+	</table>
+	<hr width="100%" align="center" color="#666666" size=1>
+	<p><b>说明:</b><br>
+	实际的简谱低八度音打点在阿拉伯数字的下方<br>
+	高八度音打点在阿拉伯数字的上方<br>
+	这里不方便输出,所以分别将低八度音打在后面,高八度音打在前面表示<br></p>
+	<!--<INPUT NAME="Submit" TYPE="BUTTON" OnClick="SubmitOk" VALUE="确定">-->
+</FORM>
+</DIV>
+<SCRIPT LANGUAGE="VBScript">
+<!--
+
+SubmitTblOk
+
+-->
+</SCRIPT>
+<SCRIPT LANGUAGE="VBScript">
+<!--
+
+Dim TableNote
+Dim RowFreq
+Dim RowNote
+Dim i, j, strTable
+
+' Set TableNote = document.all.tags("tblNote")
+Set TableNote = document.all.tblNote
+
+strTable = ""
+For i = 0 To TableNote.Rows.Length - 1
+        For j = 0 To TableNote.Rows(i).Cells.Length - 1
+		strTable = strTable & TableNote.Rows(i).Cells(j).innerText
+	Next
+Next
+' MsgBox strTable
+-->
+</SCRIPT>
+
+
+</BODY>
+</HTML>
+
+
+
+
+
+
