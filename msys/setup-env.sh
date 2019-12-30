@@ -76,6 +76,7 @@ else
 		cp run-elevated.js /usr/bin
 		cat >> $CONF <<-\__EOF__
 
+		[ "X$MSYSTEM" == "XMINGW32" ] && \
 		alias ln='msys2-ln.sh'
 
 		__EOF__
@@ -90,6 +91,8 @@ CONF="$HOME/.bash_profile"
 	# ~/.profile: executed by the command interpreter for login shells.
 	# This file is not read by bash(1), if ~/.bash_profile or ~/.bash_login
 	# exists.
+
+	test -f ~/.profile && . ~/.profile
 
 __EOF__
 source $CONF
