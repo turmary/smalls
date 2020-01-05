@@ -13,7 +13,7 @@ throw (invalid_argument) {
 	if (!denom) {
 		throw invalid_argument("Rational() denominator is 0");
 	}
-	this->num	 = num;
+	this->num   = num;
 	this->denom = denom;
 	format();
 }
@@ -95,7 +95,7 @@ Rational& Rational::operator-=(const Rational& right) {
 }
 
 Rational& Rational::operator*=(const Rational& right) {
-	this->num	 *= right.num;
+	this->num   *= right.num;
 	this->denom *= right.denom;
 	return this->format();
 }
@@ -105,7 +105,7 @@ throw (overflow_error) {
 	if (!right.num) {
 		throw overflow_error("Rational operator/ divider by 0");
 	}
-	this->num	 *= right.denom;
+	this->num   *= right.denom;
 	this->denom *= right.num;
 	return this->format();
 }
@@ -149,11 +149,11 @@ Rational& Rational::format() {
 	int g;
 
 	if (denom < 0) {
-		num	 = -num;
+		num   = -num;
 		denom = -denom;
 	}
 	if ((g = gcd(denom, num)) > 1) {
-		num	 /= g;
+		num   /= g;
 		denom /= g;
 	}
 	return *this;
