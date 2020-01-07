@@ -1,22 +1,32 @@
 //: T03:T03-12.cpp
 // find letter occurence frequencies.
-#include <iostream>
 #include <string>
 #include <vector>
 #include <algorithm>
+#include <iostream>
 #include "../require.h"
 using namespace std;
 
-struct cpair{
-	char c;
-	int cnt;
-};
+#define CPAIR_GLOBAL_NAMESPACE	1
 
+#if CPAIR_GLOBAL_NAMESPACE == 0
 namespace std {
-	inline bool operator<(const cpair& lhs, const cpair& rhs) {
+#endif//CPAIR_GLOBAL_NAMESPACE
+	struct cpair{
+		char c;
+		int cnt;
+	};
+
+	/*
+	 * gcc version 6.3.0 (MinGW.org GCC-6.3.0-1) requires
+	 * operator< and cpair in the same namespace
+	 */
+	bool operator<(const cpair& lhs, const cpair& rhs) {
 		return lhs.cnt < rhs.cnt;
 	}
+#if CPAIR_GLOBAL_NAMESPACE == 0
 }
+#endif
 
 vector<cpair> cv;
 int freqs[128];
@@ -79,4 +89,5 @@ int main(int argc, char* argv[]) {
 	}
 
 	exit(EXIT_FAILURE);
-} ///:~
+}
+///:~
