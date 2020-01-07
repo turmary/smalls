@@ -7,6 +7,10 @@
 # Invoke with: make compiler-name
 # or: make clean
 
+ifeq ($(MAKECMDGOALS),)
+MAKECMDGOALS = g++
+endif
+
 ifneq ($(MAKECMDGOALS),clean)
 include ../$(MAKECMDGOALS).mac
 endif

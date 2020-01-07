@@ -36,22 +36,19 @@ public:
 		ss >> re;
 		test_(re == Rational(4, 5));
 
-		stringstream ss1("4 / 5");
-		ss1 >> re;
+		ss.str("4 / 5"); ss.clear(); ss >> re;
+		// stringstream ss1("4 / 5"); ss1 >> re;
 		test_(re == Rational(4, 5));
 
-		stringstream ss2("4/ 5");
-		ss2 >> re;
+		ss.str("4/ 5"); ss.clear(); ss >> re;
 		test_(re == Rational(4, 5));
 
-		stringstream ss3("4 /5");
-		ss3 >> re;
+		ss.str("4 /5"); ss.clear(); ss >> re;
 		test_(re == Rational(4, 5));
 
-		stringstream st;
 		re = Rational(4, 7);
-		st << re;
-		test_(st.str() == string("4/7"));
+		ss.str(""); ss.clear(); ss << re;
+		test_(ss.str() == string("4/7"));
 
 		ra = Rational(1, 3);
 		ra += rb;
