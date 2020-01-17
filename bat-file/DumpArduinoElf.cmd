@@ -13,9 +13,10 @@ SET OBJDUMP=arm-none-eabi-objdump
 
 SETLOCAL
 
-CALL :FindLatestArduinoELF FULLPATH
+CALL :FindLatestFile "%TMP%" "*.elf" FULLPATH
 IF "!FULLPATH!" EQU "" (
 	ECHO Not found any Arduino ELF ^^!^^!^^!
+	PAUSE
 	GOTO :EOF
 )
 
@@ -53,13 +54,15 @@ GOTO :EOF
 
 
 
-:FindLatestArduinoELF
-:: -- NAME [out] latest elf file
+:FindLatestFile locate filter name
+:: -- locate [in] root folder to find file
+:: -- filter [in] to match the file name, exclude path part.
+:: -- name  [out] latest(changed) file
 	SETLOCAL
 	SET F=
 
-	PUSHD %TMP%
-	FOR /R %%I IN (*.elf) DO (
+	PUSHD %~1
+	FOR /R %%I IN (%~2) DO (
 		IF "!F!" EQU "" (
 			SET F=%%I
 			:- Not allowed GOTO :LABEL in for loop
@@ -74,7 +77,7 @@ GOTO :EOF
 	POPD
 	(
 		ENDLOCAL
-		SET %~1=%F%
+		SET %~3=%F%
 	)
 EXIT /B
 
