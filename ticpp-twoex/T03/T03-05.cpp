@@ -34,8 +34,8 @@ int main(int argc, const char* argv[]) {
 
 	string space = one.substr(one.find(' '), 1);
 
-	string so = one.substr(one.find('s'), 1);
-	so += one.substr(one.find('o'), 1);
+	string so(1, 's'); // so.assign(1, 's');
+	so.push_back('o'); // so += 'o'; so.insert(s.end(), 'o');
 	so[0] = toupper(so[0]);
 
 	one.append(space).append(two);
