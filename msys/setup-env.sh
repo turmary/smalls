@@ -27,6 +27,25 @@ function is_ln_nativestrict() {
 	return $r
 }
 
+# https://stackoverflow.com/questions/36770716/mingw64-make-build-error-bash-make-command-not-found
+function try_install_make() {
+	local tf r make_url
+
+	make_url="https://nchc.dl.sourceforge.net/project/ezwinports/make-4.3-without-guile-w32-bin.zip"
+	if ! which make >& /dev/null && which unzip >& /dev/null; then
+		tf="/tmp/make.zip"
+		# this 4.3 version make also has problem:
+		# \usr\bin\rm.exe: *** fatal error - Too many levels of nesting for ??????
+		curl -L -o $tf $make_url
+		if [ -f $tf ] && [ -s $tf ]; then
+			unzip -n $tf -d /usr
+			rm -f $tf
+		fi
+	fi
+	which make >& /dev/null; r=$?
+	return $r
+}
+
 # allow to run the script file XXX.{vbs,js} directly
 [ -f /usr/bin/cscript-wrap ] || {
 	cp cscript-wrap /usr/bin
@@ -125,5 +144,8 @@ unset CONF
 # enable git symbolic link
 # https://www.joshkel.com/2018/01/18/symlinks-in-windows/
 type git &> /dev/null && git config --system core.symlinks true
+
+# install make
+try_install_make
 
 echo "### Restart MSYS to take HOME EFFECT ###"
