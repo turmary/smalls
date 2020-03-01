@@ -56,7 +56,15 @@ if [ "X$_newhome" != "X" ]; then
 	CONF="/etc/profile.d/overridehome.sh"
 	[ -f "$CONF" ] || {
 		cat > $CONF <<-\__EOF__
-		export HOME=/home/$USERNAME
+		_CUR_USER=$USERNAME
+		if [ "X$_CUR_USER" = "X" ]; then
+		    _CUR_USER=$(whoami)
+		fi
+		if [ "X$_CUR_USER" = "X" ]; then
+		    _CUR_USER=$USER
+		fi
+		export HOME=/home/$_CUR_USER
+		unset _CUR_USER
 		cd $HOME
 		__EOF__
 	}
