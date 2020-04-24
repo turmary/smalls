@@ -8,9 +8,11 @@ MKDIR \Backup
 :BACKEXIST
 
 ECHO 桌面备份中...
-MKDIR "\Backup\桌面"
-XCOPY /S /C /F /H /Y "%ALLUSERSPROFILE%\桌面" "\Backup\桌面"
-XCOPY /S /C /F /H /Y "%USERPROFILE%\桌面" "\Backup\桌面"
+MKDIR "\Backup\DesktopAll"
+XCOPY /S /C /F /H /Y "%ALLUSERSPROFILE%\Desktop" "\Backup\DesktopAll"
+XCOPY /S /C /F /H /Y "%PUBLIC%\Desktop" "\Backup\DesktopAll"
+MKDIR "\Backup\Desktop"
+XCOPY /S /C /F /H /Y "%USERPROFILE%\Desktop" "\Backup\Desktop"
 ECHO 桌面备份完毕...
 
 
@@ -39,10 +41,10 @@ ECHO 文件夹选项备份完毕...
 
 
 ECHO .
-ECHO 发送到备份中...
-MKDIR "\Backup\SendTo"
-XCOPY /S /C /F /H /Y "%USERPROFILE%\SendTo" "\Backup\SendTo"
-ECHO 发送到备份完毕...
+ECHO PUTTY设置备份中...
+REM MKDIR "\Backup\REG"
+REG EXPORT "HKCU\Software\SimonTatham\PuTTY" "\Backup\REG\HKCU_Putty.reg"
+ECHO PUTTY设置备份完毕...
 
 
 ECHO .
