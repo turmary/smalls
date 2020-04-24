@@ -1,6 +1,7 @@
 Dim WsShell, objArgs
 
-mgmt_path = "HKCR\CLSID\{20D04FE0-3AEA-1069-A2D8-08002B30309D}\shell\Manage\command\"
+mgmt_path   = "HKCR\CLSID\{20D04FE0-3AEA-1069-A2D8-08002B30309D}\shell\Manage\command\"
+shell_icons = "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Shell Icons\29"
 
 Function ShortCreate()
 	On Error Resume Next
@@ -9,6 +10,7 @@ Function ShortCreate()
 	WsShell.RegWrite "HKCR\piffile\IsShortcut", "","REG_SZ"
 	mgmt_val = "%SystemRoot%\system32\CompMgmtLauncher.exe"
 	WsShell.RegWrite mgmt_path, mgmt_val, "REG_EXPAND_SZ"
+	WsShell.RegDelete shell_icons
 	WScript.Echo "显示成功"
 End Function
 
@@ -19,6 +21,7 @@ Function ShortDelete()
 	WsShell.RegDelete "HKCR\piffile\IsShortcut"
 	mgmt_val = "mmc.exe %windir%\system32\compmgmt.msc"
 	WsShell.RegWrite mgmt_path, mgmt_val, "REG_EXPAND_SZ"
+	WsShell.RegWrite shell_icons, "%SystemRoot%\system32\imageres.dll,196", "REG_EXPAND_SZ"
 	WScript.Echo "删除成功"
 End Function
 
