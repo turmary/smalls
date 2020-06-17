@@ -73,18 +73,20 @@ int main(int argc, const char* argv[])
 
 	init_environ();		/*初始化环境变量，将查找路径至于envpath[]中,
 				   初始化history，和jobs的头尾指针 */
+
+	/****************************    设置signal信号  *****************************/
+	struct sigaction action;
+
+	action.sa_sigaction = del_node;
+	sigfillset(&action.sa_mask);
+	action.sa_flags = SA_SIGINFO;
+	sigaction(SIGCHLD, &action, NULL);
+	signal(SIGTSTP, ctrl_z);
+
 	while (1) {
 		int c;
 		char *arg[20];
 		int i = 0, j = 0, k = 0, is_pr = 0, is_bg = 0, input_len = 0, pid = 0, status = 0;
-
-	/****************************    设置signal信号  *****************************/
-		struct sigaction action;
-		action.sa_sigaction = del_node;
-		sigfillset(&action.sa_mask);
-		action.sa_flags = SA_SIGINFO;
-		sigaction(SIGCHLD, &action, NULL);
-		signal(SIGTSTP, ctrl_z);
 
 	/****************************      打印提示符    *****************************/
 		getcwd(buf, CMD_SZ_MAX);
@@ -274,7 +276,8 @@ int main(int argc, const char* argv[])
 				pid1 = 0;			/*pid1置零，为下一命令作准备 */
 			}
 			if (is_bg == 0)				/*前台命令 */
-				waitpid(pid, &status, 0);
+				/* WUNTRACED, return if the waited process stopped */
+				waitpid(pid, &status, WUNTRACED);
 		}
 		if (is_bg == 1)
 			/*等待命令（如：ls &）输出后,再打印shell提示符 */
@@ -824,7 +827,7 @@ void fg_cmd(int job_num)
 	strcpy(p->state, "running");	/*修改对应节点状态 */
 	strcpy(input, p->cmd);		/*将命令名复制到input中，为下一次按下ctrl-z作准备 */
 	pid1 = p->pid;			/*获取该节点对应工作的进程号 */
-	signal(SIGTSTP, ctrl_z);	/*设置signal()信号，为下一次按下ctrl-z作准备 */
 	kill(p->pid, SIGCONT);		/*向对应工作发送SIGCONT信号，使其运行 */
+	sleep(0);			/*Give the chance to start run the job */
 	waitpid(p->pid, NULL, 0);	/*父进程等待前台进程的运行 */
 }
