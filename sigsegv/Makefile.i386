@@ -241,9 +241,9 @@ LDFLAGS += $(patsubst %,-l%,$(EXTRA_LIBS))
 
 # Set Linker-Script Depending On Selected Memory and Controller
 ifeq ($(RUN_MODE),RAM_RUN)
-LDFLAGS += -T./hello.lds
+LDFLAGS += -T./i386.lds
 else 
-LDFLAGS += -T./hello.lds
+LDFLAGS += -T./i386.lds
 endif
 
 
