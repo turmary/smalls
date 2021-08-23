@@ -9,9 +9,12 @@ ECHO @ECHO OFF
 
 SETLOCAL
     SET PATH=%~dp0;%PATH%
-    ECHO PATH=%PATH%
+    REM ECHO %~nx0
+    CD /D %~dp0
     CALL %~0 2>superapp.out
 ENDLOCAL
 
-notepad superapp.out
+CD
+ECHO PATH=%PATH%
+REM notepad superapp.out
 PAUSE
