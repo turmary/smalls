@@ -68,11 +68,14 @@ public:
   TRandGen(int lim) : limit(lim) {}
   float operator()() {
     while(true) {
-      T i = (std::rand() % (limit * 100)) / 100.0;
+      T i = (std::rand() / double(RAND_MAX)) * limit;
+      return i;
+      /*
       if(used.find(i) == used.end()) {
         used.insert(i);
         return i;
       }
+      */
     }
   }
 };

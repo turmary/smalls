@@ -1,4 +1,5 @@
 //: T04:T04-02.cpp
+//{L} ../T03/T03Util
 // Create a program that opens a file (the first argument on the command line)
 // and searches it for any one of a set of words 
 // (the remaining arguments on the command line).
