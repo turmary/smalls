@@ -2,6 +2,10 @@
 #include "fcntl.h"
 #include "windows.h"
 
+#ifndef _O_BINARY
+  #define _O_BINARY O_BINARY
+#endif
+
 int main(int argc, const char* argv[]) {
 	if (TRUE) {
 		DWORD consoleModeIn;
@@ -15,7 +19,7 @@ int main(int argc, const char* argv[]) {
 		setbuf(stdin, NULL);
 	}
 
-	_setmode(_fileno(stdin), _O_BINARY);
+	_setmode(fileno(stdin), _O_BINARY);
 
 	putchar(getchar());
 
