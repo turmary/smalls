@@ -97,6 +97,7 @@ int main(int argc, const char* argv[]) {
 	}
 	printf("x in [%" PRIu64 ", %" PRIu64 ")\n",
 	              start,       start + range);
+	fflush(stdout);
 
 	for (uint64_t i = start; i < start + range; i++) {
 		// cout <<"root = " <<(uint64_t)sqrt(i) <<endl;
