@@ -6,8 +6,10 @@ AC_INIT([prime-thread], [1.0], [http://dummy.com])
 AC_CONFIG_SRCDIR([prime-thread.cc])
 AC_CONFIG_HEADERS([config.h])
 
-AM_INIT_AUTOMAKE
+AM_INIT_AUTOMAKE([foreign])
 AC_CONFIG_FILES([Makefile])
+
+LT_INIT
 
 # Checks for programs.
 AC_PROG_CXX
