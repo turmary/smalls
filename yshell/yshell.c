@@ -615,6 +615,10 @@ int is_found(char *cmd)
 {
 	int k = 0;
 
+	if (cmd[0] == '/' && access(cmd, F_OK) == 0) {
+		return 1;
+	}
+
 	/*查找路径已在程序初始化时设定在envpath[i]中 */
 	while (envpath[k] != NULL) {
 		strcpy(buf, envpath[k++]);

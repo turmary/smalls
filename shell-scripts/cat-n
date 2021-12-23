@@ -1,0 +1,9 @@
+#!/bin/bash
+# command 'cat -n' emulation
+# using sed
+
+sed -e "=" $@ | sed -e '
+  s/^/      /
+  N
+  s/^ *\(......\)\n/\1  /
+'
