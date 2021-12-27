@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# Action
+AC=${1-A}
+
 # Internet Gateway
 GATEWAY=192.168.4.2
 
@@ -38,6 +41,7 @@ function get_address() {
 }
 EOF
 
+# : <<'EOF'
 # Enable network ip forward
 grep -Enr "^net.ipv4.ip_forward *= *1" $SYSCTL_CONF > /dev/null; r=$?
 
@@ -57,11 +61,12 @@ route add default gw $GATEWAY
 iptables -A FORWARD     -t filter  -i $INTF_IN  -j ACCEPT
 # open (s)NAT of the internet interface
 iptables -A POSTROUTING -t nat     -o $INTF_OUT -j MASQUERADE
+# EOF
 
 # print iptables
 for i in raw mangle filter nat; do
 	echo;
-	echo "=================================$i==================================";
+	echo -e "\e[32m=================================$i==================================\e[0m";
 	echo;
 	sudo iptables -t $i -L -v -n;
 done
