@@ -4,10 +4,10 @@
 AC=${1-A}
 
 # Internet Gateway
-GATEWAY=192.168.4.2
+GATEWAY=192.168.1.1
 
 # Connection to local network
-INTF_IN=usb0
+INTF_IN=enp0s10
 
 # Connection to Internet
 INTF_OUT=enp0s9
@@ -58,8 +58,10 @@ route del default gw $(get_gateway)
 route add default gw $GATEWAY
 
 # Accept ip pkts from incoming interface
+while iptables -D FORWARD     -t filter  -i $INTF_IN  -j ACCEPT; do :; done
 iptables -A FORWARD     -t filter  -i $INTF_IN  -j ACCEPT
 # open (s)NAT of the internet interface
+while iptables -D POSTROUTING -t nat     -o $INTF_OUT -j MASQUERADE; do :; done
 iptables -A POSTROUTING -t nat     -o $INTF_OUT -j MASQUERADE
 # EOF
 
