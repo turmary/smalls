@@ -46,6 +46,35 @@ function try_install_make() {
 	return $r
 }
 
+# https://docs.github.com/cn/authentication/connecting-to-github-with-ssh/working-with-ssh-key-passphrases
+function install_ssh_agent() {
+	cat >> $CONF <<-\__EOF__
+
+
+	env=~/.ssh/agent.env
+
+	agent_load_env () { test -f "$env" && . "$env" >| /dev/null ; }
+
+	agent_start () {
+	    (umask 077; ssh-agent >| "$env")
+	    . "$env" >| /dev/null ; }
+
+	agent_load_env
+
+	# agent_run_state: 0=agent running w/ key; 1=agent w/o key; 2=agent not running
+	agent_run_state=$(ssh-add -l >| /dev/null 2>&1; echo $?)
+
+	if [ ! "$SSH_AUTH_SOCK" ] || [ $agent_run_state = 2 ]; then
+	    agent_start
+	    ssh-add
+	elif [ "$SSH_AUTH_SOCK" ] && [ $agent_run_state = 1 ]; then
+	    ssh-add
+	fi
+
+	unset env
+__EOF__
+}
+
 # allow to run the script file XXX.{vbs,js} directly
 [ -f /usr/bin/cscript-wrap ] || {
 	cp cscript-wrap /usr/bin
@@ -139,7 +168,6 @@ CONF="$HOME/.bashrc"
 	# ~/.bashrc: executed by bash(1) for non-login shells.
 
 __EOF__
-source $CONF
 
 alias grep &> /dev/null || {
 	echo "alias grep='grep --color'" >> $CONF
@@ -147,6 +175,10 @@ alias grep &> /dev/null || {
 alias egrep &> /dev/null || {
 	echo "alias egrep='egrep --color'" >> $CONF
 }
+
+[ "$SSH_AGENT_PID" ] || install_ssh_agent
+
+source $CONF
 unset CONF
 
 # enable git symbolic link
