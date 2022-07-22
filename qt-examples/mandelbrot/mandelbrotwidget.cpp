@@ -154,10 +154,10 @@ void MandelbrotWidget::keyPressEvent(QKeyEvent *event)
         zoom(ZoomOutFactor);
         break;
     case Qt::Key_Left:
-        scroll(-ScrollStep, 0);
+        scroll(+ScrollStep, 0);
         break;
     case Qt::Key_Right:
-        scroll(+ScrollStep, 0);
+        scroll(-ScrollStep, 0);
         break;
     case Qt::Key_Down:
         scroll(0, -ScrollStep);

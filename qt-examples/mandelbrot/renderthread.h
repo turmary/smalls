@@ -60,6 +60,8 @@ QT_BEGIN_NAMESPACE
 class QImage;
 QT_END_NAMESPACE
 
+class line_render;
+
 //! [0]
 class RenderThread : public QThread
 {
@@ -91,6 +93,8 @@ private:
 
     enum { ColormapSize = 512 };
     uint colormap[ColormapSize];
+
+    friend int task_render(line_render&);
 };
 //! [0]
 

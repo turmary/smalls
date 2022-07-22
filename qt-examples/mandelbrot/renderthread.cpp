@@ -89,13 +89,102 @@ void RenderThread::render(double centerX, double centerY, double scaleFactor,
     this->resultSize = resultSize;
 
     if (!isRunning()) {
-        start(LowPriority);
+        start(NormalPriority);
     } else {
         restart = true;
         condition.wakeOne();
     }
 }
 //! [2]
+
+#define USING_THREAD 1
+
+#if USING_THREAD
+#include <deque>
+#include <vector>
+#include <thread>
+#include <mutex>
+#include <functional>
+#include <iostream>
+using namespace std;
+
+deque<int> potentials;
+std::mutex poten_mtx;
+
+struct line_render {
+    RenderThread* parent;
+    deque<int>* q;
+    QImage* image;
+    QSize resultSize;
+    double scaleFactor;
+    double centerX, centerY;
+    int MaxIterations, Limit;
+    deque<int> valid;
+};
+
+int task_render(line_render& lr) {
+    int halfWidth = lr.resultSize.width() / 2;
+    int halfHeight = lr.resultSize.height() / 2;
+
+    for (;;){
+        poten_mtx.lock();
+
+        if (lr.q->empty()) {
+            poten_mtx.unlock();
+            break;
+        }
+
+        int y = lr.q->front();
+        lr.q->pop_front();
+        poten_mtx.unlock();
+
+        if (lr.parent->restart)
+            break;
+        if (lr.parent->abort)
+            return -1;
+
+        uint *scanLine =
+        //  (uint *)(lr.image->bits() + (y + halfHeight) * lr.image->bytesPerLine());
+            reinterpret_cast<uint *>(lr.image->scanLine(y + halfHeight));
+        double ay = lr.centerY + (y * lr.scaleFactor);
+        // std::cout <<*scanLine <<' ' <<qRgb(0,0,0) <<std::endl;
+
+        for (int x = -halfWidth; x < halfWidth; ++x) {
+            if (*scanLine != qRgba(0, 0, 0, 0)) {
+                scanLine++;
+                continue;
+            }
+            double ax = lr.centerX + (x * lr.scaleFactor);
+            double a1 = ax;
+            double b1 = ay;
+            int numIterations = 0;
+
+            do {
+                ++numIterations;
+                double a2 = (a1 * a1) - (b1 * b1) + ax;
+                double b2 = (2 * a1 * b1) + ay;
+                if ((a2 * a2) + (b2 * b2) > lr.Limit)
+                    break;
+
+                ++numIterations;
+                a1 = (a2 * a2) - (b2 * b2) + ax;
+                b1 = (2 * a2 * b2) + ay;
+                if ((a1 * a1) + (b1 * b1) > lr.Limit)
+                    break;
+            } while (numIterations < lr.MaxIterations);
+
+            if (numIterations < lr.MaxIterations) {
+                *scanLine++ = lr.parent->colormap[numIterations % lr.parent->ColormapSize];
+                // allBlack = false;
+            } else {
+                *scanLine++ = qRgba(0, 0, 0, 0);
+            }
+        }
+        lr.valid.push_back(y);
+    }
+    return 0;
+}
+#endif
 
 //! [3]
 void RenderThread::run()
@@ -110,18 +199,65 @@ void RenderThread::run()
 //! [3]
 
 //! [4]
+#if !USING_THREAD
         int halfWidth = resultSize.width() / 2;
-//! [4] //! [5]
+#endif
+//! [4]//! [5]
         int halfHeight = resultSize.height() / 2;
         QImage image(resultSize, QImage::Format_RGB32);
+        memset(image.bits(), '\0', image.sizeInBytes());
 
-        const int NumPasses = 8;
+        const int NumPasses = 10;
         int pass = 0;
         while (pass < NumPasses) {
             const int MaxIterations = (1 << (2 * pass + 6)) + 32;
             const int Limit = 4;
             bool allBlack = true;
 
+#if USING_THREAD
+            poten_mtx.lock();
+            potentials.clear();
+            for (int y = -halfHeight; y < halfHeight; ++y) {
+                potentials.push_back(y);
+            }
+            poten_mtx.unlock();
+
+            const int cpus = 7;
+            std::vector<std::thread> threads;
+
+            line_render line;
+
+            line.parent = this;
+            line.q = &potentials;
+            line.image = &image;
+            line.resultSize = resultSize;
+            line.scaleFactor = scaleFactor;
+            line.centerX = centerX;
+            line.centerY = centerY;
+            line.MaxIterations = MaxIterations;
+            line.Limit = Limit;
+
+            line_render lines[cpus];
+            for (int c = 0; c < cpus; c++) {
+                lines[c] = line;
+                lines[c].image = new QImage(image);
+                threads.push_back(std::thread(task_render, ref(lines[c])));
+            }
+            for (auto& th: threads) th.join();
+
+            for (int c = 0; c < cpus; c++) {
+                while (!lines[c].valid.empty()) {
+                    int yl = lines[c].valid.front();
+                    lines[c].valid.pop_front();
+                    uint *dest = (uint *)image.scanLine(yl + halfHeight);
+                    uint *src  = (uint *)lines[c].image->scanLine(yl + halfHeight);
+                    memcpy(dest, src, image.bytesPerLine());
+                }
+                delete lines[c].image;
+            }
+
+            allBlack = false;
+#else
             for (int y = -halfHeight; y < halfHeight; ++y) {
                 if (restart)
                     break;
@@ -160,12 +296,15 @@ void RenderThread::run()
                     }
                 }
             }
+#endif//USING_THREAD
 
             if (allBlack && pass == 0) {
                 pass = 4;
             } else {
                 if (!restart)
                     emit renderedImage(image, scaleFactor);
+                else
+                    break;
 //! [5] //! [6]
                 ++pass;
             }
@@ -191,6 +330,9 @@ uint RenderThread::rgbFromWaveLength(double wave)
     double g = 0.0;
     double b = 0.0;
 
+    if (wave >= 380.0 && wave <= 400.0) {
+        r = g = b = 1.0;
+    } else
     if (wave >= 380.0 && wave <= 440.0) {
         r = -1.0 * (wave - 440.0) / (440.0 - 380.0);
         b = 1.0;
