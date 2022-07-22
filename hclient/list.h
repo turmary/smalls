@@ -201,10 +201,8 @@ DestroyListWithCallback(
     //     IN  PLIST    List
     // );               
     */                  
-#if !defined(__GNUC__)
     #define IsListEmpty(List)                           \
         (((PLIST_NODE_HDR) (List))->Flink == ((PLIST_NODE_HDR) (List)))
-#endif
                         
     /*                  
     // PLIST_NODE_HDR   

@@ -21,8 +21,8 @@ Environment:
 #define HID_H
 
 #if defined(__GNUC__)
-#include "ddk/hidsdi.h"
-#else
+//#include "ddk/hidsdi.h"
+//#else
 #include "hidsdi.h"
 #endif
 #include "setupapi.h"
@@ -42,7 +42,7 @@ SetupDiGetFunctionClassDeviceInfo (
    OUT   PDWORD                  RequiredSize
    );
 
-#if !defined(__GNUC__)
+#if defined(__GNUC__)
 #define ASSERT(x)
 #endif
 

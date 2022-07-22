@@ -140,6 +140,10 @@ typedef struct tagTTYINFO
 #define GET_PROP( x, y )     GetProp( x, MAKEINTATOM( y ) )
 #define REMOVE_PROP( x, y )  RemoveProp( x, MAKEINTATOM( y ) )
 
+#ifndef GWL_HINSTANCE
+#define GWL_HINSTANCE GWLP_HINSTANCE
+#endif
+
 // global stuff
 
 HWND     hTTYWnd ;

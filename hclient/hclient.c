@@ -167,7 +167,7 @@ vReadDataFromControls(
     int iCount
 );
 
-BOOL CALLBACK 
+INT_PTR CALLBACK 
 bGetDataDlgProc(
     HWND hDlg, 
     UINT message, 
@@ -191,7 +191,7 @@ bFeatureDlgProc(
     LPARAM lParam
 );
 
-INT_PTR CALLBACK 
+BOOL CALLBACK 
 bReadDlgProc(
     HWND hDlg, 
     UINT message, 

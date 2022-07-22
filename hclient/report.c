@@ -62,7 +62,7 @@ RoutineDescription:
         return FALSE;
     }
 
-    ASSERT (bytesRead == hidDevice->Caps.InputReportByteLength);
+    ASSERT (bytesRead == HidDevice->Caps.InputReportByteLength);
 
     return UnpackReport (HidDevice->InputReportBuffer,
                          HidDevice->Caps.InputReportByteLength,
