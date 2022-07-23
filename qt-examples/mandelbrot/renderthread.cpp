@@ -207,7 +207,7 @@ void RenderThread::run()
         QImage image(resultSize, QImage::Format_RGB32);
         memset(image.bits(), '\0', image.sizeInBytes());
 
-        const int NumPasses = 10;
+        const int NumPasses = 8;
         int pass = 0;
         while (pass < NumPasses) {
             const int MaxIterations = (1 << (2 * pass + 6)) + 32;
@@ -244,6 +244,10 @@ void RenderThread::run()
                 threads.push_back(std::thread(task_render, ref(lines[c])));
             }
             for (auto& th: threads) th.join();
+            if (restart)
+                break;
+            if (abort)
+                return;
 
             for (int c = 0; c < cpus; c++) {
                 while (!lines[c].valid.empty()) {
