@@ -163,6 +163,33 @@ grep -E "^ *(\.|source).*\.bashrc" $CONF &> /dev/null || cat >> $CONF <<-\__EOF_
 	fi
 __EOF__
 
+grep -E "login_ip_identify" $CONF &> /dev/null || cat >> $CONF <<-\__EOF__
+	login_ip_identify () {
+	    local env=~/.ssh/ip_identify.pid
+	    local id_pid
+	    local ip_addr last_addr
+
+	    [ "$IP_IDENT_SRV_ADDR" ] || return 1
+
+	    test -s "$env" && test -d "/proc/$(cat $env)" || {
+	        while true; do
+	            ip_addr=$(powershell -Command '(Get-NetIPAddress -InterfaceAlias ArrayNet).IPAddress')
+	            [ "$ip_addr" == "$last_addr" ] && {
+	                sleep 10
+	                continue
+	            }
+	            ssh yanglsh@$IP_IDENT_SRV_ADDR bash -c "'echo \"$ip_addr\" | tee ~/.ssh/identify.ip &>/dev/null'"
+	            last_addr="$ip_addr"
+	        done &>/dev/null </dev/null & id_pid=$!
+
+	        echo $id_pid > $env
+	    }
+	    return 0
+	}
+
+	login_ip_identify
+__EOF__
+
 CONF="$HOME/.bashrc"
 [ ! -f $CONF ] && cat > $CONF <<-\__EOF__
 	# ~/.bashrc: executed by bash(1) for non-login shells.
