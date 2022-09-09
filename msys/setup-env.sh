@@ -173,13 +173,20 @@ grep -E "login_ip_identify" $CONF &> /dev/null || cat >> $CONF <<-\__EOF__
 
 	    test -s "$env" && test -d "/proc/$(cat $env)" || {
 	        while true; do
+	            : <<-__EOF__
+	            ping -n 1 $IP_IDENT_SRV_ADDR || {
+	                sleep 10
+	                continue
+	            }
+	            __EOF__
 	            ip_addr=$(powershell -Command '(Get-NetIPAddress -InterfaceAlias ArrayNet).IPAddress')
 	            [ "$ip_addr" == "$last_addr" ] && {
 	                sleep 10
 	                continue
 	            }
-	            ssh yanglsh@$IP_IDENT_SRV_ADDR bash -c "'echo \"$ip_addr\" | tee ~/.ssh/identify.ip &>/dev/null'"
-	            last_addr="$ip_addr"
+	            ssh yanglsh@$IP_IDENT_SRV_ADDR bash -c "'echo \"$ip_addr\" | tee ~/.ssh/identify.ip &>/dev/null'" && {
+	                last_addr="$ip_addr"
+	            }
 	        done &>/dev/null </dev/null & id_pid=$!
 
 	        echo $id_pid > $env
@@ -187,7 +194,8 @@ grep -E "login_ip_identify" $CONF &> /dev/null || cat >> $CONF <<-\__EOF__
 	    return 0
 	}
 
-	login_ip_identify
+	[ "$SHLVL" -lt 2 ] && nohup bash -c ". ~/.bash_profile; login_ip_identify" & bgid=$!
+	disown $bgid
 __EOF__
 
 CONF="$HOME/.bashrc"
