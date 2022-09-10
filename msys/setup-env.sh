@@ -198,6 +198,20 @@ grep -E "login_ip_identify" $CONF &> /dev/null || cat >> $CONF <<-\__EOF__
 	disown $bgid
 __EOF__
 
+grep -E "kill_orphans" $CONF &> /dev/null || cat >> $CONF <<-\__EOF__
+	kill_orphans () {
+	    local ppid pid
+	    for pid in $(cd /proc; ls -1d --indicator-style=none [0-9]*); do
+	        ppid=$(cat /proc/$pid/ppid 2>/dev/null) || continue
+	        [ "$ppid" -eq 1 ] && continue
+	        [ -d "/proc/$ppid" ] && continue
+	        kill -9 ${pid%/}
+	    done
+	    return 0
+	}
+	kill_orphans
+__EOF__
+
 CONF="$HOME/.bashrc"
 [ ! -f $CONF ] && cat > $CONF <<-\__EOF__
 	# ~/.bashrc: executed by bash(1) for non-login shells.
