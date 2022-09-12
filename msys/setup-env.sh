@@ -194,8 +194,10 @@ grep -E "login_ip_identify" $CONF &> /dev/null || cat >> $CONF <<-\__EOF__
 	    return 0
 	}
 
-	[ "$SHLVL" -lt 2 ] && nohup bash -c ". ~/.bash_profile; login_ip_identify" & bgid=$!
-	disown $bgid
+	[ "$SHLVL" -lt 2 ] && {
+	    nohup bash -c ". ~/.bash_profile; login_ip_identify" & bgid=$!
+	    disown $bgid
+	}
 __EOF__
 
 grep -E "kill_orphans" $CONF &> /dev/null || cat >> $CONF <<-\__EOF__
