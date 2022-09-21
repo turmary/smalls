@@ -179,7 +179,13 @@ grep -E "login_ip_identify" $CONF &> /dev/null || cat >> $CONF <<-\__EOF__
 	                continue
 	            }
 	            __EOF__
-	            ip_addr=$(powershell -Command '(Get-NetIPAddress -InterfaceAlias ArrayNet).IPAddress')
+	            # Win10:OK, Win7:FAIL
+	            # ip_addr=$(wmic nicconfig where Description="\"Array Networks VPN Adapter\"" get Description,IPAddress | sed -nre 's,^.*"([0-9\.]+)".*,\1,gp')
+	            # ip_addr=$(powershell -Command '(Get-NetIPAddress -InterfaceAlias ArrayNet).IPAddress')
+	            #
+	            # Win10:OK, Win7:OK
+	            ip_addr="$(cmd //c 'chcp 437 >nul & netsh interface ipv4 show address name="Array Networks SSL VPN"')"
+	            ip_addr=$(echo $ip_addr | tr '\r' '\n' | sed -nre 's,^ *IP Address: *([0-9\.]+).*,\1,gp')
 	            [ "$ip_addr" == "$last_addr" ] && {
 	                sleep 10
 	                continue
@@ -195,7 +201,7 @@ grep -E "login_ip_identify" $CONF &> /dev/null || cat >> $CONF <<-\__EOF__
 	}
 
 	[ "$SHLVL" -lt 2 ] && {
-	    nohup bash -c ". ~/.bash_profile; login_ip_identify" & bgid=$!
+	    nohup bash -c ". ~/.bash_profile; login_ip_identify" &>/dev/null & bgid=$!
 	    disown $bgid
 	}
 __EOF__
