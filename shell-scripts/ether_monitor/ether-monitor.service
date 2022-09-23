@@ -1,0 +1,12 @@
+[Unit]
+Description=Ethernet Monitor Service
+After=local-fs.target
+
+[Service]
+User=root
+Type=oneshot
+ExecStart=/usr/bin/ether-monitor -d enp3s2
+
+[Install]
+WantedBy=multi-user.target
+

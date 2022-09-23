@@ -1,0 +1,60 @@
+#!/bin/bash
+#tary, 12:49 2019/09/24
+
+# set -x
+
+# [ -f $0.local ] && . $0.local
+
+logf=/var/log/$(basename $0).log
+device=eth0
+
+function get_default_gateway() {
+	local _match
+	_match="$(ip route list default | sed -nre 's,^[^0-9]*([0-9\.]+).*,\1,gp')" || return 1
+	echo "${_match}"
+	return 0
+}
+_autogw=$(get_default_gateway)
+
+function help_msg() {
+	echo "$0 [-g gateway] [-d device]"
+	echo "reset ethernet DEVICE when ping GATEWAY timeout"
+	echo "  gateway default to $_autogw"
+	echo "  device  ethernet device name, default eth0"
+	exit 1
+}
+
+while getopts "g:d:h" opt; do
+	case $opt in
+	g)	gateway=$OPTARG;;
+	d)	device=$OPTARG;;
+	h)	help_msg;;
+	esac
+done
+
+gateway=${gateway:-$_autogw}
+
+echo "logfile: ${logf}"
+
+exec 1>>$logf 2>&1
+echo "gateway: ${gateway}"
+echo "device:  ${device}"
+
+err_counter=0
+while true; do
+	(( err_counter ++ ))
+	ping -c2 ${gateway} &>/dev/null && (( err_counter = 0 ))
+
+	if (( err_counter > 1 )); then
+		echo -ne "`LC_TIME=en_US.UTF-8 date`:  "
+		echo "DEV=$device RESET!!!"
+		ip link set $device down
+		sleep 3
+		ip link set $device up
+		(( err_counter = 0 ))
+	fi
+	sleep 3
+done
+
+exit 0
+
