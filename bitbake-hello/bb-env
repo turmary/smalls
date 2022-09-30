@@ -1,0 +1,6 @@
+which bitbake &>/dev/null || \
+	export PATH=~/git/imx-yocto-bsp/sources/poky/bitbake/bin:$PATH
+
+export BBPATH="$PWD"
+alias bb_clean='rm -rf tmp/ meta-hl-layer/tmp/ bitbake-cookerdaemon.log'
+
