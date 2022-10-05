@@ -1,6 +1,7 @@
 [Unit]
 Description=Ethernet Monitor Service
-After=local-fs.target
+Wants=network-online.target
+After=network.target network-online.target
 
 [Service]
 User=root
