@@ -1,6 +1,16 @@
 which bitbake &>/dev/null || \
 	export PATH=~/.local/bitbake/bin:$PATH
 
-export BBPATH="$(realpath $(dirname $(which bitbake))/..):$PWD"
-alias bb_clean='rm -rf tmp/ meta-hl-layer/tmp/ bitbake-cookerdaemon.log *.env'
+_BITBAKE_DIR="$(dirname $(which bitbake))/.."
+[ -s "$_BITBAKE_DIR/conf/bitbake.conf" ] || {
+	_BITBAKE_DIR="$_BITBAKE_DIR/../meta"
+	[ -s "$_BITBAKE_DIR/conf/bitbake.conf" ] || {
+		unset _BITBAKE_DIR
+		return 1
+	}
+}
+
+export BBPATH="$PWD:$(realpath $_BITBAKE_DIR)"
+alias bb_clean='rm -rf tmp/ cache/ sstate-cache/ meta-hl-layer/tmp/ bitbake-cookerdaemon.log *.env'
+unset _BITBAKE_DIR
 
