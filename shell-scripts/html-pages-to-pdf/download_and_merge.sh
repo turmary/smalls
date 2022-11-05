@@ -1,11 +1,29 @@
 #!/bin/bash
 
 GUIDE=single-debian-guide.html
+INDEX=index.zh-cn.html
 
 : > $GUIDE
 
 # 1. manually generate cover.html and toc.html by dividing
 #   https://www.debian.org/doc/manuals/debian-handbook/index.zh-cn.html
+[ -s "$INDEX" ] || wget https://www.debian.org/doc/manuals/debian-handbook/$INDEX
+[ -s cover.html ] || {
+	sed -nre 's,<div class="toc"><dl class="toc">.*</dl></div>,,g; p' $INDEX > cover.html
+}
+[ -s toc.html ] || {
+	TOC=$(sed -nre 's,.*(<div class="toc"><dl class="toc">.*</dl></div>).*,\1,gp;' $INDEX | \
+	sed -nre 's,<dt><span,\n&,g; s,https://www.debian.org/doc/manuals/debian-handbook/,,g; p')
+cat <<__EOF
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<html><head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head><body>
+$TOC
+</body></html>
+__EOF
+} > toc.html
+
 #
 # 2. acquire missing resource files when running wkhtmltopdf firstly,
 # png.list is the file with content of program error output
@@ -34,7 +52,7 @@ for u in ${urls}; do
 	# $id
 	while [ ! -s $rl ]; do
 		wget "https://www.debian.org/doc/manuals/debian-handbook/$rl" -O "$rl"
-		sleep 1;
+		sleep 1
 	done
 
 	[ -z "${mm["$rl"]}" ] || continue
