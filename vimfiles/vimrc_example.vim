@@ -113,7 +113,7 @@ packadd matchit
 " Enable paste: noai, nosi
 " set paste
 
-set viminfo='1000,f1,<2000
+set viminfo='10000,f1,<20000
 
 " https://github.com/andyshrk/dotvim "
 call plug#begin('~/.vim/plugged')

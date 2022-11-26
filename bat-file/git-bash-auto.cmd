@@ -16,6 +16,9 @@ fltmc >nul 2>nul || set _=^"set _ELEV=1^& cd /d "%cd%"^& "%~f0" %* ^"&&((if "%_E
  ::::::::::::::::::::::::::::
  REM begin real part with administrator privilege
 
+:: Open PDF with SumatraPDF
+:: assoc .pdf=SumatraPDF
+:: ftype SumatraPDF=F:\TaryInst\SumatraPDF-3.4.6-64.exe %1 %*
 
 cd /d %HOMEDRIVE%%HOMEPATH%
 start d:\TaryInst\Git\git-bash.exe --cd-to-home
