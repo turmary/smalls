@@ -36,9 +36,11 @@ gateway=${gateway:-$_autogw}
 
 echo "logfile: ${logf}"
 
+export LC_TIME="en_US.UTF-8"
 exec 1>>$logf 2>&1
 echo "gateway: ${gateway}"
 echo "device:  ${device}"
+echo "startup: `date`"
 
 err_counter=0
 while true; do
@@ -46,7 +48,7 @@ while true; do
 	ping -c2 ${gateway} &>/dev/null && (( err_counter = 0 ))
 
 	if (( err_counter > 1 )); then
-		echo -ne "`LC_TIME=en_US.UTF-8 date`:  "
+		echo -ne "`date`:  "
 		echo "DEV=$device RESET!!!"
 		ip link set $device down
 		sleep 3
