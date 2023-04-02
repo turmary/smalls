@@ -4,9 +4,9 @@ function is_ln_nativestrict() {
 	local _old_MSYS tf r
 
 	if [ "X${MSYS+set}" == "Xset" ]; then
-		_old_MYS="$MSYS"
+		_old_MSYS="$MSYS"
 	else
-		unset _old_MYS
+		unset _old_MSYS
 	fi
 	export MSYS="winsymlinks:nativestrict"
 
@@ -19,9 +19,9 @@ function is_ln_nativestrict() {
 	rm -f $tf
 
 	if [ "X${_old_MSYS+set}" == "Xset" ]; then
-		export MSYS="$_old_MYS"
+		export MSYS="$_old_MSYS"
 	else
-		unset MYS
+		unset MSYS
 	fi
 
 	return $r
