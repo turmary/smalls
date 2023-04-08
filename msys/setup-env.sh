@@ -150,6 +150,7 @@ CONF="$HOME/.bash_profile"
 
 	test -f ~/.profile && . ~/.profile
 
+	command -v nohup &>/dev/null && _NOHUP=nohup || _NOHUP=
 __EOF__
 source $CONF
 
@@ -201,8 +202,8 @@ grep -E "login_ip_identify" $CONF &> /dev/null || cat >> $CONF <<-\__EOF__
 	}
 
 	[ "$SHLVL" -lt 2 ] && {
-	    nohup bash -c ". ~/.bash_profile; login_ip_identify" &>/dev/null & bgid=$!
-	    disown $bgid
+	    $_NOHUP bash -c ". ~/.bash_profile; login_ip_identify" &>/dev/null & bgid=$!
+	    disown -h $bgid
 	}
 __EOF__
 
