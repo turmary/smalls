@@ -173,7 +173,7 @@ grep -E "login_ip_identify" $CONF &> /dev/null || cat >> $CONF <<-\__EOF__
 	    [ "$IP_IDENT_SRV_ADDR" ] || return 1
 
 	    test -s "$env" && test -d "/proc/$(cat $env)" || {
-	        while true; do
+	        while :; do
 	            : <<-__EOF__
 	            ping -n 1 $IP_IDENT_SRV_ADDR || {
 	                sleep 10
@@ -203,6 +203,42 @@ grep -E "login_ip_identify" $CONF &> /dev/null || cat >> $CONF <<-\__EOF__
 
 	[ "$SHLVL" -lt 2 ] && {
 	    $_NOHUP bash -c ". ~/.bash_profile; login_ip_identify" &>/dev/null & bgid=$!
+	    disown -h $bgid
+	}
+__EOF__
+
+grep -E "array_vpn_reconn" $CONF &> /dev/null || cat >> $CONF <<-\__EOF__
+	array_vpn_reconn() {
+	    local env=~/.ssh/array_vpn.pid
+	    local id_pid
+
+	    VPN_PROG=(VPNService.exe MotionPro.exe vpnd.exe MotionProHttpd.exe VPNInstallManager.exe)
+	    test -s "$env" && test -d "/proc/$(cat $env)" || {
+	        err_counter=0
+	        gateway="$ARRAY_VPN_SITE"
+	        while :; do
+	            (( err_counter ++ ))
+	            ping -n 1 ${gateway} &>/dev/null && (( err_counter = 0 ))
+
+	            if (( err_counter > 1 )); then
+	                (( err_counter = 0 ))
+	                for p in ${VPN_PROG[@]}; do
+	                    # pln=( $(ps -efW | grep "VPNService.exe") )
+	                    # kill -9 ${pln[1]}
+	                    taskkill //f //im "$p"
+	                done
+	                sleep 11
+	                start "" "$ARRAY_VPN/MotionPro.exe"
+	                sleep 90
+	            fi
+	            sleep 30
+	        done &>/dev/null </dev/null & id_pid=$!
+	        echo $id_pid > $env
+	    }
+	}
+
+	[ "$SHLVL" -lt 2 ] && {
+	    $_NOHUP bash -c ". ~/.bash_profile; array_vpn_reconn" & bgid=$!
 	    disown -h $bgid
 	}
 __EOF__
