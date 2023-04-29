@@ -1,0 +1,15 @@
+#!/bin/bash
+
+for var in "VALID" "" "UNDEF"; do
+	echo -e "var=\"$var\""
+	[ "$var" == "UNDEF" ] && {
+		echo "unset var"
+		unset var
+	}
+	echo -ne "  \${var-right}=${var-right}"
+	echo -ne "  \${var:-right}=${var:-right}"
+	echo -ne "  \${var+right}=${var+right}"
+	echo -ne "  \${var:+right}=${var:+right}"
+	echo -e "\n"
+done
+
