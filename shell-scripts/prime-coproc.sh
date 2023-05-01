@@ -43,3 +43,5 @@ while read -u "${PRIMES[0]}" nr; do
 	echo "#$nr"
 	[ "$nr" == "quit" ] && break
 done
+
+# ES='!'; for ((i = 0; i < 8; i++)); do eval "C='COPROC$i { sleep $((i + 1)); echo \"$i done$ES\"; };'"; echo "$C"; eval coproc $C; done
