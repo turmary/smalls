@@ -20,6 +20,11 @@ $TestPrime = {
 $Primes = @{}
 $PrimeMutex = [System.Threading.Mutex]::new()
 # [System.Threading.Mutex] | Get-Member -Static -MemberType Methods
+# [System.Threading.Mutex]::new() | Get-Member -MemberType Methods
+# [System.Console].GetMembers() | Foreach{ $_.name }
+[System.Console]::BackgroundColor = [System.ConsoleColor]::Blue
+[System.Console]::ForegroundColor = [System.ConsoleColor]::Yellow
+# [System.Console] | Get-Member | Where { $_.MemberType | Select-String "Property" }
 
 $AddPrime = {
     param (
@@ -44,3 +49,12 @@ $begin..($begin + $count - 1) | ForEach { Start-ThreadJob {
 $PrimeMutex.Dispose()
 Remove-Job -State Completed
 $Primes.Keys | Sort # | ForEach { Write-Output $_ }
+
+$k = [System.Console]::ReadKey()
+
+# dir *.sql -R | ForEach-Object{ [void][System.IO.File]::WriteAllBytes($_.FullName,
+#                  [System.Text.Encoding]::Convert(
+#                                          [System.Text.Encoding]::GetEncoding('GBK'),
+#                                          [System.Text.Encoding]::GetEncoding('UTF-8'),
+#                                          [System.IO.File]::ReadAllBytes($_.FullName)))
+#                }'
