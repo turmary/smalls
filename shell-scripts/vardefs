@@ -1,15 +1,15 @@
 #!/bin/bash
 
-for var in "VALID" "" "UNDEF"; do
+for var in "VAR-SELF" "" "UNDEF"; do
 	echo -e "var=\"$var\""
 	[ "$var" == "UNDEF" ] && {
 		echo "unset var"
 		unset var
 	}
-	echo -ne "  \${var-right}=${var-right}"
-	echo -ne "  \${var:-right}=${var:-right}"
-	echo -ne "  \${var+right}=${var+right}"
-	echo -ne "  \${var:+right}=${var:+right}"
+	echo -ne "  \${var-VAR_NOT_SET}=${var-VAR_NOT_SET}"
+	echo -ne "  \${var:-RIGHT_VAR_ZERO_OR_NOT_SET}=${var:-RIGHT_VAR_ZERO_OR_NOT_SET}"
+	echo -ne "  \${var+VAR_SET}=${var+VAR_SET}"
+	echo -ne "  \${var:+RIGHT_VAR_NOT_ZERO_LENGTH}=${var:+RIGHT_VAR_NOT_ZERO_LENGTH}"
 	echo -e "\n"
 done
 
