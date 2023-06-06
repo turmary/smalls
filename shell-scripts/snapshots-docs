@@ -2,6 +2,8 @@
 
 # set -x
 
+export PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/snap/bin"
+
 SEPARATE_MOUNT=1
 SYNCDIR="/home/svn"
 MOUNT_DEVICE="/dev/sdb3"
@@ -11,8 +13,10 @@ DEST=$SNAPSHOT_RW/snap
 
 MONTHLY_STAMP=`date +%e`
 WEEKLY_STAMP=`date +%u`
-DAILY_STAMP=`date +%k`
-HOURLY_STAMP=`date +%k`
+# DAILY_STAMP=`date +%k`
+DAILY_STAMP=1
+# HOURLY_STAMP=`date +%k`
+HOURLY_STAMP=1
 MONTHLY=11
 WEEKLY=3
 DAILY=6
@@ -81,7 +85,7 @@ for BU in $BACKUPS; do
 		current_oldest=`$LS -td $DEST/${BU}* | tail -1 | cut -d. -f2`
 	fi
 
-	# moving from low granule to # 0 of this granule
+	# moving from current granule to # 0 of previous granule
 	if [ $PREV_STAMP -eq 1 -a $HOURLY_STAMP -eq 1 ] && \
 	[ "$current_oldest" != "" ]; then
 		[ -d $DEST/$PREV_BU.0 ] && $RM -rf $DEST/$PREV_BU.0
@@ -108,7 +112,7 @@ done
 for dir in $SYNCDIR; do
 	final_location=`dirname $dir`
 	$MKDIR -p $DEST/HOURLY.0/$final_location
-	$RSYNC -a --delete --link-dest=$DEST/HOURLY.1/$final_location \
+	$RSYNC -a --exclude-from=/etc/snapshots-docs.exclude --delete --link-dest=$DEST/HOURLY.1/$final_location \
 	  $dir $DEST/HOURLY.0/$final_location
 done
 

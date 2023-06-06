@@ -7,7 +7,8 @@ NUM_PACKAGES=${#PACKAGES[*]} # no. of packages to update (#packages in the array
 step=$((100/$NUM_PACKAGES))  # progress bar step
 cur_file_idx=0
 counter=0
-DEST=${HOME}
+# DEST=${HOME}
+DEST=./
 (
 # infinite while loop
 while :
