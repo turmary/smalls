@@ -221,7 +221,7 @@ void serror(int error)
 		"RETURN without GOSUB"
 	};
 
-	printf("%s\n", e[error]);
+	printf("T:%s(%d) %s\n", token, tok, e[error]);
 	longjmp(e_buf, 1);	/* return to save point */
 }
 
@@ -244,13 +244,17 @@ get_token()
 	while (iswhite(*prog))
 		++prog;		/* skip over white space */
 
-	if (*prog == '\r') {	/* CR LF */
-		++prog;
-		++prog;
+	if (*prog == '\r' || *prog == '\n') {	/* CR LF */
+		if (*prog == '\r') {
+			*temp++ = *prog;
+			++prog;
+		}
+		if (*prog == '\n') {
+			*temp++ = *prog;
+			++prog;
+		}
 		tok = EOL;
-		*token = '\r';
-		token[1] = '\n';
-		token[2] = 0;
+		*temp = 0;
 		return (token_type = DELIMITER);
 	}
 
@@ -264,9 +268,9 @@ get_token()
 
 	if (*prog == '"') {	/* quote string */
 		prog++;
-		while (*prog != '"' && *prog != '\r')
+		while (*prog != '"' && *prog != '\r' && *prog != '\n')
 			*temp++ = (*prog++);
-		if (*prog == '\r')
+		if (*prog == '\r' || *prog == '\n')
 			serror(1);
 		prog++;
 		*temp = 0;
@@ -347,7 +351,7 @@ look_up(char *s)
 /* return true if c is a delimiter */
 isdelim(char c)
 {
-	if (strchr("\':;,+-<>/*%^=() ", c) || c == 9 || c == '\r' || c == 0)
+	if (strchr("\':;,+-<>/*%^=() \n", c) || c == 9 || c == '\r' || c == 0)
 		return 1;
 	return 0;
 }
