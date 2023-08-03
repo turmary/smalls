@@ -185,8 +185,9 @@ grep -E "login_ip_identify" $CONF &> /dev/null || cat >> $CONF <<-\__EOF__
 	            # ip_addr=$(powershell -Command '(Get-NetIPAddress -InterfaceAlias ArrayNet).IPAddress')
 	            #
 	            # Win10:OK, Win7:OK
-	            ip_addr="$(cmd //c 'chcp 437 >nul & netsh interface ipv4 show address name="Array Networks SSL VPN"')"
-	            ip_addr=$(echo $ip_addr | tr '\r' '\n' | sed -nre 's,^ *IP Address: *([0-9\.]+).*,\1,gp')
+	            # ip_addr="$(cmd //c 'chcp 437 >nul & netsh interface ipv4 show address name="Array Networks SSL VPN"')"
+	            # ip_addr=$(echo $ip_addr | tr '\r' '\n' | sed -nre 's,^ *IP Address: *([0-9\.]+).*,\1,gp')
+	            ip_addr=$(cmd //c 'chcp 437 & netsh interface ipv4 show ipaddress "Array Networks SSL VPN"' | sed -nre 's/^Address ([0-9.]*).+/\1/gp')
 	            [ "$ip_addr" == "$last_addr" ] && {
 	                sleep 10
 	                continue
@@ -255,6 +256,15 @@ grep -E "kill_orphans" $CONF &> /dev/null || cat >> $CONF <<-\__EOF__
 	    return 0
 	}
 	kill_orphans
+
+	unset _NOHUP
+
+	[ -z "$SSH_TTY" ] && {
+	which cygpath &>/dev/null && {
+	  export APPDATA=$(cygpath "$APPDATA")
+	  export LOCALAPPDATA=$(cygpath "$LOCALAPPDATA")
+	  export USERPROFILE=$(cygpath "$USERPROFILE")
+	}
 __EOF__
 
 CONF="$HOME/.bashrc"
