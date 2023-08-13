@@ -2,10 +2,9 @@
 
 @echo off
 for /f "tokens=1 delims= " %%I in ('wmic cpu get NumberOfLogicalProcessors') do (
-	set /A V=%%I >NUL 2>&1
-	if not X!V!==X (
-		set NPROC=!V!
-	)
+	set /a NPROC=%%I >NUL 2>&1
+	if /i !NPROC! gtr 0 goto end_nproc
 )
+:end_nproc
 
-echo !NPROC!
+echo NPROC=!NPROC!
