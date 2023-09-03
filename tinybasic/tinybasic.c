@@ -1,7 +1,7 @@
 /* A tiny BASIC interpreter */
 
 // The program was originally published in Dr. Dobb's Journal in August, 1989 entitled "Building your own C interpreter"
-// http://www.drdobbs.com/cpp/building-your-own-c-interpreter/184408184 
+// http://www.drdobbs.com/cpp/building-your-own-c-interpreter/184408184
 
 //   fetch from https://roflmayo.com/COMPILER/tinybasic.c
 
@@ -816,4 +816,4 @@ int find_var(char *s)
     return 0;
   }
   return variables[toupper(*token)-'A'];
-} 
+}
