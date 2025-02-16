@@ -22,9 +22,9 @@ $PrimeMutex = [System.Threading.Mutex]::new()
 # [System.Threading.Mutex] | Get-Member -Static -MemberType Methods
 # [System.Threading.Mutex]::new() | Get-Member -MemberType Methods
 # [System.Console].GetMembers() | Foreach{ $_.name }
+# [System.Console] | Get-Member -Static
 [System.Console]::BackgroundColor = [System.ConsoleColor]::Blue
 [System.Console]::ForegroundColor = [System.ConsoleColor]::Yellow
-# [System.Console] | Get-Member | Where { $_.MemberType | Select-String "Property" }
 
 $AddPrime = {
     param (

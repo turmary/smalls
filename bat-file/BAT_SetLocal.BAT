@@ -1,20 +1,24 @@
-@ECHO OFF
-ECHO *******Begin Comment**************
-ECHO This program starts the superapp batch program on the network,
-ECHO directs the output to a file, and displays the file
-ECHO in Notepad.
-ECHO *******End Comment**************
+@echo off
+:- *******begin comment**************
+echo this program starts the superapp batch program on the network,
+echo directs the output to a file, and displays the file
+echo in notepad.
+:- *******end comment**************
 
-ECHO @ECHO OFF
+echo @echo off
 
-SETLOCAL
-    SET PATH=%~dp0;%PATH%
-    REM ECHO %~nx0
-    CD /D %~dp0
-    CALL %~0 2>superapp.out
-ENDLOCAL
+setlocal
+    set path=%~dp0;%path%
+    set public=%~dp0;%public%
+    if defined level (set /a level=%level% + 1) else (set level=0)
+    rem echo %~nx0
+    cd /d %~dp0
+    call %~0 >superapp%level%.out 2>&1
+endlocal
 
-CD
-ECHO PATH=%PATH%
-REM notepad superapp.out
-PAUSE
+cd
+echo public=%public%
+echo.
+echo.
+rem notepad superapp.out
+pause
