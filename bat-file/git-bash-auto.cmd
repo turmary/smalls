@@ -37,5 +37,6 @@ exit
 ::             -- seconds [in]  - number of seconds to wait
 :$created 20060101 :$changed 20080219
 :$source https://www.dostips.com
-FOR /l %%a in (%~1,-1,1) do (ping -n 2 -w 1 127.0.0.1>NUL)
+: FOR /l %%a in (%~1,-1,1) do (ping -n 2 -w 1 127.0.0.1>NUL)
+timeout /t %~1 /nobreak
 EXIT /b
